@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
-package projetolcp;
+package rc.unesp.br.lcp.controller;
+
+import rc.unesp.br.lcp.view.Login;
 
 /**
  *
@@ -16,7 +18,8 @@ public class ProjetoLCP {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Login login = new Login();
+        login.setVisible(true);
     }
     
 }

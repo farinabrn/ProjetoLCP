@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package classes;
+package rc.unesp.br.lcp.beans;
 
 import java.sql.Timestamp;
 
@@ -23,6 +23,7 @@ public class Usuario {
     private SituacaoUsuario situacaoUsuario;
     private String telefoneCelular;
     private String telefoneResidencial;
+    private String email;
     private ContaBancaria contaBancaria;
 
     public long getId() {
@@ -51,6 +52,10 @@ public class Usuario {
 
     public String getCpf() {
         return cpf;
+    }
+   
+    public String getEmail() {
+        return email;
     }
 
     public void setCpf(String cpf) {
@@ -103,6 +108,10 @@ public class Usuario {
 
     public void setContaBancaria(ContaBancaria contaBancaria) {
         this.contaBancaria = contaBancaria;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
 }
