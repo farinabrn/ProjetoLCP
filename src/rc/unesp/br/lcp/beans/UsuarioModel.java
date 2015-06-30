@@ -23,9 +23,10 @@ public class UsuarioModel {
     private SituacaoUsuarioModel situacaoUsuario;
     private String telefoneCelular;
     private String telefoneResidencial;
+    private String email;
     private ContaBancariaModel contaBancaria;
 
-    public UsuarioModel(long id, String nome, String apelido, String cpf, Timestamp dataInicio, Timestamp dataTermino, SituacaoUsuarioModel situacaoUsuario, String telefoneCelular, String telefoneResidencial, ContaBancariaModel contaBancaria) {
+    public UsuarioModel(long id, String nome, String apelido, String cpf, Timestamp dataInicio, Timestamp dataTermino, SituacaoUsuarioModel situacaoUsuario, String telefoneCelular, String telefoneResidencial, String email, ContaBancariaModel contaBancaria) {
         this.id = id;
         this.nome = nome;
         this.apelido = apelido;
@@ -35,6 +36,7 @@ public class UsuarioModel {
         this.situacaoUsuario = situacaoUsuario;
         this.telefoneCelular = telefoneCelular;
         this.telefoneResidencial = telefoneResidencial;
+        this.email = email;
         this.contaBancaria = contaBancaria;
     }
 
@@ -109,6 +111,14 @@ public class UsuarioModel {
     public void setTelefoneResidencial(String telefoneResidencial) {
         this.telefoneResidencial = telefoneResidencial;
     }
+    
+    public String getEmail() {
+      return email;
+    }
+    
+    public void setEmail(String email) {
+      this.email = email;
+    }
 
     public ContaBancariaModel getContaBancaria() {
         return contaBancaria;
@@ -116,6 +126,5 @@ public class UsuarioModel {
 
     public void setContaBancaria(ContaBancariaModel contaBancaria) {
         this.contaBancaria = contaBancaria;
-    }
-    
+    }    
 }
