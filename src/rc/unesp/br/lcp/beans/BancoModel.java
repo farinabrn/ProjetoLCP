@@ -10,19 +10,15 @@ package rc.unesp.br.lcp.beans;
  *
  * @author FARINA
  */
-public class SituacaoUsuario {
-
-    private long id;
+public class BancoModel {
+    
     private String descricao;
 
-    public long getId() {
-        return id;
+    
+    public BancoModel(String descricao) {
+        this.descricao = descricao;
     }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
+    
     public String getDescricao() {
         return descricao;
     }

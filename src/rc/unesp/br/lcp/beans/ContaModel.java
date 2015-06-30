@@ -10,29 +10,16 @@ package rc.unesp.br.lcp.beans;
  *
  * @author FARINA
  */
-public class Divida {
+public class ContaModel {
 
-    private Usuario devedor;
-    private Usuario recebedor;
     private String descricao;
     private Double preco;
 
-    public Usuario getDevedor() {
-        return devedor;
+    public ContaModel(String descricao, Double preco) {
+        this.descricao = descricao;
+        this.preco = preco;
     }
-
-    public void setDevedor(Usuario devedor) {
-        this.devedor = devedor;
-    }
-
-    public Usuario getRecebedor() {
-        return recebedor;
-    }
-
-    public void setRecebedor(Usuario recebedor) {
-        this.recebedor = recebedor;
-    }
-
+    
     public String getDescricao() {
         return descricao;
     }

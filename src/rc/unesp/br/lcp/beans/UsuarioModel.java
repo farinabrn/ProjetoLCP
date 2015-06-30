@@ -12,7 +12,7 @@ import java.sql.Timestamp;
  *
  * @author FARINA
  */
-public class Usuario {
+public class UsuarioModel {
     
     private long id;
     private String nome;
@@ -20,11 +20,23 @@ public class Usuario {
     private String cpf;
     private Timestamp dataInicio;
     private Timestamp dataTermino;
-    private SituacaoUsuario situacaoUsuario;
+    private SituacaoUsuarioModel situacaoUsuario;
     private String telefoneCelular;
     private String telefoneResidencial;
-    private String email;
-    private ContaBancaria contaBancaria;
+    private ContaBancariaModel contaBancaria;
+
+    public UsuarioModel(long id, String nome, String apelido, String cpf, Timestamp dataInicio, Timestamp dataTermino, SituacaoUsuarioModel situacaoUsuario, String telefoneCelular, String telefoneResidencial, ContaBancariaModel contaBancaria) {
+        this.id = id;
+        this.nome = nome;
+        this.apelido = apelido;
+        this.cpf = cpf;
+        this.dataInicio = dataInicio;
+        this.dataTermino = dataTermino;
+        this.situacaoUsuario = situacaoUsuario;
+        this.telefoneCelular = telefoneCelular;
+        this.telefoneResidencial = telefoneResidencial;
+        this.contaBancaria = contaBancaria;
+    }
 
     public long getId() {
         return id;
@@ -53,10 +65,6 @@ public class Usuario {
     public String getCpf() {
         return cpf;
     }
-   
-    public String getEmail() {
-        return email;
-    }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
@@ -78,11 +86,11 @@ public class Usuario {
         this.dataTermino = dataTermino;
     }
 
-    public SituacaoUsuario getSituacaoUsuario() {
+    public SituacaoUsuarioModel getSituacaoUsuario() {
         return situacaoUsuario;
     }
 
-    public void setSituacaoUsuario(SituacaoUsuario situacaoUsuario) {
+    public void setSituacaoUsuario(SituacaoUsuarioModel situacaoUsuario) {
         this.situacaoUsuario = situacaoUsuario;
     }
 
@@ -102,16 +110,12 @@ public class Usuario {
         this.telefoneResidencial = telefoneResidencial;
     }
 
-    public ContaBancaria getContaBancaria() {
+    public ContaBancariaModel getContaBancaria() {
         return contaBancaria;
     }
 
-    public void setContaBancaria(ContaBancaria contaBancaria) {
+    public void setContaBancaria(ContaBancariaModel contaBancaria) {
         this.contaBancaria = contaBancaria;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
     
 }
