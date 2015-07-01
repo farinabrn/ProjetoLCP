@@ -65,13 +65,13 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="labelUsuario">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
+        <Property name="text" type="java.lang.String" value="Usu&#xe1;rio:"/>
         <Property name="name" type="java.lang.String" value="labelUsuario" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelSenha">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Senha"/>
+        <Property name="text" type="java.lang.String" value="Senha:"/>
         <Property name="name" type="java.lang.String" value="labelSenha" noResource="true"/>
       </Properties>
     </Component>
@@ -86,7 +86,7 @@
     <Component class="javax.swing.JPasswordField" name="passwordSenha">
       <Properties>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor de Texto"/>
+          <Color id="Default Cursor"/>
         </Property>
         <Property name="name" type="java.lang.String" value="passwordSenha" noResource="true"/>
       </Properties>
