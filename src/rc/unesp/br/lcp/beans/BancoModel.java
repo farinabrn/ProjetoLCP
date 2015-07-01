@@ -18,6 +18,10 @@ public class BancoModel {
     public BancoModel(String descricao) {
         this.descricao = descricao;
     }
+
+    public BancoModel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public String getDescricao() {
         return descricao;
