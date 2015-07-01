@@ -7,6 +7,7 @@
 package rc.unesp.br.lcp.controller;
 
 import java.sql.Timestamp;
+import java.util.List;
 import rc.unesp.br.lcp.beans.ContaBancariaModel;
 import rc.unesp.br.lcp.beans.SituacaoUsuarioModel;
 import rc.unesp.br.lcp.beans.UsuarioModel;
@@ -31,42 +32,60 @@ public class UsuarioController {
             String telefoneResidencial,
             String email,
             ContaBancariaModel contaBancaria) {
-        
-        UsuarioModel usuarioModel = new UsuarioModel(id, nome, apelido, cpf, null, null, null, telefoneCelular, telefoneResidencial, email, null);
+        UsuarioModel usuarioModel = new UsuarioModel(id, nome, apelido, cpf, dataInicio, dataTermino, situacaoUsuario, telefoneCelular, telefoneResidencial, email, contaBancaria);
         
         usuarioDAO.adicionarUsuario(usuarioModel);
     }
     
-    @Override
     public List<UsuarioModel> buscarUsuarios() {
-        return this.usuarios;
+        return usuarioDAO.buscarUsuarios();
     }
 
-    @Override
-    public UsuarioModel buscarUsuario(UsuarioModel usuario) {
-        if (usuario != null) {
-            return buscaUsuarioPorID(usuario.getId());
-        }
+    public UsuarioModel buscarUsuario(long id,
+            String nome,
+            String apelido,
+            String cpf,
+            Timestamp dataInicio,
+            Timestamp dataTermino,
+            SituacaoUsuarioModel situacaoUsuario,
+            String telefoneCelular,
+            String telefoneResidencial,
+            String email,
+            ContaBancariaModel contaBancaria) {
+        UsuarioModel usuarioModel = new UsuarioModel(id, nome, apelido, cpf, dataInicio, dataTermino, situacaoUsuario, telefoneCelular, telefoneResidencial, email, contaBancaria);
         
-        return null;
+        return usuarioDAO.buscarUsuario(usuarioModel);
     }
 
-    @Override
-    public void alterarUsuario(UsuarioModel usuario) {
-        usuarios.set(usuarios.indexOf(buscaUsuarioPorID(usuario.getId())), usuario);
-    }
-
-    @Override
-    public void apagarUsuario(UsuarioModel usuario) {
-        usuarios.remove(usuarios.indexOf(buscaUsuarioPorID(usuario.getId())));
-    }
-
-    private UsuarioModel buscaUsuarioPorID(Long idUsuario) {
-        for (UsuarioModel usuario : usuarios) {
-            if (usuario.getId() == idUsuario)
-                return usuario;
-        }
+    public void alterarUsuario(long id,
+            String nome,
+            String apelido,
+            String cpf,
+            Timestamp dataInicio,
+            Timestamp dataTermino,
+            SituacaoUsuarioModel situacaoUsuario,
+            String telefoneCelular,
+            String telefoneResidencial,
+            String email,
+            ContaBancariaModel contaBancaria) {
+        UsuarioModel usuarioModel = new UsuarioModel(id, nome, apelido, cpf, dataInicio, dataTermino, situacaoUsuario, telefoneCelular, telefoneResidencial, email, contaBancaria);
         
-        return null;
+        usuarioDAO.alterarUsuario(usuarioModel);
+    }
+
+    public void apagarUsuario(long id,
+            String nome,
+            String apelido,
+            String cpf,
+            Timestamp dataInicio,
+            Timestamp dataTermino,
+            SituacaoUsuarioModel situacaoUsuario,
+            String telefoneCelular,
+            String telefoneResidencial,
+            String email,
+            ContaBancariaModel contaBancaria) {
+        UsuarioModel usuarioModel = new UsuarioModel(id, nome, apelido, cpf, dataInicio, dataTermino, situacaoUsuario, telefoneCelular, telefoneResidencial, email, contaBancaria);
+        
+        usuarioDAO.apagarUsuario(usuarioModel);
     }
 }
