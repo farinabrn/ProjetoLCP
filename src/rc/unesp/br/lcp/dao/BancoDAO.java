@@ -23,10 +23,12 @@ public class BancoDAO implements BancoInterface {
 
     @Override
     public List<BancoModel> buscarBancos() {
+        return null;
     }
 
     @Override
     public BancoModel buscarBanco(BancoModel banco) {
+        return null;
     }
 
     @Override

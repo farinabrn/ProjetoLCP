@@ -19,28 +19,24 @@ public class SituacaoUsuarioDAO implements SituacaoUsuarioInterface {
 
     @Override
     public void adicionarSituacoesUsuario(SituacaoUsuarioModel situacaoUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public List<SituacaoUsuarioModel> buscarSituacoesUsuario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public SituacaoUsuarioModel buscarSituacaoUsuario(SituacaoUsuarioModel situacaoUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public void alterarSituacaoUsuario(SituacaoUsuarioModel situacaoUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void apagarSituacaoUsuario(SituacaoUsuarioModel situacaoUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 
 }
