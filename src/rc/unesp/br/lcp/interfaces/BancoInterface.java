@@ -14,12 +14,14 @@ import rc.unesp.br.lcp.beans.BancoModel;
  */
 public interface BancoInterface {
 
-    public List<BancoModel> getBancos();
+    public void adicionarBanco(BancoModel banco);
 
-    public BancoModel getBanco(BancoModel banco);
+    public List<BancoModel> buscarBancos();
 
-    public void updateBanco(BancoModel banco);
+    public BancoModel buscarBanco(BancoModel banco);
 
-    public void deleteBanco(BancoModel banco);
+    public void alterarBanco(BancoModel banco);
+
+    public void apagarBanco(BancoModel banco);
 
 }

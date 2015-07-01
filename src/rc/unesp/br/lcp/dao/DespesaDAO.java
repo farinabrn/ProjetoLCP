@@ -18,23 +18,27 @@ public class DespesaDAO implements DespesaInterface {
     private List<DespesaModel> despesas;
 
     @Override
-    public List<DespesaModel> getDespesas() {
+    public void adicionarDespesa(DespesaModel despesa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public DespesaModel getDespesa(DespesaModel Despesa) {
+    public List<DespesaModel> buscarDespesas() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(DespesaModel despesa) {
+    public DespesaModel buscarDespesa(DespesaModel Despesa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void deleteDespesa(DespesaModel despesa) {
+    public void alterarDespesa(DespesaModel despesa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void apagarDespesa(DespesaModel despesa) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

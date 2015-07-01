@@ -14,11 +14,13 @@ import rc.unesp.br.lcp.beans.DividaModel;
  */
 public interface DividaInterface {
 
-    public List<DividaModel> getDividas();
+    public void adicionarDivida(DividaModel divida);
 
-    public DividaModel getDivida(DividaModel Divida);
+    public List<DividaModel> buscarDividas();
 
-    public void updateDivida(DividaModel divida);
+    public DividaModel buscarDivida(DividaModel Divida);
 
-    public void deleteDivida(DividaModel divida);
+    public void alterarDivida(DividaModel divida);
+
+    public void apagarDivida(DividaModel divida);
 }

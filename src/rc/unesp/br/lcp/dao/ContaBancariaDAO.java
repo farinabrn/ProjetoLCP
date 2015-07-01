@@ -18,22 +18,27 @@ public class ContaBancariaDAO implements ContaBancariaInterface {
     private List<ContaBancariaModel> contasBancarias;
 
     @Override
-    public List<ContaBancariaModel> getContasBancarias() {
+    public void adicionarContasBancarias(ContaBancariaModel contaBancaria) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ContaBancariaModel getContaBancaria(ContaBancariaModel contaBancaria) {
+    public List<ContaBancariaModel> buscarContasBancarias() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void updateContaBancaria(ContaBancariaModel contaBancaria) {
+    public ContaBancariaModel buscarContaBancaria(ContaBancariaModel contaBancaria) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void deleteContaBancaria(ContaBancariaModel contaBancaria) {
+    public void alterarContaBancaria(ContaBancariaModel contaBancaria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void apagarContaBancaria(ContaBancariaModel contaBancaria) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

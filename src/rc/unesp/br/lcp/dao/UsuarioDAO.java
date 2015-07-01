@@ -33,12 +33,12 @@ public class UsuarioDAO implements UsuarioInterface {
     }
     
     @Override
-    public List<UsuarioModel> buscaUsuarios() {
+    public List<UsuarioModel> buscarUsuarios() {
         return this.usuarios;
     }
 
     @Override
-    public UsuarioModel buscaUsuario(UsuarioModel usuario) {
+    public UsuarioModel buscarUsuario(UsuarioModel usuario) {
         if (usuario != null) {
             return buscaUsuarioPorID(usuario.getId());
         }
@@ -47,12 +47,12 @@ public class UsuarioDAO implements UsuarioInterface {
     }
 
     @Override
-    public void alteraUsuario(UsuarioModel usuario) {
+    public void alterarUsuario(UsuarioModel usuario) {
         usuarios.set(usuarios.indexOf(buscaUsuarioPorID(usuario.getId())), usuario);
     }
 
     @Override
-    public void apagaUsuario(UsuarioModel usuario) {
+    public void apagarUsuario(UsuarioModel usuario) {
         usuarios.remove(usuarios.indexOf(buscaUsuarioPorID(usuario.getId())));
     }
 
@@ -88,5 +88,4 @@ public class UsuarioDAO implements UsuarioInterface {
             listener.usuarioAlterado(new UsuarioEvent(usuario));
         }
     }
-    
 }

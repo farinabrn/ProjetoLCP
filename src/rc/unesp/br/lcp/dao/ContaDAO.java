@@ -18,23 +18,27 @@ public class ContaDAO implements ContaInterface {
     private List<ContaModel> contas;
 
     @Override
-    public List<ContaModel> getContas() {
+    public void adicionarConta(ContaModel conta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ContaModel getConta(ContaModel conta) {
+    public List<ContaModel> buscarContas() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void updateConta(ContaModel conta) {
+    public ContaModel buscarConta(ContaModel conta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void deleteConta(ContaModel conta) {
+    public void alterarConta(ContaModel conta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void apagarConta(ContaModel conta) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

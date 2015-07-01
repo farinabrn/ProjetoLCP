@@ -15,12 +15,12 @@ import rc.unesp.br.lcp.beans.UsuarioModel;
 public interface UsuarioInterface {
 
     public void adicionarUsuario(UsuarioModel usuario);
-    
-    public List<UsuarioModel> buscaUsuarios();
 
-    public UsuarioModel buscaUsuario(UsuarioModel usuario);
+    public List<UsuarioModel> buscarUsuarios();
 
-    public void alteraUsuario(UsuarioModel usuario);
+    public UsuarioModel buscarUsuario(UsuarioModel usuario);
 
-    public void apagaUsuario(UsuarioModel usuario);
+    public void alterarUsuario(UsuarioModel usuario);
+
+    public void apagarUsuario(UsuarioModel usuario);
 }

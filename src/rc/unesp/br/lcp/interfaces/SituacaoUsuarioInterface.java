@@ -14,12 +14,14 @@ import rc.unesp.br.lcp.beans.SituacaoUsuarioModel;
  */
 public interface SituacaoUsuarioInterface {
 
-    public List<SituacaoUsuarioModel> getSituacoesUsuario();
+    public void adicionarSituacoesUsuario(SituacaoUsuarioModel situacaoUsuario);
 
-    public SituacaoUsuarioModel getSituacaoUsuario(SituacaoUsuarioModel situacaoUsuario);
+    public List<SituacaoUsuarioModel> buscarSituacoesUsuario();
 
-    public void updateSituacaoUsuario(SituacaoUsuarioModel situacaoUsuario);
+    public SituacaoUsuarioModel buscarSituacaoUsuario(SituacaoUsuarioModel situacaoUsuario);
 
-    public void deleteSituacaoUsuario(SituacaoUsuarioModel situacaoUsuario);
+    public void alterarSituacaoUsuario(SituacaoUsuarioModel situacaoUsuario);
+
+    public void apagarSituacaoUsuario(SituacaoUsuarioModel situacaoUsuario);
 
 }

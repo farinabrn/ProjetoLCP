@@ -18,23 +18,27 @@ public class DividaDAO implements DividaInterface {
     private List<DividaModel> dividas;
 
     @Override
-    public List<DividaModel> getDividas() {
+    public void adicionarDivida(DividaModel divida) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public DividaModel getDivida(DividaModel Divida) {
+    public List<DividaModel> buscarDividas() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void updateDivida(DividaModel divida) {
+    public DividaModel buscarDivida(DividaModel Divida) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void deleteDivida(DividaModel divida) {
+    public void alterarDivida(DividaModel divida) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void apagarDivida(DividaModel divida) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

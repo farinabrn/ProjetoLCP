@@ -14,11 +14,13 @@ import rc.unesp.br.lcp.beans.ContaModel;
  */
 public interface ContaInterface {
 
-    public List<ContaModel> getContas();
+    public void adicionarConta(ContaModel conta);
 
-    public ContaModel getConta(ContaModel conta);
+    public List<ContaModel> buscarContas();
 
-    public void updateConta(ContaModel conta);
+    public ContaModel buscarConta(ContaModel conta);
 
-    public void deleteConta(ContaModel conta);
+    public void alterarConta(ContaModel conta);
+
+    public void apagarConta(ContaModel conta);
 }

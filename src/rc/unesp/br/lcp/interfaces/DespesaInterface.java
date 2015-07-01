@@ -14,11 +14,13 @@ import rc.unesp.br.lcp.beans.DespesaModel;
  */
 public interface DespesaInterface {
 
-    public List<DespesaModel> getDespesas();
+    public void adicionarDespesa(DespesaModel despesa);
 
-    public DespesaModel getDespesa(DespesaModel Despesa);
+    public List<DespesaModel> buscarDespesas();
 
-    public void update(DespesaModel despesa);
+    public DespesaModel buscarDespesa(DespesaModel Despesa);
 
-    public void deleteDespesa(DespesaModel despesa);
+    public void alterarDespesa(DespesaModel despesa);
+
+    public void apagarDespesa(DespesaModel despesa);
 }

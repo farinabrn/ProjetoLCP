@@ -18,23 +18,27 @@ public class BancoDAO implements BancoInterface {
     private List<BancoModel> bancos;
 
     @Override
-    public List<BancoModel> getBancos() {
+    public void adicionarBanco(BancoModel banco) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public BancoModel getBanco(BancoModel banco) {
+    public List<BancoModel> buscarBancos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void updateBanco(BancoModel banco) {
+    public BancoModel buscarBanco(BancoModel banco) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void deleteBanco(BancoModel banco) {
+    public void alterarBanco(BancoModel banco) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void apagarBanco(BancoModel banco) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

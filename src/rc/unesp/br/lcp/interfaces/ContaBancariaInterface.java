@@ -14,12 +14,14 @@ import rc.unesp.br.lcp.beans.ContaBancariaModel;
  */
 public interface ContaBancariaInterface {
 
-    public List<ContaBancariaModel> getContasBancarias();
+    public void adicionarContasBancarias(ContaBancariaModel contaBancaria);
 
-    public ContaBancariaModel getContaBancaria(ContaBancariaModel contaBancaria);
+    public List<ContaBancariaModel> buscarContasBancarias();
 
-    public void updateContaBancaria(ContaBancariaModel contaBancaria);
+    public ContaBancariaModel buscarContaBancaria(ContaBancariaModel contaBancaria);
 
-    public void deleteContaBancaria(ContaBancariaModel contaBancaria);
+    public void alterarContaBancaria(ContaBancariaModel contaBancaria);
+
+    public void apagarContaBancaria(ContaBancariaModel contaBancaria);
 
 }
