@@ -83,7 +83,6 @@ public class Baixas extends javax.swing.JFrame {
     buttonSair.setPreferredSize(new java.awt.Dimension(63, 23));
 
     buttonSalvar.setText("Salvar");
-    buttonSalvar.setPreferredSize(new java.awt.Dimension(63, 23));
 
     buttonExcluir.setText("Excluir");
 
@@ -98,7 +97,7 @@ public class Baixas extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
             .addComponent(buttonExcluir)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(buttonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(buttonSalvar)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE))
@@ -111,7 +110,7 @@ public class Baixas extends javax.swing.JFrame {
         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addGroup(panelBaixasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(buttonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(buttonSalvar)
           .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(buttonExcluir))
         .addContainerGap())

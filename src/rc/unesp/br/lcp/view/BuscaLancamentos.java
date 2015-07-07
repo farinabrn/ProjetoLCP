@@ -49,7 +49,7 @@ public class BuscaLancamentos extends javax.swing.JFrame {
     buttonExcluir = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    setTitle("Busca - Usuários");
+    setTitle("Busca - Lançamentos");
 
     panelBuscaUsuario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Busca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
