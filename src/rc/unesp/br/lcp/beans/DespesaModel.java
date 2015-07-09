@@ -12,18 +12,18 @@ package rc.unesp.br.lcp.beans;
  */
 public class DespesaModel extends ContaModel {
 
-    private UsuarioModel comprador;
+    private UsuarioModel pagador;
 
     public DespesaModel(UsuarioModel comprador, String descricao, Double preco) {
         super(descricao, preco);
-        this.comprador = comprador;
+        this.pagador = comprador;
     }
     
-    public UsuarioModel getComprador() {
-        return comprador;
+    public UsuarioModel getPagador() {
+        return pagador;
     }
 
-    public void setComprador(UsuarioModel comprador) {
-        this.comprador = comprador;
+    public void setPagador(UsuarioModel pagador) {
+        this.pagador = pagador;
     }
 }

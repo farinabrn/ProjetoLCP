@@ -13,11 +13,11 @@ package rc.unesp.br.lcp.beans;
 public class ContaModel {
 
     private String descricao;
-    private Double preco;
+    private Double valor;
 
     public ContaModel(String descricao, Double preco) {
         this.descricao = descricao;
-        this.preco = preco;
+        this.valor = preco;
     }
     
     public String getDescricao() {
@@ -28,11 +28,11 @@ public class ContaModel {
         this.descricao = descricao;
     }
 
-    public Double getPreco() {
-        return preco;
+    public Double getValor() {
+        return valor;
     }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 }
