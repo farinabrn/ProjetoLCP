@@ -5,37 +5,58 @@
  */
 package rc.unesp.br.lcp.dao;
 
+import java.util.ArrayList;
 import java.util.List;
-import rc.unesp.br.lcp.beans.BancoModel;
-import rc.unesp.br.lcp.interfaces.BancoInterface;
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+import rc.unesp.br.lcp.beans.Banco;
 
 /**
  *
  * @author FARINA
  */
-public class BancoDAO implements BancoInterface {
+public class BancoDAO {
 
-    private List<BancoModel> bancos;
+    Session session = HibernateUtil.getSessionFactory().openSession();
 
-    @Override
-    public void adicionarBanco(BancoModel banco) {
+    public void adicionarBanco(Banco banco) {
+        Transaction transaction = session.beginTransaction();
+        session.save(banco);
+        transaction.commit();
     }
 
-    @Override
-    public List<BancoModel> buscarBancos() {
-        return null;
+    public List<Banco> buscarBanco(Banco banco) {
+        Criteria criteria = session.createCriteria(Banco.class);
+        
+        if (banco == null) {
+            return criteria.list();
+        }
+        
+        if (banco.getIdBanco() != null) {
+                criteria.add(Restrictions.eq(Banco.ID_BANCO, banco.getIdBanco()));
+        }
+
+        if (banco.getDescricao() != null && !banco.getDescricao().equals("")) {
+            criteria.add(Restrictions.like(Banco.DESCRICAO, banco.getDescricao().toString(), MatchMode.ANYWHERE));
+        }
+
+        List<Banco> list = criteria.list();
+        return list;
     }
 
-    @Override
-    public BancoModel buscarBanco(BancoModel banco) {
-        return null;
+    public void alterarBanco(Banco banco) {
+        Transaction transaction = session.beginTransaction();
+        session.merge(banco);
+        transaction.commit();
     }
 
-    @Override
-    public void alterarBanco(BancoModel banco) {
-    }
-
-    @Override
-    public void apagarBanco(BancoModel banco) {
+    public void apagarBanco(Banco banco) {
+        Transaction transaction = session.beginTransaction();
+        session.delete(banco);
+        transaction.commit();
     }
 }

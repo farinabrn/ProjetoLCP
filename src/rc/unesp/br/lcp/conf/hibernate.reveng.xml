@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="projeto"/>
+  <table-filter match-name="banco"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="conta"/>
+  <table-filter match-name="contabancaria"/>
+  <table-filter match-name="divida"/>
+</hibernate-reverse-engineering>

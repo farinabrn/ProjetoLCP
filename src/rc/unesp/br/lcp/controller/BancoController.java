@@ -7,7 +7,7 @@
 package rc.unesp.br.lcp.controller;
 
 import java.util.List;
-import rc.unesp.br.lcp.beans.BancoModel;
+import rc.unesp.br.lcp.beans.Banco;
 import rc.unesp.br.lcp.dao.BancoDAO;
 
 /**
@@ -19,30 +19,41 @@ public class BancoController {
     private BancoDAO bancoDAO;
     
     public void adicionarBanco(String descricao) {
-        BancoModel bancoModel = new BancoModel(descricao);
+        Banco banco = new Banco(null, descricao, null);
         
-        bancoDAO.adicionarBanco(bancoModel);
+        bancoDAO.adicionarBanco(banco);
     }
 
-    public List<BancoModel> buscarBancos() {
-        return bancoDAO.buscarBancos();
+    public List<Banco> buscarBanco(Integer idBanco, String descricao) {
+        Banco banco = new Banco(idBanco, descricao, null);
+        
+        return bancoDAO.buscarBanco(banco);
     }
 
-    public BancoModel buscarBanco(String descricao) {
-        BancoModel bancoModel = new BancoModel(descricao);
+    public void alterarBanco(Integer idBanco, String descricao) {
+        Banco banco = carregarBanco(idBanco);
         
-        return bancoDAO.buscarBanco(bancoModel);
-    }
-
-    public void alterarBanco(String descricao) {
-        BancoModel bancoModel = new BancoModel(descricao);
+        banco.setDescricao(descricao);
         
-        bancoDAO.alterarBanco(bancoModel);
+        bancoDAO.alterarBanco(banco);
    }
 
-    public void apagarBanco(String descricao) {
-        BancoModel bancoModel = new BancoModel(descricao);
+    public void apagarBanco(Integer idBanco) {
+        Banco banco = carregarBanco(idBanco);
+
+        bancoDAO.apagarBanco(banco);
+    }
+
+    private Banco carregarBanco(Integer idBanco) {
+        Banco banco = new Banco();
+        banco.setIdBanco(idBanco);
         
-        bancoDAO.alterarBanco(bancoModel);
+        List<Banco> list = bancoDAO.buscarBanco(banco);
+        
+        if (list != null && list.size() == 1) {
+            return list.get(0);
+        } else {
+            return null;
+        }
     }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27/07/2015 23:54:16 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="rc.unesp.br.lcp.beans.Divida" table="divida" catalog="projeto" optimistic-lock="version">
+        <id name="idDivida" type="java.lang.Integer">
+            <column name="idDivida" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuarioByIdUsuarioDevedor" class="rc.unesp.br.lcp.beans.Usuario" fetch="select">
+            <column name="idUsuarioDevedor" />
+        </many-to-one>
+        <many-to-one name="usuarioByIdUsuarioRecebedor" class="rc.unesp.br.lcp.beans.Usuario" fetch="select">
+            <column name="idUsuarioRecebedor" />
+        </many-to-one>
+        <property name="descricao" type="string">
+            <column name="descricao" length="100" />
+        </property>
+        <property name="preco" type="java.lang.Double">
+            <column name="preco" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -8,14 +8,12 @@ package rc.unesp.br.lcp.view;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import javax.swing.JFrame;
-import rc.unesp.br.lcp.events.UsuarioEvent;
-import rc.unesp.br.lcp.listener.UsuarioListener;
 
 /**
  *
  * @author Guizão
  */
-public class UsuarioCadastro extends JFrame implements UsuarioListener {
+public class UsuarioCadastro extends JFrame {
 
     private ActionListener controller;
   /**
@@ -335,19 +333,4 @@ public class UsuarioCadastro extends JFrame implements UsuarioListener {
     private javax.swing.JTextField textTelefoneCel;
     private javax.swing.JTextField textTelefoneRes;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void usuarioNovo(UsuarioEvent event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void usuarioApagado(UsuarioEvent event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void usuarioAlterado(UsuarioEvent event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

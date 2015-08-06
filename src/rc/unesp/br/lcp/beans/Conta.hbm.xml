@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27/07/2015 23:54:16 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="rc.unesp.br.lcp.beans.Conta" table="conta" catalog="projeto" optimistic-lock="version">
+        <id name="idConta" type="java.lang.Integer">
+            <column name="idConta" />
+            <generator class="identity" />
+        </id>
+        <property name="descricao" type="string">
+            <column name="descricao" length="100" />
+        </property>
+        <property name="valor" type="java.lang.Double">
+            <column name="valor" precision="22" scale="0" />
+        </property>
+        <property name="tipoConta" type="int">
+            <column name="tipoConta" not-null="true" />
+        </property>
+        <property name="idUsuarioPagador" type="java.lang.Integer">
+            <column name="idUsuarioPagador" />
+        </property>
+    </class>
+</hibernate-mapping>
