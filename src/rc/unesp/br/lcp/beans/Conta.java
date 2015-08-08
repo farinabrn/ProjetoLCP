@@ -8,11 +8,15 @@ package rc.unesp.br.lcp.beans;
  */
 public class Conta  implements java.io.Serializable {
 
-
+     public static final String ID_CONTA = "idConta";
+     public static final String ID_USUARIO = "idUsuarioPagador";
+     public static final String DESCRICAO = "descricao";
+     public static final String TIPO_CONTA = "tipoConta";
+             
      private Integer idConta;
      private String descricao;
      private Double valor;
-     private int tipoConta;
+     private Integer tipoConta;
      private Integer idUsuarioPagador;
 
     public Conta() {
@@ -22,7 +26,7 @@ public class Conta  implements java.io.Serializable {
     public Conta(int tipoConta) {
         this.tipoConta = tipoConta;
     }
-    public Conta(String descricao, Double valor, int tipoConta, Integer idUsuarioPagador) {
+    public Conta(String descricao, Double valor, Integer tipoConta, Integer idUsuarioPagador) {
        this.descricao = descricao;
        this.valor = valor;
        this.tipoConta = tipoConta;
@@ -50,7 +54,7 @@ public class Conta  implements java.io.Serializable {
     public void setValor(Double valor) {
         this.valor = valor;
     }
-    public int getTipoConta() {
+    public Integer getTipoConta() {
         return this.tipoConta;
     }
     

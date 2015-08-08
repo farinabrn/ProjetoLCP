@@ -7,9 +7,7 @@
 package rc.unesp.br.lcp.controller;
 
 import java.util.List;
-import rc.unesp.br.lcp.beans.BancoModel;
-import rc.unesp.br.lcp.beans.ContaBancariaModel;
-import rc.unesp.br.lcp.beans.SituacaoUsuarioModel;
+import rc.unesp.br.lcp.beans.Contabancaria;
 import rc.unesp.br.lcp.dao.ContaBancariaDAO;
 
 /**
@@ -18,29 +16,45 @@ import rc.unesp.br.lcp.dao.ContaBancariaDAO;
  */
 public class ContaBancariaController {
     
-    private ContaBancariaDAO contaBancariaDAO = new ContaBancariaDAO();
+    private ContaBancariaDAO contaBancariaDAO;
 
-    public void adicionarContasBancarias(BancoModel banco, String agencia, String conta) {
-        ContaBancariaModel contaBancariaModel = new ContaBancariaModel(banco, agencia, conta);
-        contaBancariaDAO.adicionarContasBancarias(contaBancariaModel);        
+    public void adicionarContaBancaria(String idBanco, String agencia, String conta) {
+        Contabancaria contaBancaria = new Contabancaria(null, null, agencia, conta, idBanco, null);
+        
+        contaBancariaDAO.adicionarContaBancaria(contaBancaria);     
     }
 
-    public List<ContaBancariaModel> buscarContasBancarias() {
-        return contaBancariaDAO.buscarContasBancarias();  
+    public List<Contabancaria> buscarContasBancarias(Integer idContaBancaria, String idBanco, String agencia, String conta) {
+        Contabancaria contaBancaria = new Contabancaria(null, idContaBancaria, agencia, conta, idBanco, null);
+        return contaBancariaDAO.buscarContaBancaria(contaBancaria);  
     }
 
-    public ContaBancariaModel buscarContaBancaria(BancoModel banco, String agencia, String conta) {
-        ContaBancariaModel contaBancariaModel = new ContaBancariaModel(banco, agencia, conta);
-        return contaBancariaDAO.buscarContaBancaria(contaBancariaModel);
+    public void alterarContaBancaria(Integer idContaBancaria, String idBanco, String agencia, String conta) {
+        Contabancaria contaBancaria = carregarContaBancaria(idContaBancaria);
+        
+        contaBancaria.setAgencia(agencia);
+        contaBancaria.setConta(conta);
+        contaBancaria.setIdBanco(idBanco);
+        
+        contaBancariaDAO.alterarContaBancaria(contaBancaria);      
     }
 
-    public void alterarContaBancaria(BancoModel banco, String agencia, String conta) {
-        ContaBancariaModel contaBancariaModel = new ContaBancariaModel(banco, agencia, conta);
-        contaBancariaDAO.alterarContaBancaria(contaBancariaModel);        
+    public void apagarContaBancaria(Integer idContaBancaria) {
+        Contabancaria contaBancaria = carregarContaBancaria(idContaBancaria);
+        
+        contaBancariaDAO.apagarContaBancaria(contaBancaria);
     }
+    
+    private Contabancaria carregarContaBancaria(Integer idContaBancaria) {
+        Contabancaria contaBancaria = new Contabancaria();
+        contaBancaria.setIdContaBancaria(idContaBancaria);
 
-    public void apagarContaBancaria(BancoModel banco, String agencia, String conta) {
-        ContaBancariaModel contaBancariaModel = new ContaBancariaModel(banco, agencia, conta);
-        contaBancariaDAO.apagarContaBancaria(contaBancariaModel);
+        List<Contabancaria> list = contaBancariaDAO.buscarContaBancaria(contaBancaria);
+
+        if (list != null && list.size() == 1) {
+            return list.get(0);
+        } else {
+            return null;
+        }
     }
 }

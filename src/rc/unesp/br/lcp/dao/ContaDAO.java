@@ -6,39 +6,63 @@
 package rc.unesp.br.lcp.dao;
 
 import java.util.List;
-import rc.unesp.br.lcp.beans.ContaModel;
-import rc.unesp.br.lcp.interfaces.ContaInterface;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+import rc.unesp.br.lcp.beans.Conta;
 
 /**
  *
  * @author FARINA
  */
-public class ContaDAO implements ContaInterface {
+public class ContaDAO {
 
-    private List<ContaModel> contas;
+    Session session = HibernateUtil.getSessionFactory().openSession();
 
-    @Override
-    public void adicionarConta(ContaModel conta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void adicionarConta(Conta conta) {
+        Transaction transaction = session.beginTransaction();
+        session.save(conta);
+        transaction.commit();
     }
 
-    @Override
-    public List<ContaModel> buscarContas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Conta> buscarConta(Conta conta) {
+        Criteria criteria = session.createCriteria(Conta.class);
+        
+        if (conta == null) {
+            return criteria.list();
+        }
+        
+        if (conta.getIdConta() != null) {
+            criteria.add(Restrictions.eq(Conta.ID_CONTA, conta.getIdConta()));
+        }
+
+        if (conta.getDescricao() != null && !conta.getDescricao().equals("")) {
+            criteria.add(Restrictions.like(Conta.DESCRICAO, conta.getDescricao().toString(), MatchMode.ANYWHERE));
+        }
+        
+        if (conta.getTipoConta()!= null) {
+            criteria.add(Restrictions.eq(Conta.TIPO_CONTA, conta.getTipoConta()));
+        }
+        
+        if (conta.getIdUsuarioPagador() != null){
+            criteria.add(Restrictions.eq(Conta.ID_USUARIO, conta.getIdUsuarioPagador()));
+        }
+
+        List<Conta> list = criteria.list();
+        return list;
+    }
+    
+    public void alterarConta(Conta conta) {
+        Transaction transaction = session.beginTransaction();
+        session.merge(conta);
+        transaction.commit();
     }
 
-    @Override
-    public ContaModel buscarConta(ContaModel conta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void alterarConta(ContaModel conta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void apagarConta(ContaModel conta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void apagarConta(Conta conta) {
+        Transaction transaction = session.beginTransaction();
+        session.delete(conta);
+        transaction.commit();
     }
 }
