@@ -5,10 +5,8 @@
  */
 package rc.unesp.br.lcp.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.MatchMode;
@@ -41,7 +39,7 @@ public class BancoDAO {
         }
 
         if (banco.getDescricao() != null && !banco.getDescricao().equals("")) {
-            criteria.add(Restrictions.like(Banco.DESCRICAO, banco.getDescricao().toString(), MatchMode.ANYWHERE));
+            criteria.add(Restrictions.like(Banco.DESCRICAO, banco.getDescricao(), MatchMode.ANYWHERE));
         }
 
         List<Banco> list = criteria.list();

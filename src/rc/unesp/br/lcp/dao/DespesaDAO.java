@@ -6,36 +6,64 @@
 package rc.unesp.br.lcp.dao;
 
 import java.util.List;
-import rc.unesp.br.lcp.beans.DespesaModel;
-import rc.unesp.br.lcp.interfaces.DespesaInterface;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+import rc.unesp.br.lcp.beans.Despesa;
 
 /**
  *
  * @author FARINA
  */
-public class DespesaDAO implements DespesaInterface {
+public class DespesaDAO {
 
-    private List<DespesaModel> despesas;
+    Session session = HibernateUtil.getSessionFactory().openSession();
 
-    @Override
-    public void adicionarDespesa(DespesaModel despesa) {
+    public void adicionarDespesa(Despesa despesa) {
+        Transaction transaction = session.beginTransaction();
+        session.save(despesa);
+        transaction.commit();
     }
 
-    @Override
-    public List<DespesaModel> buscarDespesas() {
-        return null;
+    public List<Despesa> buscarDespesa(Despesa despesa) {
+        Criteria criteria = session.createCriteria(Despesa.class);
+
+        if (despesa == null) {
+            return criteria.list();
+        }
+
+        if (despesa.getIdDespesa() != null && despesa.getIdDespesa() != 0) {
+            criteria.add(Restrictions.eq(Despesa.ID_DESPESA, despesa.getIdDespesa()));
+        }
+
+        if (despesa.getUsuarioByIdUsuario() != null && despesa.getUsuarioByIdUsuario().getIdUsuario() != null) {
+            criteria.add(Restrictions.eq(Despesa.ID_USUARIO, despesa.getUsuarioByIdUsuario()));
+        }
+
+        if (despesa.getDescricao() != null && !despesa.getDescricao().equals("")) {
+            criteria.add(Restrictions.like(Despesa.DESCRICAO, despesa.getDescricao(), MatchMode.ANYWHERE));
+        }
+
+        if (despesa.getPreco() != null && despesa.getPreco() != 0) {
+            criteria.add(Restrictions.eq(Despesa.PRECO, despesa.getPreco()));
+        }
+
+        List<Despesa> list = criteria.list();
+
+        return list;
     }
 
-    @Override
-    public DespesaModel buscarDespesa(DespesaModel Despesa) {
-        return null;
+    public void alterarDespesa(Despesa despesa) {
+        Transaction transaction = session.beginTransaction();
+        session.merge(despesa);
+        transaction.commit();
     }
 
-    @Override
-    public void alterarDespesa(DespesaModel despesa) {
-    }
-
-    @Override
-    public void apagarDespesa(DespesaModel despesa) {
+    public void apagarDespesa(Despesa despesa) {
+        Transaction transaction = session.beginTransaction();
+        session.delete(despesa);
+        transaction.commit();
     }
 }
