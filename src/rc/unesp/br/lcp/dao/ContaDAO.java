@@ -39,7 +39,7 @@ public class ContaDAO {
         }
 
         if (conta.getDescricao() != null && !conta.getDescricao().equals("")) {
-            criteria.add(Restrictions.like(Conta.DESCRICAO, conta.getDescricao().toString(), MatchMode.ANYWHERE));
+            criteria.add(Restrictions.like(Conta.DESCRICAO, conta.getDescricao(), MatchMode.ANYWHERE));
         }
         
         if (conta.getTipoConta()!= null) {

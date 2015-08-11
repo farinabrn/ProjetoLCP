@@ -9,7 +9,7 @@ public class Despesa implements java.io.Serializable {
     public static final String ID_DESPESA = "idDespesa";
     public static final String DESCRICAO = "descricao";
     public static final String PRECO = "preco";
-    public static final String ID_USUARIO = "preco";
+    public static final String ID_USUARIO = "usuario";
 
     private Integer idDespesa;
     private Usuario usuarioByIdUsuario;

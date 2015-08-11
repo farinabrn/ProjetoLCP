@@ -8,6 +8,9 @@
             <column name="idConta" />
             <generator class="identity" />
         </id>
+        <many-to-one name="usuarioByIdUsuarioPagador" class="rc.unesp.br.lcp.beans.Usuario" fetch="select">
+            <column name="idUsuarioPagador" />
+        </many-to-one>
         <property name="descricao" type="string">
             <column name="descricao" length="100" />
         </property>
@@ -16,9 +19,6 @@
         </property>
         <property name="tipoConta" type="int">
             <column name="tipoConta" not-null="true" />
-        </property>
-        <property name="idUsuarioPagador" type="java.lang.Integer">
-            <column name="idUsuarioPagador" />
         </property>
     </class>
 </hibernate-mapping>

@@ -16,7 +16,7 @@ import rc.unesp.br.lcp.dao.ContaBancariaDAO;
  */
 public class ContaBancariaController {
     
-    private ContaBancariaDAO contaBancariaDAO;
+    private ContaBancariaDAO contaBancariaDAO = new ContaBancariaDAO();
 
     public void adicionarContaBancaria(String idBanco, String agencia, String conta) {
         Contabancaria contaBancaria = new Contabancaria(null, null, agencia, conta, idBanco, null);

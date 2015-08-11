@@ -6,8 +6,8 @@
 package rc.unesp.br.lcp.controller;
 
 import java.util.List;
-import rc.unesp.br.lcp.beans.DividaModel;
-import rc.unesp.br.lcp.beans.UsuarioModel;
+import rc.unesp.br.lcp.beans.Divida;
+import rc.unesp.br.lcp.beans.Usuario;
 import rc.unesp.br.lcp.dao.DividaDAO;
 
 /**
@@ -16,34 +16,74 @@ import rc.unesp.br.lcp.dao.DividaDAO;
  */
 public class DividaController {
 
-    private DividaDAO dividaDAO = new DividaDAO();
+    private final DividaDAO dividaDAO = new DividaDAO();
 
-    public void adicionarDivida(UsuarioModel devedor, UsuarioModel recebedor, String descricao, Double preco) {
-        DividaModel dividaModel = new DividaModel(devedor, recebedor, descricao, preco);
+    public void adicionarDivida(Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco) {
+        Usuario devedor = carregarUsuario(idUsuarioDevedor);
+        Usuario recebedor = carregarUsuario(idUsuarioRecebedor);
         
-        dividaDAO.adicionarDivida(dividaModel);
-    }
-
-    public List<DividaModel> buscarDividas() {
-        return dividaDAO.buscarDividas();
-    }
-
-    public DividaModel buscarDivida(UsuarioModel devedor, UsuarioModel recebedor, String descricao, Double preco) {
-        DividaModel dividaModel = new DividaModel(devedor, recebedor, descricao, preco);
+        Divida divida = new Divida(null, devedor, recebedor, descricao, preco);
         
-        return dividaDAO.buscarDivida(dividaModel);
+        dividaDAO.adicionarDivida(divida);
     }
 
-    public void alterarDivida(UsuarioModel devedor, UsuarioModel recebedor, String descricao, Double preco) {
-        DividaModel dividaModel = new DividaModel(devedor, recebedor, descricao, preco);
+    public List<Divida> buscarDivida(Integer idDivida, Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco) {
+        Usuario devedor = new Usuario();
+        devedor.setIdUsuario(idUsuarioDevedor);
         
-        dividaDAO.alterarDivida(dividaModel);
-    }
-
-    public void apagarDivida(UsuarioModel devedor, UsuarioModel recebedor, String descricao, Double preco) {
-        DividaModel dividaModel = new DividaModel(devedor, recebedor, descricao, preco);
+        Usuario recebedor = new Usuario();
+        recebedor.setIdUsuario(idUsuarioRecebedor);
         
-        dividaDAO.apagarDivida(dividaModel);
+        Divida divida = new Divida(idDivida, devedor, recebedor, descricao, preco);
+        
+        return dividaDAO.buscarDivida(divida);
     }
 
+    public void alterarDivida(Integer idDivida, Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco) {
+        Divida divida = carregarDivida(idDivida);
+        Usuario devedor = carregarUsuario(idUsuarioDevedor);
+        Usuario recebedor = carregarUsuario(idUsuarioRecebedor);
+        
+        divida.setUsuarioByIdUsuarioDevedor(devedor);
+        divida.setUsuarioByIdUsuarioRecebedor(recebedor);
+        divida.setDescricao(descricao);
+        divida.setPreco(preco);
+        
+        dividaDAO.alterarDivida(divida);
+    }
+
+    public void apagarDivida(Integer idDivida) {
+        Divida divida = carregarDivida(idDivida);
+        
+        dividaDAO.apagarDivida(divida);
+    }
+
+    private Divida carregarDivida(Integer idDivida) {
+        Divida divida = new Divida();
+        divida.setIdDivida(idDivida);
+        
+        List<Divida> list = dividaDAO.buscarDivida(divida);
+        
+        if (list != null && list.size() == 1) {
+            return list.get(0);
+        } else {
+            return null;
+        }
+    }
+    
+    private Usuario carregarUsuario(Integer idUsuario) {
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(idUsuario);
+        
+//        List<Usuario> listUsuario = UsuarioDAO.carregarUsuario(comprador);
+//        
+//        if (listUsuario == null || listUsuario.size() != 1) {
+//            throw new Exception("Usuario inválido!");
+//            
+//        } else {
+//            usuario = listUsuario.get(0);
+//        }
+
+        return usuario;
+    }
 }

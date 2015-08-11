@@ -6,36 +6,68 @@
 package rc.unesp.br.lcp.dao;
 
 import java.util.List;
-import rc.unesp.br.lcp.beans.DividaModel;
-import rc.unesp.br.lcp.interfaces.DividaInterface;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+import rc.unesp.br.lcp.beans.Divida;
 
 /**
  *
  * @author FARINA
  */
-public class DividaDAO implements DividaInterface {
+public class DividaDAO {
 
-    private List<DividaModel> dividas;
+    Session session = HibernateUtil.getSessionFactory().openSession();
 
-    @Override
-    public void adicionarDivida(DividaModel divida) {
+    public void adicionarDivida(Divida divida) {
+        Transaction transaction = session.beginTransaction();
+        session.save(divida);
+        transaction.commit();
     }
 
-    @Override
-    public List<DividaModel> buscarDividas() {
-        return null;
+    public List<Divida> buscarDivida(Divida divida) {
+        Criteria criteria = session.createCriteria(Divida.class);
+
+        if (divida == null) {
+            return criteria.list();
+        }
+
+        if (divida.getIdDivida()!= null && divida.getIdDivida() != 0) {
+            criteria.add(Restrictions.eq(Divida.ID_DIVIDA, divida.getIdDivida()));
+        }
+
+        if (divida.getUsuarioByIdUsuarioDevedor() != null && divida.getUsuarioByIdUsuarioDevedor().getIdUsuario() != null) {
+            criteria.add(Restrictions.eq(Divida.ID_USUARIO, divida.getUsuarioByIdUsuarioDevedor()));
+        }
+        
+        if (divida.getUsuarioByIdUsuarioRecebedor() != null && divida.getUsuarioByIdUsuarioRecebedor().getIdUsuario() != null) {
+            criteria.add(Restrictions.eq(Divida.ID_USUARIO, divida.getUsuarioByIdUsuarioRecebedor()));
+        }
+
+        if (divida.getDescricao() != null && !divida.getDescricao().equals("")) {
+            criteria.add(Restrictions.like(Divida.DESCRICAO, divida.getDescricao(), MatchMode.ANYWHERE));
+        }
+
+        if (divida.getPreco() != null && divida.getPreco() != 0) {
+            criteria.add(Restrictions.eq(Divida.PRECO, divida.getPreco()));
+        }
+
+        List<Divida> list = criteria.list();
+
+        return list;
     }
 
-    @Override
-    public DividaModel buscarDivida(DividaModel Divida) {
-        return null;
+    public void alterarDivida(Divida divida) {
+        Transaction transaction = session.beginTransaction();
+        session.merge(divida);
+        transaction.commit();
     }
 
-    @Override
-    public void alterarDivida(DividaModel divida) {
-    }
-
-    @Override
-    public void apagarDivida(DividaModel divida) {
+    public void apagarDivida(Divida divida) {
+        Transaction transaction = session.beginTransaction();
+        session.delete(divida);
+        transaction.commit();
     }
 }

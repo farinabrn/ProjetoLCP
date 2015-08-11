@@ -29,24 +29,25 @@ public class DespesaController {
         despesaDAO.adicionarDespesa(despesa);
     }
 
-    public List<Despesa> buscarDespesas(Integer idDivida, Integer idUsuarioComprador, String descricao, Double preco) {
+    public List<Despesa> buscarDespesas(Integer idDespesa, Integer idUsuarioComprador, String descricao, Double preco) {
         Usuario comprador = carregarUsuario(idUsuarioComprador);
         
-        Despesa despesa = new Despesa(idDivida, comprador, descricao, preco);
+        Despesa despesa = new Despesa(idDespesa, comprador, descricao, preco);
         
         return despesaDAO.buscarDespesa(despesa);
     }
 
-    public List<Despesa> buscarDespesa(Integer idDivida, Integer idUsuarioComprador, String descricao, Double preco) {
-        Usuario comprador = carregarUsuario(idUsuarioComprador);
+    public List<Despesa> buscarDespesa(Integer idDespesa, Integer idUsuarioComprador, String descricao, Double preco) {
+        Usuario comprador = new Usuario();
+        comprador.setIdUsuario(idUsuarioComprador);
         
-        Despesa despesa = new Despesa(idDivida, comprador, descricao, preco);
+        Despesa despesa = new Despesa(idDespesa, comprador, descricao, preco);
         
         return despesaDAO.buscarDespesa(despesa);
     }
 
-    public void alterarDespesa(Integer idDivida, Integer idUsuarioComprador, String descricao, Double preco) {
-        Despesa despesa = carregarDespesa(idDivida);
+    public void alterarDespesa(Integer idDespesa, Integer idUsuarioComprador, String descricao, Double preco) {
+        Despesa despesa = carregarDespesa(idDespesa);
         Usuario comprador = carregarUsuario(idUsuarioComprador);
         
         despesa.setUsuarioByIdUsuario(comprador);
