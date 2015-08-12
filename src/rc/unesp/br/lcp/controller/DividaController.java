@@ -9,6 +9,7 @@ import java.util.List;
 import rc.unesp.br.lcp.beans.Divida;
 import rc.unesp.br.lcp.beans.Usuario;
 import rc.unesp.br.lcp.dao.DividaDAO;
+import rc.unesp.br.lcp.dao.UsuarioDAO;
 
 /**
  *
@@ -17,10 +18,12 @@ import rc.unesp.br.lcp.dao.DividaDAO;
 public class DividaController {
 
     private final DividaDAO dividaDAO = new DividaDAO();
+    private static UsuarioController usuarioController = new UsuarioController();
 
     public void adicionarDivida(Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco) {
-        Usuario devedor = carregarUsuario(idUsuarioDevedor);
-        Usuario recebedor = carregarUsuario(idUsuarioRecebedor);
+        
+        Usuario devedor = usuarioController.buscarUsuario(idUsuarioDevedor, null, null, null).get(0);
+        Usuario recebedor = usuarioController.buscarUsuario(idUsuarioRecebedor, null, null, null).get(0);
         
         Divida divida = new Divida(null, devedor, recebedor, descricao, preco);
         
@@ -40,9 +43,10 @@ public class DividaController {
     }
 
     public void alterarDivida(Integer idDivida, Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco) {
+        
         Divida divida = carregarDivida(idDivida);
-        Usuario devedor = carregarUsuario(idUsuarioDevedor);
-        Usuario recebedor = carregarUsuario(idUsuarioRecebedor);
+        Usuario devedor = usuarioController.buscarUsuario(idUsuarioDevedor, null, null, null).get(0);
+        Usuario recebedor = usuarioController.buscarUsuario(idUsuarioRecebedor, null, null, null).get(0);
         
         divida.setUsuarioByIdUsuarioDevedor(devedor);
         divida.setUsuarioByIdUsuarioRecebedor(recebedor);
@@ -69,21 +73,5 @@ public class DividaController {
         } else {
             return null;
         }
-    }
-    
-    private Usuario carregarUsuario(Integer idUsuario) {
-        Usuario usuario = new Usuario();
-        usuario.setIdUsuario(idUsuario);
-        
-//        List<Usuario> listUsuario = UsuarioDAO.carregarUsuario(comprador);
-//        
-//        if (listUsuario == null || listUsuario.size() != 1) {
-//            throw new Exception("Usuario inválido!");
-//            
-//        } else {
-//            usuario = listUsuario.get(0);
-//        }
-
-        return usuario;
     }
 }

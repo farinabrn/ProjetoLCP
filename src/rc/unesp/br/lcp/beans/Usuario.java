@@ -11,7 +11,11 @@ import java.util.Set;
  */
 public class Usuario  implements java.io.Serializable {
 
-
+     public static final String ID_USUARIO = "idUsuario";
+     public static final String NOME = "nome";
+     public static final String APELIDO = "apelido";
+     public static final String CPF = "cpf";
+    
      private Integer idUsuario;
      private Contabancaria contabancaria;
      private String nome;

@@ -16,7 +16,7 @@ import rc.unesp.br.lcp.dao.BancoDAO;
  */
 public class BancoController {
     
-    private BancoDAO bancoDAO;
+    private BancoDAO bancoDAO = new BancoDAO();
     
     public void adicionarBanco(String descricao) {
         Banco banco = new Banco(null, descricao, null);

@@ -8,84 +8,64 @@ package rc.unesp.br.lcp.dao;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import rc.unesp.br.lcp.beans.UsuarioModel;
-import rc.unesp.br.lcp.events.UsuarioEvent;
-import rc.unesp.br.lcp.interfaces.UsuarioInterface;
-import rc.unesp.br.lcp.listener.UsuarioListener;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+import rc.unesp.br.lcp.beans.Usuario;
+
 
 /**
  *
  * @author FARINA
  */
-public class UsuarioDAO implements UsuarioInterface {
+public class UsuarioDAO {
+  
+    Session session = HibernateUtil.getSessionFactory().openSession();
 
-    private List<UsuarioModel> usuarios;
-    private List <UsuarioListener> usuarioListeners = new LinkedList();
-
-    public UsuarioDAO() {
-        this.usuarios = new ArrayList();
-    }
-
-    @Override
-    public void adicionarUsuario(UsuarioModel usuario) {
-        usuarios.add(usuario);
-        this.disparaUsuarioNovo(usuario);
+    public void adicionarUsuario(Usuario usuario) {
+        Transaction transaction = session.beginTransaction();
+        session.save(usuario);
+        transaction.commit();
     }
     
-    @Override
-    public List<UsuarioModel> buscarUsuarios() {
-        return this.usuarios;
-    }
-
-    @Override
-    public UsuarioModel buscarUsuario(UsuarioModel usuario) {
-        if (usuario != null) {
-            return buscaUsuarioPorID(usuario.getId());
+    public List<Usuario> buscarUsuario(Usuario usuario) {
+        Criteria criteria = session.createCriteria(Usuario.class);
+        
+        if (usuario == null) {
+            return criteria.list();
         }
         
-        return null;
-    }
+        if (usuario.getIdUsuario() != null) {
+            criteria.add(Restrictions.eq(Usuario.ID_USUARIO, usuario.getIdUsuario()));
+        }
 
-    @Override
-    public void alterarUsuario(UsuarioModel usuario) {
-        usuarios.set(usuarios.indexOf(buscaUsuarioPorID(usuario.getId())), usuario);
-    }
-
-    @Override
-    public void apagarUsuario(UsuarioModel usuario) {
-        usuarios.remove(usuarios.indexOf(buscaUsuarioPorID(usuario.getId())));
-    }
-
-    private UsuarioModel buscaUsuarioPorID(Long idUsuario) {
-        for (UsuarioModel usuario : usuarios) {
-            if (usuario.getId() == idUsuario)
-                return usuario;
+        if (usuario.getNome() != null && !usuario.getNome().equals("")) {
+            criteria.add(Restrictions.like(Usuario.NOME, usuario.getNome(), MatchMode.ANYWHERE));
         }
         
-        return null;
-    }
-    
-    public synchronized void addUsuarioListener(UsuarioListener listener) {
-        if (!this.usuarioListeners.contains(listener)) {
-            this.usuarioListeners.add(listener);
+        if (usuario.getApelido() != null && !usuario.getApelido().equals("")) {
+            criteria.add(Restrictions.like(Usuario.APELIDO, usuario.getApelido(), MatchMode.ANYWHERE));
         }
-    }
-    
-    private synchronized void disparaUsuarioNovo(UsuarioModel usuario) {
-        for (UsuarioListener listener : usuarioListeners) {
-            listener.usuarioNovo(new UsuarioEvent(usuario));
+        
+        if (usuario.getCpf() != null && !usuario.getCpf().equals("")) {
+            criteria.add(Restrictions.like(Usuario.CPF, usuario.getNome(), MatchMode.ANYWHERE));
         }
+
+        List<Usuario> list = criteria.list();
+        return list;
     }
-    
-    private synchronized void disparaUsuarioApagado(UsuarioModel usuario) {
-        for (UsuarioListener listener : usuarioListeners) {
-            listener.usuarioApagado(new UsuarioEvent(usuario));
-        }
+
+    public void alterarUsuario(Usuario usuario) {
+        Transaction transaction = session.beginTransaction();
+        session.merge(usuario);
+        transaction.commit();
     }
-    
-    private synchronized void disparaUsuarioAlterado(UsuarioModel usuario) {
-        for (UsuarioListener listener : usuarioListeners) {
-            listener.usuarioAlterado(new UsuarioEvent(usuario));
-        }
+
+    public void apagarUsuario(Usuario usuario) {
+        Transaction transaction = session.beginTransaction();
+        session.delete(usuario);
+        transaction.commit();
     }
 }

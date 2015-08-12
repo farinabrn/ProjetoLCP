@@ -46,8 +46,8 @@ public class ContaDAO {
             criteria.add(Restrictions.eq(Conta.TIPO_CONTA, conta.getTipoConta()));
         }
         
-        if (conta.getIdUsuarioPagador() != null){
-            criteria.add(Restrictions.eq(Conta.ID_USUARIO, conta.getIdUsuarioPagador()));
+        if (conta.getUsuarioByIdUsuarioPagador() != null){
+            criteria.add(Restrictions.eq(Conta.ID_USUARIO, conta.getUsuarioByIdUsuarioPagador()));
         }
 
         List<Conta> list = criteria.list();
