@@ -6,7 +6,10 @@
 package rc.unesp.br.lcp.main;
 
 import java.applet.Applet;
+import java.util.List;
+import rc.unesp.br.lcp.beans.Usuario;
 import rc.unesp.br.lcp.dao.UsuarioDAO;
+import rc.unesp.br.lcp.view.Principal;
 
 /**
  *
@@ -15,12 +18,13 @@ import rc.unesp.br.lcp.dao.UsuarioDAO;
 public class Planilha extends Applet {
 
     public static void main(String[] args) {
-        Planilha p = new Planilha();
-        p.start();
+        Principal principal = new Principal();
+        principal.setVisible(true);
+        
     }
 
     @Override
     public void start() {
-        UsuarioDAO usuario = new UsuarioDAO();
+        
     }
 }
