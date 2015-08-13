@@ -7,7 +7,7 @@
       <column name="idUsuario"/>
       <generator class="identity"/>
     </id>
-    <many-to-one class="rc.unesp.br.lcp.beans.ContaBancaria" fetch="select" name="contabancaria">
+    <many-to-one class="rc.unesp.br.lcp.beans.ContaBancaria" name="contabancaria" cascade="all">
       <column name="idContaBancaria"/>
     </many-to-one>
     <property name="nome" type="string">
