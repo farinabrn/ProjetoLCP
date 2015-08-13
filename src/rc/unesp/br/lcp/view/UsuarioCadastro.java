@@ -7,7 +7,17 @@ package rc.unesp.br.lcp.view;
 
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import rc.unesp.br.lcp.beans.Banco;
+import rc.unesp.br.lcp.beans.ContaBancaria;
+import rc.unesp.br.lcp.controller.BancoController;
 import rc.unesp.br.lcp.controller.UsuarioController;
 
 /**
@@ -18,6 +28,7 @@ public class UsuarioCadastro extends JFrame {
 
     private ActionListener controller;
     private static UsuarioController usuarioController = new UsuarioController();
+    private static BancoController bancoController = new BancoController();
   /**
    * Creates new form CadastroUsuario
    */
@@ -30,6 +41,10 @@ public class UsuarioCadastro extends JFrame {
                   
                 }
       );
+      List<Banco> bancos = bancoController.buscarBanco(null, null);
+      
+      ComboBoxModel model = new DefaultComboBoxModel(bancos.toArray());
+      comboBoxBanco.setModel(model);
   }
 
   /**
@@ -94,7 +109,12 @@ public class UsuarioCadastro extends JFrame {
 
     labelSituacao.setText("Situação");
 
-    comboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    comboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ativo", "Inativo" }));
+    comboBoxSituacao.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        comboBoxSituacaoActionPerformed(evt);
+      }
+    });
 
     labelTelefoneRes.setText("Telefone (residencial):");
 
@@ -243,6 +263,11 @@ public class UsuarioCadastro extends JFrame {
 
     buttonSair.setText("Sair");
     buttonSair.setPreferredSize(new java.awt.Dimension(63, 23));
+    buttonSair.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        buttonSairActionPerformed(evt);
+      }
+    });
 
     buttonSalvar.setText("Salvar");
     buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -300,8 +325,20 @@ public class UsuarioCadastro extends JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
-    //usuarioController.adicionarUsuario(WIDTH, null, null, null, null, null, null, TEXT_CURSOR, null, null, null);
+    Banco banco = (Banco)comboBoxBanco.getSelectedItem();
+    ContaBancaria contaBancaria = new ContaBancaria(null, banco, textAgencia.getText(), textConta.getText());
+    usuarioController.adicionarUsuario(null, contaBancaria, textNome.getText(), textApelido.getText(), 
+                                      textCPF.getText(), new Date(), new Date(), comboBoxSituacao.getSelectedIndex(), textTelefoneCel.getText(), 
+                                      textTelefoneRes.getText(), textEmail.getText());
   }//GEN-LAST:event_buttonSalvarActionPerformed
+
+  private void comboBoxSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSituacaoActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_comboBoxSituacaoActionPerformed
+
+  private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
+    dispose();
+  }//GEN-LAST:event_buttonSairActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton buttonSair;

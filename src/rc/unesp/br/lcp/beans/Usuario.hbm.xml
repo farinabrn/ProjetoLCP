@@ -1,54 +1,53 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 27/07/2015 23:54:16 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="rc.unesp.br.lcp.beans.Usuario" table="usuario" catalog="projeto" optimistic-lock="version">
-        <id name="idUsuario" type="java.lang.Integer">
-            <column name="idUsuario" />
-            <generator class="identity" />
-        </id>
-        <many-to-one name="contabancaria" class="rc.unesp.br.lcp.beans.Contabancaria" fetch="select">
-            <column name="idContaBancaria" />
-        </many-to-one>
-        <property name="nome" type="string">
-            <column name="nome" length="100" />
-        </property>
-        <property name="apelido" type="string">
-            <column name="apelido" length="100" />
-        </property>
-        <property name="cpf" type="string">
-            <column name="cpf" length="100" />
-        </property>
-        <property name="dataInicio" type="timestamp">
-            <column name="dataInicio" length="19" />
-        </property>
-        <property name="dataTermino" type="timestamp">
-            <column name="dataTermino" length="19" />
-        </property>
-        <property name="situacaoUsuario" type="java.lang.Integer">
-            <column name="situacaoUsuario" />
-        </property>
-        <property name="telefoneResidencial" type="string">
-            <column name="telefoneResidencial" length="100" />
-        </property>
-        <property name="telefoneCelular" type="string">
-            <column name="telefoneCelular" length="100" />
-        </property>
-        <property name="email" type="string">
-            <column name="email" length="100" />
-        </property>
-        <set name="dividasForIdUsuarioDevedor" table="divida" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="idUsuarioDevedor" />
-            </key>
-            <one-to-many class="rc.unesp.br.lcp.beans.Divida" />
-        </set>
-        <set name="dividasForIdUsuarioRecebedor" table="divida" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="idUsuarioRecebedor" />
-            </key>
-            <one-to-many class="rc.unesp.br.lcp.beans.Divida" />
-        </set>
-    </class>
+  <class catalog="projeto" name="rc.unesp.br.lcp.beans.Usuario" optimistic-lock="version" table="usuario">
+    <id name="idUsuario" type="java.lang.Integer">
+      <column name="idUsuario"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="rc.unesp.br.lcp.beans.ContaBancaria" fetch="select" name="contabancaria">
+      <column name="idContaBancaria"/>
+    </many-to-one>
+    <property name="nome" type="string">
+      <column length="100" name="nome"/>
+    </property>
+    <property name="apelido" type="string">
+      <column length="100" name="apelido"/>
+    </property>
+    <property name="cpf" type="string">
+      <column length="100" name="cpf"/>
+    </property>
+    <property name="dataInicio" type="timestamp">
+      <column length="19" name="dataInicio"/>
+    </property>
+    <property name="dataTermino" type="timestamp">
+      <column length="19" name="dataTermino"/>
+    </property>
+    <property name="situacaoUsuario" type="java.lang.Integer">
+      <column name="situacaoUsuario"/>
+    </property>
+    <property name="telefoneResidencial" type="string">
+      <column length="100" name="telefoneResidencial"/>
+    </property>
+    <property name="telefoneCelular" type="string">
+      <column length="100" name="telefoneCelular"/>
+    </property>
+    <property name="email" type="string">
+      <column length="100" name="email"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="dividasForIdUsuarioDevedor" table="divida">
+      <key>
+        <column name="idUsuarioDevedor"/>
+      </key>
+      <one-to-many class="rc.unesp.br.lcp.beans.Divida"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="dividasForIdUsuarioRecebedor" table="divida">
+      <key>
+        <column name="idUsuarioRecebedor"/>
+      </key>
+      <one-to-many class="rc.unesp.br.lcp.beans.Divida"/>
+    </set>
+  </class>
 </hibernate-mapping>

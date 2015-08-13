@@ -5,12 +5,15 @@
         <group name="LCP"/>
         <group>
             <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/controller/BancoController.java</file>
-            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/dao/ContaDAO.java</file>
-            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/Conta.java</file>
-            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/dao/UsuarioDAO.java</file>
-            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/Usuario.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/Contabancaria.hbm.xml</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/main/Planilha.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/Principal.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/conf/hibernate.cfg.xml</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/ContaBancaria.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/dao/ContaBancariaDAO.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/UsuarioCadastro.java</file>
             <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/controller/UsuarioController.java</file>
-            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/controller/DividaController.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/Banco.hbm.xml</file>
         </group>
     </open-files>
 </project-private>

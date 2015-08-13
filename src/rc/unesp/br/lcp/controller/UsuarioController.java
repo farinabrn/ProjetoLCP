@@ -9,7 +9,7 @@ package rc.unesp.br.lcp.controller;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
-import rc.unesp.br.lcp.beans.Contabancaria;
+import rc.unesp.br.lcp.beans.ContaBancaria;
 import rc.unesp.br.lcp.beans.Usuario;
 import rc.unesp.br.lcp.dao.UsuarioDAO;
 
@@ -22,7 +22,7 @@ public class UsuarioController {
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     public void adicionarUsuario(Integer idUsuario,
-            Contabancaria contaBancaria,
+            ContaBancaria contaBancaria,
             String nome,
             String apelido,
             String cpf,
@@ -57,7 +57,7 @@ public class UsuarioController {
     }
 
     public void alterarUsuario(Integer idUsuario,
-            Contabancaria contaBancaria,
+            ContaBancaria contaBancaria,
             String nome,
             String apelido,
             String cpf,

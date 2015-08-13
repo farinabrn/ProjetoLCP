@@ -19,13 +19,13 @@ public class BancoController {
     private BancoDAO bancoDAO = new BancoDAO();
     
     public void adicionarBanco(String descricao) {
-        Banco banco = new Banco(null, descricao, null);
+        Banco banco = new Banco(null, descricao);
         
         bancoDAO.adicionarBanco(banco);
     }
 
     public List<Banco> buscarBanco(Integer idBanco, String descricao) {
-        Banco banco = new Banco(idBanco, descricao, null);
+        Banco banco = new Banco(idBanco, descricao);
         
         return bancoDAO.buscarBanco(banco);
     }

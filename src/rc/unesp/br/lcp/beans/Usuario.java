@@ -17,7 +17,7 @@ public class Usuario  implements java.io.Serializable {
      public static final String CPF = "cpf";
     
      private Integer idUsuario;
-     private Contabancaria contabancaria;
+     private ContaBancaria contabancaria;
      private String nome;
      private String apelido;
      private String cpf;
@@ -33,7 +33,7 @@ public class Usuario  implements java.io.Serializable {
     public Usuario() {
     }
 
-    public Usuario(Contabancaria contabancaria, String nome, String apelido, String cpf, Date dataInicio, Date dataTermino, Integer situacaoUsuario, String telefoneResidencial, String telefoneCelular, String email, Set dividasForIdUsuarioDevedor, Set dividasForIdUsuarioRecebedor) {
+    public Usuario(ContaBancaria contabancaria, String nome, String apelido, String cpf, Date dataInicio, Date dataTermino, Integer situacaoUsuario, String telefoneResidencial, String telefoneCelular, String email, Set dividasForIdUsuarioDevedor, Set dividasForIdUsuarioRecebedor) {
        this.contabancaria = contabancaria;
        this.nome = nome;
        this.apelido = apelido;
@@ -55,11 +55,11 @@ public class Usuario  implements java.io.Serializable {
     public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
-    public Contabancaria getContabancaria() {
+    public ContaBancaria getContabancaria() {
         return this.contabancaria;
     }
     
-    public void setContabancaria(Contabancaria contabancaria) {
+    public void setContabancaria(ContaBancaria contabancaria) {
         this.contabancaria = contabancaria;
     }
     public String getNome() {

@@ -11,7 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
-import rc.unesp.br.lcp.beans.Contabancaria;
+import rc.unesp.br.lcp.beans.ContaBancaria;
 
 /**
  *
@@ -21,38 +21,34 @@ public class ContaBancariaDAO {
 
     Session session = HibernateUtil.getSessionFactory().openSession();
    
-    public void adicionarContaBancaria(Contabancaria contaBancaria) {
+    public void adicionarContaBancaria(ContaBancaria contaBancaria) {
         Transaction transaction = session.beginTransaction();
         session.save(contaBancaria);
         transaction.commit();
     }
 
-    public List<Contabancaria> buscarContaBancaria(Contabancaria contaBancaria) {
-        Criteria criteria = session.createCriteria(Contabancaria.class);
+    public List<ContaBancaria> buscarContaBancaria(ContaBancaria contaBancaria) {
+        Criteria criteria = session.createCriteria(ContaBancaria.class);
         
         if (contaBancaria == null) {
             return criteria.list();
         }
         
         if (contaBancaria.getIdContaBancaria() != null) {
-            criteria.add(Restrictions.eq(Contabancaria.ID_CONTA, contaBancaria.getIdContaBancaria()));
+            criteria.add(Restrictions.eq(ContaBancaria.ID_CONTA, contaBancaria.getIdContaBancaria()));
         }
 
-        if (contaBancaria.getIdBanco() != null && !contaBancaria.getIdBanco().equals("")) {
-            criteria.add(Restrictions.like(Contabancaria.ID_BANCO, contaBancaria.getIdBanco().toString(), MatchMode.ANYWHERE));
-        }
-
-        List<Contabancaria> list = criteria.list();
+        List<ContaBancaria> list = criteria.list();
         return list;
     }
 
-    public void alterarContaBancaria(Contabancaria contaBancaria) {
+    public void alterarContaBancaria(ContaBancaria contaBancaria) {
         Transaction transaction = session.beginTransaction();
         session.merge(contaBancaria);
         transaction.commit();
     }
 
-    public void apagarContaBancaria(Contabancaria contaBancaria) {
+    public void apagarContaBancaria(ContaBancaria contaBancaria) {
         Transaction transaction = session.beginTransaction();
         session.delete(contaBancaria);
         transaction.commit();

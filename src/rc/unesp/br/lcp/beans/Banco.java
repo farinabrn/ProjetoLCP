@@ -11,15 +11,14 @@ public class Banco implements java.io.Serializable {
 
     private Integer idBanco;
     private String descricao;
-    private Contabancaria contabancaria;
+    
 
     public Banco() {
     }
 
-    public Banco(Integer idBanco, String descricao, Contabancaria contabancaria) {
+    public Banco(Integer idBanco, String descricao) {
         this.idBanco = idBanco;
         this.descricao = descricao;
-        this.contabancaria = contabancaria;
     }
 
     public Integer getIdBanco() {
@@ -38,12 +37,8 @@ public class Banco implements java.io.Serializable {
         this.descricao = descricao;
     }
 
-    public Contabancaria getContabancaria() {
-        return this.contabancaria;
+    @Override
+    public String toString() {
+      return this.getDescricao(); //To change body of generated methods, choose Tools | Templates.
     }
-
-    public void setContabancaria(Contabancaria contabancaria) {
-        this.contabancaria = contabancaria;
-    }
-
 }
