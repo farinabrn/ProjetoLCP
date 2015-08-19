@@ -5,9 +5,7 @@
   <class catalog="projeto" name="rc.unesp.br.lcp.beans.ContaBancaria" optimistic-lock="version" table="contabancaria">
     <id name="idContaBancaria" type="java.lang.Integer">
       <column name="idContaBancaria"/>
-      <generator class="foreign">
-        <param name="property">banco</param>
-      </generator>
+      <generator class="identity" />
     </id>
     <property name="agencia" type="string">
       <column length="100" name="agencia"/>
@@ -15,6 +13,6 @@
     <property name="conta" type="string">
       <column length="100" name="conta"/>
     </property>
-    <many-to-one name="banco" class="rc.unesp.br.lcp.beans.Banco" column="idBanco" cascade="all" not-null="true"/>
+    <many-to-one name="banco" class="rc.unesp.br.lcp.beans.Banco" column="idBanco" not-null="true"/>
   </class>
 </hibernate-mapping>

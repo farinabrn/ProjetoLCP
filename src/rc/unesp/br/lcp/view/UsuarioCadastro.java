@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import rc.unesp.br.lcp.beans.Banco;
 import rc.unesp.br.lcp.beans.ContaBancaria;
 import rc.unesp.br.lcp.beans.Usuario;
