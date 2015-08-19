@@ -5,11 +5,16 @@
  */
 package rc.unesp.br.lcp.view;
 
+import javax.swing.JOptionPane;
+import rc.unesp.br.lcp.controller.BancoController;
+
 /**
  *
  * @author Flávio
  */
 public class BancoCadastro extends javax.swing.JFrame {
+    
+    private static BancoController bancoController = new BancoController();
 
     /**
      * Creates new form CadastroBanco
@@ -64,8 +69,18 @@ public class BancoCadastro extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jButton1.setText("Sair");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Salvar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -111,6 +126,22 @@ public class BancoCadastro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            bancoController.adicionarBanco(jTextField1.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro na inserção");
+        }
+        
+        JOptionPane.showMessageDialog(this, "Inserido com sucesso");
+        
+        jTextField1.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
