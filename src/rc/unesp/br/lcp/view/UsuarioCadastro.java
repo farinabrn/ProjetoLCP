@@ -8,15 +8,20 @@ package rc.unesp.br.lcp.view;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import rc.unesp.br.lcp.beans.Banco;
 import rc.unesp.br.lcp.beans.ContaBancaria;
+import rc.unesp.br.lcp.beans.Usuario;
 import rc.unesp.br.lcp.controller.BancoController;
 import rc.unesp.br.lcp.controller.UsuarioController;
 
@@ -26,21 +31,25 @@ import rc.unesp.br.lcp.controller.UsuarioController;
  */
 public class UsuarioCadastro extends JFrame {
 
-    private ActionListener controller;
     private static UsuarioController usuarioController = new UsuarioController();
     private static BancoController bancoController = new BancoController();
-  /**
-   * Creates new form CadastroUsuario
-   */
-  public UsuarioCadastro(ActionListener controller) {
+    private Integer idUsuario;
+ 
+  public UsuarioCadastro(Usuario usuario) {
       initComponents();
-      
-      this.controller = controller;
-      this.addWindowListener(
-              new WindowAdapter() {
-                  
-                }
-      );
+      if (usuario != null){
+        setIdUsuario(usuario.getIdUsuario());
+        textNome.setText(usuario.getNome());
+        textApelido.setText(usuario.getApelido());
+        textCPF.setText(usuario.getCpf());
+        textEmail.setText(usuario.getEmail());
+        comboBoxSituacao.setSelectedIndex(usuario.getSituacaoUsuario());
+        textDataInicio.setText(usuario.getDataInicio().toString());
+        textDataTermino.setText(usuario.getDataTermino().toString());
+        textTelefoneRes.setText(usuario.getTelefoneResidencial());
+        textTelefoneCel.setText(usuario.getTelefoneCelular());
+      }
+     
       List<Banco> bancos = bancoController.buscarBanco(null, null);
       
       ComboBoxModel model = new DefaultComboBoxModel(bancos.toArray());
@@ -59,23 +68,49 @@ public class UsuarioCadastro extends JFrame {
 
     jLabel9 = new javax.swing.JLabel();
     panelIdentificacao = new javax.swing.JPanel();
+    buttonSair = new javax.swing.JButton();
+    buttonSalvar = new javax.swing.JButton();
+    jTabbedPane1 = new javax.swing.JTabbedPane();
     panelDados = new javax.swing.JPanel();
     labelNome = new javax.swing.JLabel();
     textNome = new javax.swing.JTextField();
     labelApelido = new javax.swing.JLabel();
     textApelido = new javax.swing.JTextField();
-    textCPF = new javax.swing.JTextField();
     labelCPF = new javax.swing.JLabel();
     labelDataInicio = new javax.swing.JLabel();
     textDataInicio = new javax.swing.JTextField();
+    try{
+      javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("##/##/##");
+      textDataInicio= new javax.swing.JFormattedTextField(data);
+    }
+    catch (Exception e){
+    }
     labelDataTermino = new javax.swing.JLabel();
     textDataTermino = new javax.swing.JTextField();
+    try{
+      javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("##/##/##");
+      textDataTermino= new javax.swing.JFormattedTextField(data);
+    }
+    catch (Exception e){
+    }
     labelSituacao = new javax.swing.JLabel();
     comboBoxSituacao = new javax.swing.JComboBox();
     labelTelefoneRes = new javax.swing.JLabel();
     textTelefoneRes = new javax.swing.JTextField();
+    try{
+      javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("(##) ####-####");
+      textTelefoneRes = new javax.swing.JFormattedTextField(data);
+    }
+    catch (Exception e){
+    }
     labelTelefoneCel = new javax.swing.JLabel();
     textTelefoneCel = new javax.swing.JTextField();
+    try{
+      javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("(##) #####-####");
+      textTelefoneCel = new javax.swing.JFormattedTextField(data);
+    }
+    catch (Exception e){
+    }
     labelEmail = new javax.swing.JLabel();
     textEmail = new javax.swing.JTextField();
     panelDadosBancarios = new javax.swing.JPanel();
@@ -85,8 +120,20 @@ public class UsuarioCadastro extends JFrame {
     labelAgencia = new javax.swing.JLabel();
     labelConta = new javax.swing.JLabel();
     textConta = new javax.swing.JTextField();
-    buttonSair = new javax.swing.JButton();
-    buttonSalvar = new javax.swing.JButton();
+    textCPF = new javax.swing.JFormattedTextField();
+    try{
+      javax.swing.text.MaskFormatter data = new javax.swing.text.MaskFormatter("###.###.###-##");
+      textCPF = new javax.swing.JFormattedTextField(data);
+    }
+    catch (Exception e){
+    }
+    jPanel1 = new javax.swing.JPanel();
+    jLabel1 = new javax.swing.JLabel();
+    jLabel2 = new javax.swing.JLabel();
+    jLabel3 = new javax.swing.JLabel();
+    textUser = new javax.swing.JTextField();
+    textSenhaOld = new javax.swing.JPasswordField();
+    textSenhaNew = new javax.swing.JPasswordField();
 
     jLabel9.setText("jLabel9");
 
@@ -95,7 +142,22 @@ public class UsuarioCadastro extends JFrame {
 
     panelIdentificacao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Identificação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
-    panelDados.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados Básicos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+    buttonSair.setText("Sair");
+    buttonSair.setPreferredSize(new java.awt.Dimension(63, 23));
+    buttonSair.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        buttonSairActionPerformed(evt);
+      }
+    });
+
+    buttonSalvar.setText("Salvar");
+    buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        buttonSalvarActionPerformed(evt);
+      }
+    });
+
+    panelDados.setBorder(null);
 
     labelNome.setText("Nome:");
 
@@ -183,35 +245,27 @@ public class UsuarioCadastro extends JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(panelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(comboBoxSituacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(textCPF)
               .addGroup(panelDadosLayout.createSequentialGroup()
                 .addGroup(panelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                   .addComponent(labelSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addComponent(labelCPF))
-                .addGap(0, 0, Short.MAX_VALUE))))
+                .addGap(0, 0, Short.MAX_VALUE))
+              .addComponent(textCPF)))
           .addGroup(panelDadosLayout.createSequentialGroup()
             .addGroup(panelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(textDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addComponent(labelApelido)
               .addComponent(labelNome)
-              .addGroup(panelDadosLayout.createSequentialGroup()
-                .addGroup(panelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(labelDataInicio)
-                  .addComponent(textTelefoneRes, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(panelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(textTelefoneCel, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(labelDataTermino)))
-              .addGroup(panelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelDadosLayout.createSequentialGroup()
-                  .addComponent(textDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(textDataTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(panelDadosLayout.createSequentialGroup()
-                  .addComponent(labelTelefoneRes)
-                  .addGap(30, 30, 30)
-                  .addComponent(labelTelefoneCel)
-                  .addGap(50, 50, 50))))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+              .addComponent(labelDataInicio)
+              .addComponent(textTelefoneRes, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(labelTelefoneRes))
+            .addGap(36, 36, 36)
+            .addGroup(panelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(textTelefoneCel, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(labelDataTermino)
+              .addComponent(labelTelefoneCel)
+              .addComponent(textDataTermino, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(35, 35, 35)
             .addComponent(panelDadosBancarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         .addContainerGap())
     );
@@ -261,42 +315,68 @@ public class UsuarioCadastro extends JFrame {
         .addContainerGap())
     );
 
-    buttonSair.setText("Sair");
-    buttonSair.setPreferredSize(new java.awt.Dimension(63, 23));
-    buttonSair.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        buttonSairActionPerformed(evt);
-      }
-    });
+    jTabbedPane1.addTab("Dados", panelDados);
 
-    buttonSalvar.setText("Salvar");
-    buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        buttonSalvarActionPerformed(evt);
-      }
-    });
+    jLabel1.setText("Login");
+
+    jLabel2.setText("Nova Senha");
+
+    jLabel3.setText("Senha Antiga");
+
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGap(188, 188, 188)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(jLabel2)
+          .addComponent(jLabel3)
+          .addComponent(jLabel1))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+          .addComponent(textSenhaNew, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+          .addComponent(textSenhaOld)
+          .addComponent(textUser))
+        .addContainerGap(266, Short.MAX_VALUE))
+    );
+    jPanel1Layout.setVerticalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGap(99, 99, 99)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel1)
+          .addComponent(textUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(18, 18, 18)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel3)
+          .addComponent(textSenhaOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(18, 18, 18)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel2)
+          .addComponent(textSenhaNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap())
+    );
+
+    jTabbedPane1.addTab("Login", jPanel1);
 
     javax.swing.GroupLayout panelIdentificacaoLayout = new javax.swing.GroupLayout(panelIdentificacao);
     panelIdentificacao.setLayout(panelIdentificacaoLayout);
     panelIdentificacaoLayout.setHorizontalGroup(
       panelIdentificacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(panelIdentificacaoLayout.createSequentialGroup()
+      .addComponent(jTabbedPane1)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIdentificacaoLayout.createSequentialGroup()
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addGroup(panelIdentificacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(panelIdentificacaoLayout.createSequentialGroup()
-            .addComponent(panelDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(0, 0, Short.MAX_VALUE))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIdentificacaoLayout.createSequentialGroup()
-            .addComponent(buttonSalvar)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addComponent(buttonSalvar)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap())
     );
     panelIdentificacaoLayout.setVerticalGroup(
       panelIdentificacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(panelIdentificacaoLayout.createSequentialGroup()
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(panelDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap()
+        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(panelIdentificacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(buttonSalvar)
@@ -326,11 +406,17 @@ public class UsuarioCadastro extends JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
+    SimpleDateFormat formatter = new  SimpleDateFormat("dd/MM/yy");
     Banco banco = (Banco)comboBoxBanco.getSelectedItem();
     ContaBancaria contaBancaria = new ContaBancaria(null, banco, textAgencia.getText(), textConta.getText());
-    usuarioController.adicionarUsuario(null, contaBancaria, textNome.getText(), textApelido.getText(), 
-                                      textCPF.getText(), new Date(), new Date(), comboBoxSituacao.getSelectedIndex(), textTelefoneCel.getText(), 
-                                      textTelefoneRes.getText(), textEmail.getText());
+      try {
+        usuarioController.adicionarUsuario(null, contaBancaria, textNome.getText(), textApelido.getText(),
+                textCPF.getText(), (Date)formatter.parse(textDataInicio.getText()), (Date)formatter.parse(textDataTermino.getText()),
+                comboBoxSituacao.getSelectedIndex(), textTelefoneCel.getText(),
+                textTelefoneRes.getText(), textEmail.getText());
+      } catch (ParseException ex) {
+        Logger.getLogger(UsuarioCadastro.class.getName()).log(Level.SEVERE, null, ex);
+      }
   }//GEN-LAST:event_buttonSalvarActionPerformed
 
   private void comboBoxSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSituacaoActionPerformed
@@ -346,7 +432,12 @@ public class UsuarioCadastro extends JFrame {
   private javax.swing.JButton buttonSalvar;
   private javax.swing.JComboBox comboBoxBanco;
   private javax.swing.JComboBox comboBoxSituacao;
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel9;
+  private javax.swing.JPanel jPanel1;
+  private javax.swing.JTabbedPane jTabbedPane1;
   private javax.swing.JLabel labelAgencia;
   private javax.swing.JLabel labelApelido;
   private javax.swing.JLabel labelBanco;
@@ -364,13 +455,24 @@ public class UsuarioCadastro extends JFrame {
   private javax.swing.JPanel panelIdentificacao;
   private javax.swing.JTextField textAgencia;
   private javax.swing.JTextField textApelido;
-  private javax.swing.JTextField textCPF;
+  private javax.swing.JFormattedTextField textCPF;
   private javax.swing.JTextField textConta;
   private javax.swing.JTextField textDataInicio;
   private javax.swing.JTextField textDataTermino;
   private javax.swing.JTextField textEmail;
   private javax.swing.JTextField textNome;
+  private javax.swing.JPasswordField textSenhaNew;
+  private javax.swing.JPasswordField textSenhaOld;
   private javax.swing.JTextField textTelefoneCel;
   private javax.swing.JTextField textTelefoneRes;
+  private javax.swing.JTextField textUser;
   // End of variables declaration//GEN-END:variables
+
+  public Integer getIdUsuario() {
+    return idUsuario;
+  }
+
+  public void setIdUsuario(Integer idUsuario) {
+    this.idUsuario = idUsuario;
+  }
 }

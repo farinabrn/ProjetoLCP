@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import rc.unesp.br.lcp.beans.Usuario;
+import rc.unesp.br.lcp.controller.UsuarioController;
 import rc.unesp.br.lcp.dao.UsuarioDAO;
 
 /**
@@ -55,20 +56,20 @@ public class UsuarioConsulta extends JFrame {
 
     tabelaUsuario.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
-        {null, null, null, null},
-        {null, null, null, null},
-        {null, null, null, null},
-        {null, null, null, null}
+        {null, null, null, null, null},
+        {null, null, null, null, null},
+        {null, null, null, null, null},
+        {null, null, null, null, null}
       },
       new String [] {
-        "Nome", "Apelido", "CPF", "Email"
+        "ID", "Nome", "Apelido", "CPF", "Email"
       }
     ) {
       Class[] types = new Class [] {
-        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+        java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
       };
       boolean[] canEdit = new boolean [] {
-        false, false, false, false
+        false, false, false, false, false
       };
 
       public Class getColumnClass(int columnIndex) {
@@ -115,6 +116,11 @@ public class UsuarioConsulta extends JFrame {
     });
 
     jButton3.setText("Editar");
+    jButton3.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton3ActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
@@ -239,6 +245,14 @@ public class UsuarioConsulta extends JFrame {
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     dispose();
   }//GEN-LAST:event_jButton1ActionPerformed
+
+  private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    int id = (Integer)tabelaUsuario.getModel().getValueAt(tabelaUsuario.getSelectedRow(), 0);
+    UsuarioController usuarioController = new UsuarioController();
+    Usuario usuario = usuarioController.carregarUsuario(id);
+    UsuarioCadastro usuarioCadastro = new UsuarioCadastro(usuario);
+    usuarioCadastro.setVisible(true);
+  }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

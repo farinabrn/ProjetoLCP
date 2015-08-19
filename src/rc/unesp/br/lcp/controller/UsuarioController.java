@@ -38,7 +38,7 @@ public class UsuarioController {
         usuarioDAO.adicionarUsuario(usuario);      
     }
     
-    private Usuario carregarUsuario(Integer idUsuario) {
+    public Usuario carregarUsuario(Integer idUsuario) {
         Usuario usuario = new Usuario();
         usuario.setIdUsuario(idUsuario);
         
