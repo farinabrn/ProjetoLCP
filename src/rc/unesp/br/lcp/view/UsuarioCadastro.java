@@ -22,8 +22,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import rc.unesp.br.lcp.beans.Banco;
 import rc.unesp.br.lcp.beans.ContaBancaria;
+import rc.unesp.br.lcp.beans.Login;
 import rc.unesp.br.lcp.beans.Usuario;
 import rc.unesp.br.lcp.controller.BancoController;
+import rc.unesp.br.lcp.controller.LoginController;
 import rc.unesp.br.lcp.controller.UsuarioController;
 
 /**
@@ -34,10 +36,12 @@ public class UsuarioCadastro extends JFrame {
 
     private static UsuarioController usuarioController = new UsuarioController();
     private static BancoController bancoController = new BancoController();
+    private static LoginController loginController = new LoginController();
     private Integer idUsuario;
  
-  public UsuarioCadastro(Usuario usuario) {
+  public UsuarioCadastro(Usuario usuario, Login login) {
       initComponents();
+      
       if (usuario != null){
         setIdUsuario(usuario.getIdUsuario());
         textNome.setText(usuario.getNome());
@@ -49,6 +53,13 @@ public class UsuarioCadastro extends JFrame {
         textDataTermino.setText(usuario.getDataTermino().toString());
         textTelefoneRes.setText(usuario.getTelefoneResidencial());
         textTelefoneCel.setText(usuario.getTelefoneCelular());
+      }
+      
+      if (login != null){
+        textUser.setText(login.getUsername());
+        textSenha.setText(login.getSenha());
+        textUser.setEnabled(false);
+        textSenha.setEnabled(false);
       }
      
       List<Banco> bancos = bancoController.buscarBanco(null, null);
@@ -130,11 +141,9 @@ public class UsuarioCadastro extends JFrame {
     }
     jPanel1 = new javax.swing.JPanel();
     jLabel1 = new javax.swing.JLabel();
-    jLabel2 = new javax.swing.JLabel();
     jLabel3 = new javax.swing.JLabel();
     textUser = new javax.swing.JTextField();
-    textSenhaOld = new javax.swing.JPasswordField();
-    textSenhaNew = new javax.swing.JPasswordField();
+    textSenha = new javax.swing.JPasswordField();
 
     jLabel9.setText("jLabel9");
 
@@ -157,8 +166,6 @@ public class UsuarioCadastro extends JFrame {
         buttonSalvarActionPerformed(evt);
       }
     });
-
-    panelDados.setBorder(null);
 
     labelNome.setText("Nome:");
 
@@ -320,43 +327,35 @@ public class UsuarioCadastro extends JFrame {
 
     jLabel1.setText("Login");
 
-    jLabel2.setText("Nova Senha");
-
-    jLabel3.setText("Senha Antiga");
+    jLabel3.setText("Senha");
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
-        .addGap(188, 188, 188)
+        .addGap(236, 236, 236)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(jLabel2)
           .addComponent(jLabel3)
           .addComponent(jLabel1))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-          .addComponent(textSenhaNew, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-          .addComponent(textSenhaOld)
-          .addComponent(textUser))
-        .addContainerGap(266, Short.MAX_VALUE))
+          .addComponent(textSenha)
+          .addComponent(textUser, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap(249, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
-        .addGap(99, 99, 99)
+        .addGap(109, 109, 109)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel1)
           .addComponent(textUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGap(18, 18, 18)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel3)
-          .addComponent(textSenhaOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(18, 18, 18)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel2)
-          .addComponent(textSenhaNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap())
+          .addComponent(textSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap(131, Short.MAX_VALUE))
     );
 
     jTabbedPane1.addTab("Login", jPanel1);
@@ -411,7 +410,7 @@ public class UsuarioCadastro extends JFrame {
     Banco banco = (Banco)comboBoxBanco.getSelectedItem();
     ContaBancaria contaBancaria = new ContaBancaria(null, banco, textAgencia.getText(), textConta.getText());
       try {
-        usuarioController.adicionarUsuario(null, contaBancaria, textNome.getText(), textApelido.getText(),
+        usuarioController.adicionarUsuario(idUsuario, contaBancaria, textNome.getText(), textApelido.getText(),
                 textCPF.getText(), (Date)formatter.parse(textDataInicio.getText()), (Date)formatter.parse(textDataTermino.getText()),
                 comboBoxSituacao.getSelectedIndex(), textTelefoneCel.getText(),
                 textTelefoneRes.getText(), textEmail.getText());
@@ -434,7 +433,6 @@ public class UsuarioCadastro extends JFrame {
   private javax.swing.JComboBox comboBoxBanco;
   private javax.swing.JComboBox comboBoxSituacao;
   private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel9;
   private javax.swing.JPanel jPanel1;
@@ -462,8 +460,7 @@ public class UsuarioCadastro extends JFrame {
   private javax.swing.JTextField textDataTermino;
   private javax.swing.JTextField textEmail;
   private javax.swing.JTextField textNome;
-  private javax.swing.JPasswordField textSenhaNew;
-  private javax.swing.JPasswordField textSenhaOld;
+  private javax.swing.JPasswordField textSenha;
   private javax.swing.JTextField textTelefoneCel;
   private javax.swing.JTextField textTelefoneRes;
   private javax.swing.JTextField textUser;

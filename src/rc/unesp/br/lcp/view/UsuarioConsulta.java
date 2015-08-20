@@ -8,7 +8,9 @@ package rc.unesp.br.lcp.view;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import rc.unesp.br.lcp.beans.Login;
 import rc.unesp.br.lcp.beans.Usuario;
+import rc.unesp.br.lcp.controller.LoginController;
 import rc.unesp.br.lcp.controller.UsuarioController;
 import rc.unesp.br.lcp.dao.UsuarioDAO;
 
@@ -248,9 +250,11 @@ public class UsuarioConsulta extends JFrame {
 
   private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     int id = (Integer)tabelaUsuario.getModel().getValueAt(tabelaUsuario.getSelectedRow(), 0);
+    LoginController loginController = new LoginController();
     UsuarioController usuarioController = new UsuarioController();
     Usuario usuario = usuarioController.carregarUsuario(id);
-    UsuarioCadastro usuarioCadastro = new UsuarioCadastro(usuario);
+    Login login = loginController.carregarLogin(null, id);
+    UsuarioCadastro usuarioCadastro = new UsuarioCadastro(usuario, login);
     usuarioCadastro.setVisible(true);
   }//GEN-LAST:event_jButton3ActionPerformed
 

@@ -5,5 +5,15 @@
         <group>
             <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/view/BancoCadastro.java</file>
         </group>
+        <group name="LCP">
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/dao/UsuarioDAO.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/main/Planilha.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/Principal.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/UsuarioConsulta.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/UsuarioCadastro.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/controller/UsuarioController.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/TelaLogin.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/dao/LoginDAO.java</file>
+        </group>
     </open-files>
 </project-private>
