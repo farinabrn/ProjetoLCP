@@ -140,9 +140,10 @@ public class Usuario  implements java.io.Serializable {
         this.dividasForIdUsuarioRecebedor = dividasForIdUsuarioRecebedor;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return this.getNome();
+    }
 }
 
 

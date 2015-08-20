@@ -1,0 +1,10 @@
+compile.on.save=true
+do.depend=false
+do.jar=true
+javac.debug=true
+javadoc.preview=true
+<<<<<<< HEAD
+user.properties.file=/home/guilherme/.netbeans/8.0.2/build.properties
+=======
+user.properties.file=C:\\Users\\FARINA\\AppData\\Roaming\\NetBeans\\8.0\\build.properties
+>>>>>>> f3b679ab00fe427ca14b4bd8525f96b8f40b228d

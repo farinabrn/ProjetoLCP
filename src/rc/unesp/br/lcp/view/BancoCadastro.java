@@ -5,17 +5,30 @@
  */
 package rc.unesp.br.lcp.view;
 
+import javax.swing.JOptionPane;
+import rc.unesp.br.lcp.beans.Banco;
+import rc.unesp.br.lcp.controller.BancoController;
+
 /**
  *
  * @author Flávio
  */
 public class BancoCadastro extends javax.swing.JFrame {
+    
+    private Integer idBanco;
+    private static final BancoController bancoController = new BancoController();
 
     /**
      * Creates new form CadastroBanco
+     * @param banco
      */
-    public BancoCadastro() {
+    public BancoCadastro(Banco banco) {
         initComponents();
+        
+        if (banco != null) {
+            jTextField1.setText(banco.getDescricao());
+            idBanco = banco.getIdBanco();
+        }
     }
 
     /**
@@ -64,8 +77,18 @@ public class BancoCadastro extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jButton1.setText("Sair");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Salvar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -110,43 +133,30 @@ public class BancoCadastro extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+            if (idBanco == null)
+                bancoController.adicionarBanco(jTextField1.getText());
+            else {
+                bancoController.alterarBanco(idBanco, jTextField1.getText());
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BancoCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BancoCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BancoCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BancoCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro na inserção");
         }
-        //</editor-fold>
-        //</editor-fold>
+        
+        JOptionPane.showMessageDialog(this, "Inserido com sucesso");
+        
+        jTextField1.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BancoCadastro().setVisible(true);
-            }
-        });
-    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
