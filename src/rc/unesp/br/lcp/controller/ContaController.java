@@ -9,6 +9,7 @@ import java.util.List;
 import rc.unesp.br.lcp.beans.Conta;
 import rc.unesp.br.lcp.beans.Usuario;
 import rc.unesp.br.lcp.dao.ContaDAO;
+import rc.unesp.br.lcp.dao.UsuarioDAO;
 
 /**
  *
@@ -17,31 +18,35 @@ import rc.unesp.br.lcp.dao.ContaDAO;
 public class ContaController {
 
     private final ContaDAO contaDAO = new ContaDAO();
+    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-    public void adicionarConta(Integer idUsuarioPagador, String descricao, Double valor, Integer tipoConta) {
+    public void adicionarConta(Integer idUsuarioPagador, String descricao, Double valor) throws Exception{
         Usuario pagador = carregarUsuario(idUsuarioPagador);
         
-        Conta conta = new Conta(null, pagador, descricao, valor, tipoConta);
+        Conta conta = new Conta(null, pagador, descricao, valor);
         contaDAO.adicionarConta(conta);
     }
 
-    public List<Conta> buscarContas(Integer idConta, Integer idUsuarioPagador, String descricao, Double valor, Integer tipoConta) {
-        Usuario pagador = new Usuario();
-        pagador.setIdUsuario(idUsuarioPagador);
+    public List<Conta> buscarContas(Integer idConta, Integer idUsuarioPagador, String descricao, Double valor) {
+        Usuario pagador = null;
+        
+        if (idUsuarioPagador != null) {
+            pagador = new Usuario();
+            pagador.setIdUsuario(idUsuarioPagador);
+        }
 
-        Conta conta = new Conta(idConta, pagador, descricao, valor, tipoConta);
+        Conta conta = new Conta(idConta, pagador, descricao, valor);
         
         return contaDAO.buscarConta(conta);
     }
 
-    public void alterarConta(Integer idConta, Integer idUsuarioPagador, String descricao, Double valor, Integer tipoConta) {
+    public void alterarConta(Integer idConta, Integer idUsuarioPagador, String descricao, Double valor) throws Exception{
         Conta conta = carregarConta(idConta);
         Usuario pagador = carregarUsuario(idUsuarioPagador);
 
         conta.setUsuarioByIdUsuarioPagador(pagador);
         conta.setDescricao(descricao);
         conta.setValor(valor);
-        conta.setTipoConta(tipoConta);
         
         contaDAO.alterarConta(conta);
     }
@@ -65,18 +70,18 @@ public class ContaController {
         }
     }
     
-    private Usuario carregarUsuario(Integer idUsuario) {
+    private Usuario carregarUsuario(Integer idUsuario) throws Exception {
         Usuario usuario = new Usuario();
         usuario.setIdUsuario(idUsuario);
         
-//        List<Usuario> listUsuario = UsuarioDAO.carregarUsuario(comprador);
-//        
-//        if (listUsuario == null || listUsuario.size() != 1) {
-//            throw new Exception("Usuario inválido!");
-//            
-//        } else {
-//            usuario = listUsuario.get(0);
-//        }
+        List<Usuario> listUsuario = usuarioDAO.buscarUsuario(usuario);
+        
+        if (listUsuario == null || listUsuario.size() != 1) {
+            throw new Exception("Usuario inválido!");
+            
+        } else {
+            usuario = listUsuario.get(0);
+        }
 
         return usuario;
     }

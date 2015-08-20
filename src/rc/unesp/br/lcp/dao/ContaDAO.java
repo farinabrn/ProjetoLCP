@@ -42,11 +42,7 @@ public class ContaDAO {
             criteria.add(Restrictions.like(Conta.DESCRICAO, conta.getDescricao(), MatchMode.ANYWHERE));
         }
         
-        if (conta.getTipoConta()!= null) {
-            criteria.add(Restrictions.eq(Conta.TIPO_CONTA, conta.getTipoConta()));
-        }
-        
-        if (conta.getUsuarioByIdUsuarioPagador() != null){
+        if (conta.getUsuarioByIdUsuarioPagador() != null) {
             criteria.add(Restrictions.eq(Conta.ID_USUARIO, conta.getUsuarioByIdUsuarioPagador()));
         }
 
