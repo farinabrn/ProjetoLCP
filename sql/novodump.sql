@@ -95,6 +95,33 @@ LOCK TABLES `contabancaria` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `despesa`
+--
+
+DROP TABLE IF EXISTS `despesa`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `despesa` (
+  `idDespesa` int(11) NOT NULL AUTO_INCREMENT,
+  `idUsusario` int(11) DEFAULT NULL,
+  `descricao` varchar(100) DEFAULT NULL,
+  `preco` double DEFAULT NULL,
+  PRIMARY KEY (`idDespesa`),
+  KEY `fk_idUsuario_idx` (`idUsusario`),
+  CONSTRAINT `fk_idUsuarioDesp` FOREIGN KEY (`idUsusario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `despesa`
+--
+
+LOCK TABLES `despesa` WRITE;
+/*!40000 ALTER TABLE `despesa` DISABLE KEYS */;
+/*!40000 ALTER TABLE `despesa` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `divida`
 --
 
@@ -132,11 +159,11 @@ DROP TABLE IF EXISTS `login`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `login` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idLogin` int(11) NOT NULL,
   `idUsuario` int(11) DEFAULT NULL,
   `username` varchar(45) DEFAULT NULL,
   `senha` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`idLogin`),
   KEY `fk_idUsuario_idx` (`idUsuario`),
   CONSTRAINT `fk_idUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -194,4 +221,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-20 11:54:15
+-- Dump completed on 2015-08-21  8:37:45
