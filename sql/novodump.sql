@@ -159,7 +159,7 @@ DROP TABLE IF EXISTS `login`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `login` (
-  `idLogin` int(11) NOT NULL,
+  `idLogin` int(11) NOT NULL AUTO_INCREMENT,
   `idUsuario` int(11) DEFAULT NULL,
   `username` varchar(45) DEFAULT NULL,
   `senha` varchar(45) DEFAULT NULL,
@@ -221,4 +221,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-21  8:37:45
+-- Dump completed on 2015-08-21  8:41:08
