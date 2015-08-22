@@ -34,12 +34,12 @@ public class LoginDAO {
           return criteria.list();
         }
         
-        if (login.getId() != null){
-          criteria.add(Restrictions.eq("id", login.getId()));
+        if (login.getIdLogin() != null){
+          criteria.add(Restrictions.eq("id", login.getIdLogin()));
         }
         
-        if (login.getUser().getIdUsuario() != null){
-          criteria.add(Restrictions.eq("idUsuario", login.getUser().getIdUsuario()));
+        if (login.getIdUsuario() != null){
+          criteria.add(Restrictions.eq("idUsuario", login.getIdUsuario()));
         }
         
         if (login.getUsername() != null && !login.getUsername().equals("")) {

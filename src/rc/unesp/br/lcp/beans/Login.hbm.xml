@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 27/07/2015 23:54:16 by Hibernate Tools 4.3.1 -->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-  <class catalog="projeto" name="rc.unesp.br.lcp.beans.Login" optimistic-lock="version" table="">
-    <id name="id" type="java.lang.Integer">
-      <column name="id"/>
-      <generator class="identity"/>
-    </id>
-    <one-to-one class="rc.unesp.br.lcp.beans.Usuario" name="usuario" cascade="all">
-      
-    </one-to-one>
-    <property name="username" type="string">
-      <column length="45" name="username"/>
-    </property>
-    <property name="senha" type="string">
-      <column length="45" name="senha"/>
-    </property>
-  </class>
+    <class name="rc.unesp.br.lcp.beans.Login" table="login" catalog="projeto" optimistic-lock="version">
+        <id name="idLogin" type="java.lang.Integer">
+            <column name="idLogin" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="idUsuario" class="rc.unesp.br.lcp.beans.Usuario" fetch="select">
+            <column name="idUsuario" />
+        </many-to-one>
+        <property name="username" type="string">
+            <column name="username" length="45" />
+        </property>
+        <property name="senha" type="string">
+            <column name="senha" length="45" />
+        </property>
+    </class>
 </hibernate-mapping>

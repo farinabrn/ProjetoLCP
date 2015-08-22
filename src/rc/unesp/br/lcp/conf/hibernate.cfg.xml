@@ -12,5 +12,6 @@
     <mapping resource="rc/unesp/br/lcp/beans/Usuario.hbm.xml"/>
     <mapping resource="rc/unesp/br/lcp/beans/Conta.hbm.xml"/>
     <mapping resource="rc/unesp/br/lcp/beans/Contabancaria.hbm.xml"/>
+    <mapping resource="rc/unesp/br/lcp/beans/Login.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

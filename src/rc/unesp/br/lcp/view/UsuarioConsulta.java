@@ -249,7 +249,7 @@ public class UsuarioConsulta extends JFrame {
   }//GEN-LAST:event_jButton1ActionPerformed
 
   private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    int id = (Integer)tabelaUsuario.getModel().getValueAt(tabelaUsuario.getSelectedRow(), 0);
+    Integer id = (Integer)tabelaUsuario.getModel().getValueAt(tabelaUsuario.getSelectedRow(), 0);
     LoginController loginController = new LoginController();
     UsuarioController usuarioController = new UsuarioController();
     Usuario usuario = usuarioController.carregarUsuario(id);

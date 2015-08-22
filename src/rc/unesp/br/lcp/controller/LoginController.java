@@ -18,8 +18,8 @@ public class LoginController {
   
   private LoginDAO loginDAO = new LoginDAO();
   
-  public void adicionarLogin(Usuario usuario, String username, String senha) {
-    Login login = new Login(usuario, username, senha);
+  public void adicionarLogin(Integer idUsuario, String username, String senha) {
+    Login login = new Login(idUsuario, username, senha);
 
     loginDAO.adicionarLogin(login);
   }
@@ -47,10 +47,8 @@ public class LoginController {
 
   public Login carregarLogin(Integer id, Integer idUsuario) {
       Login login = new Login();
-      Usuario user = new Usuario();
-      login.setId(id);
-      user.setIdUsuario(idUsuario);
-      login.setUser(user);
+      login.setIdLogin(id);
+      login.setIdUsuario(idUsuario);
       
 
       List<Login> list = loginDAO.buscarLogin(login);
