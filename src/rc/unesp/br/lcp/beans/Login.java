@@ -8,7 +8,7 @@ package rc.unesp.br.lcp.beans;
 public class Login {
   
   private Integer idLogin;
-  private Integer idUsuario;
+  private Usuario usuario;
   private String username;
   private String senha;
 
@@ -16,8 +16,8 @@ public class Login {
     
   }
   
-  public Login(Integer usuario, String username, String senha){
-    this.idUsuario = usuario;
+  public Login(Usuario usuario, String username, String senha){
+    this.usuario = usuario;
     this.username = username;
     this.senha = senha;
   }
@@ -46,12 +46,12 @@ public class Login {
     this.senha = senha;
   }
 
-  public Integer getIdUsuario() {
-    return idUsuario;
+  public Usuario getUsuario() {
+    return usuario;
   }
 
-  public void setIdUsuario(Integer idUsuario) {
-    this.idUsuario = idUsuario;
+  public void setUsuario(Usuario usuario) {
+    this.usuario = usuario;
   }
   
 }

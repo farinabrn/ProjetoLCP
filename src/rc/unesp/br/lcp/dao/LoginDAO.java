@@ -37,11 +37,7 @@ public class LoginDAO {
         if (login.getIdLogin() != null){
           criteria.add(Restrictions.eq("id", login.getIdLogin()));
         }
-        
-        if (login.getIdUsuario() != null){
-          criteria.add(Restrictions.eq("idUsuario", login.getIdUsuario()));
-        }
-        
+                
         if (login.getUsername() != null && !login.getUsername().equals("")) {
           criteria.add(Restrictions.like("username", login.getUsername(), MatchMode.ANYWHERE));
         }

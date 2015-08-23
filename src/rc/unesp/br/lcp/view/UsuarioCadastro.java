@@ -22,7 +22,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import rc.unesp.br.lcp.beans.Banco;
 import rc.unesp.br.lcp.beans.ContaBancaria;
-import rc.unesp.br.lcp.beans.Login;
 import rc.unesp.br.lcp.beans.Usuario;
 import rc.unesp.br.lcp.controller.BancoController;
 import rc.unesp.br.lcp.controller.LoginController;
@@ -36,10 +35,9 @@ public class UsuarioCadastro extends JFrame {
 
     private static UsuarioController usuarioController = new UsuarioController();
     private static BancoController bancoController = new BancoController();
-    private static LoginController loginController = new LoginController();
     private Integer idUsuario;
  
-  public UsuarioCadastro(Usuario usuario, Login login) {
+  public UsuarioCadastro(Usuario usuario) {
       initComponents();
       
       if (usuario != null){
@@ -53,13 +51,6 @@ public class UsuarioCadastro extends JFrame {
         textDataTermino.setText(usuario.getDataTermino().toString());
         textTelefoneRes.setText(usuario.getTelefoneResidencial());
         textTelefoneCel.setText(usuario.getTelefoneCelular());
-      }
-      
-      if (login != null){
-        textUser.setText(login.getUsername());
-        textSenha.setText(login.getSenha());
-        textUser.setEnabled(false);
-        textSenha.setEnabled(false);
       }
      
       List<Banco> bancos = bancoController.buscarBanco(null, null);
@@ -139,18 +130,13 @@ public class UsuarioCadastro extends JFrame {
     }
     catch (Exception e){
     }
-    jPanel1 = new javax.swing.JPanel();
-    jLabel1 = new javax.swing.JLabel();
-    jLabel3 = new javax.swing.JLabel();
-    textUser = new javax.swing.JTextField();
-    textSenha = new javax.swing.JPasswordField();
 
     jLabel9.setText("jLabel9");
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     setTitle("Cadastro - Usuário");
 
-    panelIdentificacao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Identificação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+    panelIdentificacao.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
     buttonSair.setText("Sair");
     buttonSair.setPreferredSize(new java.awt.Dimension(63, 23));
@@ -325,51 +311,19 @@ public class UsuarioCadastro extends JFrame {
 
     jTabbedPane1.addTab("Dados", panelDados);
 
-    jLabel1.setText("Login");
-
-    jLabel3.setText("Senha");
-
-    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-    jPanel1.setLayout(jPanel1Layout);
-    jPanel1Layout.setHorizontalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel1Layout.createSequentialGroup()
-        .addGap(236, 236, 236)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(jLabel3)
-          .addComponent(jLabel1))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-          .addComponent(textSenha)
-          .addComponent(textUser, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap(249, Short.MAX_VALUE))
-    );
-    jPanel1Layout.setVerticalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel1Layout.createSequentialGroup()
-        .addGap(109, 109, 109)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel1)
-          .addComponent(textUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(18, 18, 18)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel3)
-          .addComponent(textSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap(131, Short.MAX_VALUE))
-    );
-
-    jTabbedPane1.addTab("Login", jPanel1);
-
     javax.swing.GroupLayout panelIdentificacaoLayout = new javax.swing.GroupLayout(panelIdentificacao);
     panelIdentificacao.setLayout(panelIdentificacaoLayout);
     panelIdentificacaoLayout.setHorizontalGroup(
       panelIdentificacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jTabbedPane1)
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIdentificacaoLayout.createSequentialGroup()
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(buttonSalvar)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+      .addGroup(panelIdentificacaoLayout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(panelIdentificacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIdentificacaoLayout.createSequentialGroup()
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(buttonSalvar)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(jTabbedPane1))
         .addContainerGap())
     );
     panelIdentificacaoLayout.setVerticalGroup(
@@ -406,36 +360,50 @@ public class UsuarioCadastro extends JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
-    SimpleDateFormat formatter = new  SimpleDateFormat("dd/MM/yy");
-    Banco banco = (Banco)comboBoxBanco.getSelectedItem();
-    ContaBancaria contaBancaria = new ContaBancaria(null, banco, textAgencia.getText(), textConta.getText());
+    try {
+      SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+      Banco banco = (Banco) comboBoxBanco.getSelectedItem();
+      ContaBancaria contaBancaria = new ContaBancaria(null, banco, textAgencia.getText(), textConta.getText());
       try {
         usuarioController.adicionarUsuario(idUsuario, contaBancaria, textNome.getText(), textApelido.getText(),
-                textCPF.getText(), (Date)formatter.parse(textDataInicio.getText()), (Date)formatter.parse(textDataTermino.getText()),
+                textCPF.getText(), (Date) formatter.parse(textDataInicio.getText()), (Date) formatter.parse(textDataTermino.getText()),
                 comboBoxSituacao.getSelectedIndex(), textTelefoneCel.getText(),
                 textTelefoneRes.getText(), textEmail.getText());
       } catch (ParseException ex) {
         Logger.getLogger(UsuarioCadastro.class.getName()).log(Level.SEVERE, null, ex);
       }
+    } catch (Exception e) {
+      JOptionPane.showMessageDialog(null, "Erro no cadastro!");
+    }
+    
+    JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+    
+    textNome.setText(""); 
+    textApelido.setText("");
+    textCPF.setText("");
+    textDataInicio.setText("");
+    textDataTermino.setText("");
+    textTelefoneCel.setText("");
+    textTelefoneRes.setText("");
+    textEmail.setText("");
+    textConta.setText("");
+    textAgencia.setText("");
   }//GEN-LAST:event_buttonSalvarActionPerformed
-
-  private void comboBoxSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSituacaoActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_comboBoxSituacaoActionPerformed
 
   private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
     dispose();
   }//GEN-LAST:event_buttonSairActionPerformed
+
+  private void comboBoxSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSituacaoActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_comboBoxSituacaoActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton buttonSair;
   private javax.swing.JButton buttonSalvar;
   private javax.swing.JComboBox comboBoxBanco;
   private javax.swing.JComboBox comboBoxSituacao;
-  private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel9;
-  private javax.swing.JPanel jPanel1;
   private javax.swing.JTabbedPane jTabbedPane1;
   private javax.swing.JLabel labelAgencia;
   private javax.swing.JLabel labelApelido;
@@ -460,10 +428,8 @@ public class UsuarioCadastro extends JFrame {
   private javax.swing.JTextField textDataTermino;
   private javax.swing.JTextField textEmail;
   private javax.swing.JTextField textNome;
-  private javax.swing.JPasswordField textSenha;
   private javax.swing.JTextField textTelefoneCel;
   private javax.swing.JTextField textTelefoneRes;
-  private javax.swing.JTextField textUser;
   // End of variables declaration//GEN-END:variables
 
   public Integer getIdUsuario() {

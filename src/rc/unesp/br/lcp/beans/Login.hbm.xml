@@ -6,7 +6,7 @@
             <column name="idLogin" />
             <generator class="identity" />
         </id>
-        <many-to-one name="idUsuario" class="rc.unesp.br.lcp.beans.Usuario" fetch="select">
+        <many-to-one name="usuario" class="rc.unesp.br.lcp.beans.Usuario" fetch="select">
             <column name="idUsuario" />
         </many-to-one>
         <property name="username" type="string">

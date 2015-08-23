@@ -44,7 +44,7 @@ public class BancoController {
         bancoDAO.apagarBanco(banco);
     }
 
-    private Banco carregarBanco(Integer idBanco) {
+    public Banco carregarBanco(Integer idBanco) {
         Banco banco = new Banco();
         banco.setIdBanco(idBanco);
         
