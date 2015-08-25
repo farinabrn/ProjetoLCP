@@ -17,8 +17,5 @@
         <property name="valor" type="java.lang.Double">
             <column name="valor" precision="22" scale="0" />
         </property>
-        <property name="tipoConta" type="int">
-            <column name="tipoConta" not-null="true" />
-        </property>
     </class>
 </hibernate-mapping>

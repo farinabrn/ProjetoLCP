@@ -44,21 +44,21 @@ public class ContaConsulta extends javax.swing.JFrame {
         conta.setDescricao(txtDescricao.getText());
         conta.setValor(Double.valueOf(txtValor.getText()));
 
-        listaConta = contaController.buscarContas(((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), PROPERTIES, null, Double.NaN);
+//        listaConta = contaController.buscarContas(((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), PROPERTIES, null, Double.NaN);
 
-        DefaultTableModel modelo = (DefaultTableModel) tabelaUsuario.getModel();
+//        DefaultTableModel modelo = (DefaultTableModel) tabelaUsuario.getModel();
 
-        modelo.setNumRows(0);
-        for (Usuario user : listaConta) {
-            Object[] linha = new Object[]{
-                user.getIdUsuario(),
-                user.getNome(),
-                user.getApelido(),
-                user.getCpf(),
-                user.getEmail()
-            };
-            modelo.addRow(linha);
-        }
+//        modelo.setNumRows(0);
+//        for (Usuario user : listaConta) {
+//            Object[] linha = new Object[]{
+//                user.getIdUsuario(),
+//                user.getNome(),
+//                user.getApelido(),
+//                user.getCpf(),
+//                user.getEmail()
+//            };
+//            modelo.addRow(linha);
+//        }
     }
 
     private void incluir() {
