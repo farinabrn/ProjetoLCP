@@ -34,7 +34,6 @@ public class ContaCadastro extends javax.swing.JFrame {
 
         ComboBoxModel model = new DefaultComboBoxModel(usuarios.toArray());
         cboUsuarioPagador.setModel(model);
-
     }
 
     private void salvar() {
@@ -43,7 +42,7 @@ public class ContaCadastro extends javax.swing.JFrame {
                 contaController.adicionarConta(cboUsuarioPagador.getSelectedIndex(), txtDescricao.getText(), Double.valueOf(txtValor.getText()));
 
             } else {
-                contaController.alterarConta(idConta, cboUsuarioPagador.getSelectedIndex(), txtDescricao.getText(), Double.valueOf(txtValor.getText()));
+                contaController.alterarConta(idConta, ((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), txtDescricao.getText(), Double.valueOf(txtValor.getText()));
             }
 
         } catch (NumberFormatException n) {
@@ -93,8 +92,6 @@ public class ContaCadastro extends javax.swing.JFrame {
         jLabel2.setText("Preço");
 
         jLabel3.setText("Usuario Pagador");
-
-        cboUsuarioPagador.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

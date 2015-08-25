@@ -5,24 +5,67 @@
  */
 package rc.unesp.br.lcp.view;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+import rc.unesp.br.lcp.beans.Conta;
+import rc.unesp.br.lcp.beans.Usuario;
+import rc.unesp.br.lcp.controller.ContaController;
+import rc.unesp.br.lcp.controller.UsuarioController;
+import rc.unesp.br.lcp.dao.UsuarioDAO;
+
 /**
  *
  * @author FARINA
  */
 public class ContaConsulta extends javax.swing.JFrame {
 
+    ContaController contaController = new ContaController();
+    UsuarioController usuarioController = new UsuarioController();
     /**
      * Creates new form ContaConsulta
      */
     public ContaConsulta() {
         initComponents();
+
+        List<Usuario> usuarios = usuarioController.buscarUsuario(null, null, null, null);
+
+        ComboBoxModel model = new DefaultComboBoxModel(usuarios.toArray());
+        cboUsuarioPagador.setModel(model);
+    }
+
+    private void consulta() {
+        ArrayList<Conta> listaConta = new ArrayList<Conta>();
+        Conta conta = new Conta();
+
+        conta.setUsuarioByIdUsuarioPagador(null);
+        conta.setDescricao(txtDescricao.getText());
+        conta.setValor(Double.valueOf(txtValor.getText()));
+
+        listaConta = contaController.buscarContas(((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), PROPERTIES, null, Double.NaN);
+
+        DefaultTableModel modelo = (DefaultTableModel) tabelaUsuario.getModel();
+
+        modelo.setNumRows(0);
+        for (Usuario user : listaConta) {
+            Object[] linha = new Object[]{
+                user.getIdUsuario(),
+                user.getNome(),
+                user.getApelido(),
+                user.getCpf(),
+                user.getEmail()
+            };
+            modelo.addRow(linha);
+        }
     }
 
     private void incluir() {
         ContaCadastro contaCadastro = new ContaCadastro();
         contaCadastro.setVisible(true);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -30,8 +73,10 @@ public class ContaConsulta extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtDescricao = new javax.swing.JTextField();
-        txtPreco = new javax.swing.JTextField();
+        txtValor = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        cboUsuarioPagador = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -46,21 +91,27 @@ public class ContaConsulta extends javax.swing.JFrame {
 
         jLabel1.setText("Descricao");
 
-        jLabel2.setText("Preço");
+        jLabel2.setText("Valor");
+
+        jLabel3.setText("Usuario Pagador");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(cboUsuarioPagador, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -69,11 +120,13 @@ public class ContaConsulta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtValor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDescricao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboUsuarioPagador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -98,7 +151,7 @@ public class ContaConsulta extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -119,6 +172,11 @@ public class ContaConsulta extends javax.swing.JFrame {
         });
 
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         btnIncluir.setText("Incluir");
         btnIncluir.addActionListener(new java.awt.event.ActionListener() {
@@ -186,6 +244,10 @@ public class ContaConsulta extends javax.swing.JFrame {
         incluir();
     }//GEN-LAST:event_btnIncluirActionPerformed
 
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        consulta();
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -225,14 +287,16 @@ public class ContaConsulta extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnIncluir;
     private javax.swing.JButton btnSair;
+    private javax.swing.JComboBox cboUsuarioPagador;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtDescricao;
-    private javax.swing.JTextField txtPreco;
+    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }
