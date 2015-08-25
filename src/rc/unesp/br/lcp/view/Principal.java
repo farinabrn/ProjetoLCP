@@ -227,7 +227,6 @@ public class Principal extends javax.swing.JFrame {
                 Principal principal =  new Principal();
                 principal.setVisible(true);
                 new TelaLogin().setVisible(true);
-                principal.setTitle("Sistema de República - Usuário: " + DadosLogin.getUserName());
             }
         });
     }

@@ -154,16 +154,20 @@ public class TelaLogin extends javax.swing.JFrame {
   }//GEN-LAST:event_textUsuarioActionPerformed
 
   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    Login login = new Login();
     String senha = new String(textSenha.getPassword());
     List<Login> listaLogin = loginController.buscarLogin(textUsuario.getText());
     if ((textUsuario.getText().equals("root")) &&  (senha.equals("root"))){
-      DadosLogin.setUserName("root");
-      DadosLogin.setIdUsuario(0);
+      login.setIdLogin(0);
+      login.setUsername("root");
+      DadosLogin.createLogin(login);
+      System.out.print(DadosLogin.login().getUsername());
       dispose();
     }else if((textUsuario.getText().equals(listaLogin.get(0).getUsername())) &&
              (senha.equals(listaLogin.get(0).getUsername()))){
-      DadosLogin.setUserName(textUsuario.getText());
-      DadosLogin.setIdUsuario(listaLogin.get(0).getUsuario().getIdUsuario());
+      login.setIdLogin(listaLogin.get(0).getUsuario().getIdUsuario());
+      login.setUsername(textUsuario.getText());
+      DadosLogin.createLogin(login);
       dispose();
     }else{
       JOptionPane.showMessageDialog(null, "Username ou senha inválidos!");

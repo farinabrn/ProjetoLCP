@@ -11,34 +11,29 @@ package rc.unesp.br.lcp.beans;
  */
 public class DadosLogin {
   
-  private static String userName;
-  private static Integer idUsuario;
+  private Login login;
+  private static DadosLogin INSTANCE = new DadosLogin();
 
-  /**
-   * @return the userName
-   */
-  public static String getUserName() {
-    return userName;
+  public static Login login() {
+    return INSTANCE.getLogin();
   }
 
-  /**
-   * @param aUserName the userName to set
-   */
-  public static void setUserName(String aUserName) {
-    userName = aUserName;
+  public static void createLogin(Login aLogin) {
+    INSTANCE.setLogin(aLogin);
+  }
+  
+  public void setLogin(Login aLogin){
+    this.login = aLogin;
   }
 
-  /**
-   * @return the idUsuario
-   */
-  public static Integer getIdUsuario() {
-    return idUsuario;
+  public Login getLogin(){
+    return this.login;
+  }
+  public static DadosLogin getINSTANCE() {
+    return INSTANCE;
   }
 
-  /**
-   * @param aIdUsuario the idUsuario to set
-   */
-  public static void setIdUsuario(Integer aIdUsuario) {
-    idUsuario = aIdUsuario;
+  public static void setINSTANCE(DadosLogin aINSTANCE) {
+    INSTANCE = aINSTANCE;
   }
 }
