@@ -8,6 +8,8 @@ package rc.unesp.br.lcp.view;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import rc.unesp.br.lcp.beans.Divida;
 import rc.unesp.br.lcp.controller.DividaController;
 import rc.unesp.br.lcp.controller.UsuarioController;
 import rc.unesp.br.lcp.beans.Usuario;
@@ -20,6 +22,7 @@ public class DividaConsulta extends javax.swing.JFrame {
 
     private DividaController dividaController = new DividaController();
     private UsuarioController usuarioController = new UsuarioController();
+    private Integer idDivida = null;
         
     public DividaConsulta() {
         initComponents();
@@ -29,6 +32,31 @@ public class DividaConsulta extends javax.swing.JFrame {
         cboDevedor.setModel(modelDevedor);
         cboRecebedor.setModel(modelDevedor);
     }
+    
+    private void consultar(){
+    
+    }
+    
+    private void incluir(){
+    
+    }
+    
+    // Bruno, precisa utilizar este método "carregar" nesta classe?
+    /*public void carregar(Integer idDivida) {
+        List<Divida> list = dividaController.buscarDivida(idDivida, null, null, null, null);
+
+        if (list != null && list.size() != 1) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar o usuário", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+        Divida divida = list.get(0);
+
+        this.idDivida = idDivida;
+        cboDevedor.setSelectedIndex(divida.getUsuarioByIdUsuarioDevedor().getIdUsuario());
+        cboRecebedor.setSelectedIndex(divida.getUsuarioByIdUsuarioRecebedor().getIdUsuario());
+        txtDescricao.setText(divida.getDescricao());
+        txtValor.setText(String.valueOf(divida.getPreco()));
+    }*/
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -123,8 +151,18 @@ public class DividaConsulta extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         btnIncluir.setText("Incluir");
 
@@ -178,6 +216,14 @@ public class DividaConsulta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        consultar();
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
