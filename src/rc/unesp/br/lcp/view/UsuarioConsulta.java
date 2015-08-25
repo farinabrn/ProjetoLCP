@@ -7,11 +7,8 @@ package rc.unesp.br.lcp.view;
 
 import java.util.ArrayList;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import rc.unesp.br.lcp.beans.Login;
 import rc.unesp.br.lcp.beans.Usuario;
-import rc.unesp.br.lcp.controller.LoginController;
 import rc.unesp.br.lcp.controller.UsuarioController;
 import rc.unesp.br.lcp.dao.UsuarioDAO;
 
@@ -44,7 +41,6 @@ public class UsuarioConsulta extends JFrame {
     jButton1 = new javax.swing.JButton();
     jButton2 = new javax.swing.JButton();
     jButton3 = new javax.swing.JButton();
-    jButton4 = new javax.swing.JButton();
     jPanel3 = new javax.swing.JPanel();
     jLabel1 = new javax.swing.JLabel();
     textApelido = new javax.swing.JTextField();
@@ -126,21 +122,12 @@ public class UsuarioConsulta extends JFrame {
       }
     });
 
-    jButton4.setText("Excluir");
-    jButton4.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton4ActionPerformed(evt);
-      }
-    });
-
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
     jPanel2Layout.setHorizontalGroup(
       jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(jButton4)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jButton3)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jButton2)
@@ -155,8 +142,7 @@ public class UsuarioConsulta extends JFrame {
         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jButton1)
           .addComponent(jButton2)
-          .addComponent(jButton3)
-          .addComponent(jButton4))
+          .addComponent(jButton3))
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
@@ -233,8 +219,13 @@ public class UsuarioConsulta extends JFrame {
 
   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     ArrayList<Usuario> listaUsuario = new ArrayList<Usuario>();
+    Usuario usuario = new Usuario();
     
-    listaUsuario = (ArrayList) new UsuarioController().buscarUsuario(null, textNome.getText(), textApelido.getText(), textCPF.getText());
+    usuario.setNome(textNome.getText());
+    usuario.setApelido(textApelido.getText());
+    usuario.setCpf(textCPF.getText());
+    
+    listaUsuario = (ArrayList) new UsuarioDAO().buscarUsuario(usuario);
     
     DefaultTableModel modelo = (DefaultTableModel) tabelaUsuario.getModel();
     
@@ -256,19 +247,12 @@ public class UsuarioConsulta extends JFrame {
   }//GEN-LAST:event_jButton1ActionPerformed
 
   private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    Integer id = (Integer)tabelaUsuario.getModel().getValueAt(tabelaUsuario.getSelectedRow(), 0);
+    int id = (Integer)tabelaUsuario.getModel().getValueAt(tabelaUsuario.getSelectedRow(), 0);
     UsuarioController usuarioController = new UsuarioController();
     Usuario usuario = usuarioController.carregarUsuario(id);
     UsuarioCadastro usuarioCadastro = new UsuarioCadastro(usuario);
     usuarioCadastro.setVisible(true);
   }//GEN-LAST:event_jButton3ActionPerformed
-
-  private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    Integer id = (Integer)tabelaUsuario.getModel().getValueAt(tabelaUsuario.getSelectedRow(), 0);
-    UsuarioController usuarioController = new UsuarioController();
-    usuarioController.apagarUsuario(id);
-    JOptionPane.showMessageDialog(null, "Excluído com sucesso!");
-  }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,7 +293,6 @@ public class UsuarioConsulta extends JFrame {
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
   private javax.swing.JButton jButton3;
-  private javax.swing.JButton jButton4;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
