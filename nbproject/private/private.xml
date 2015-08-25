@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/controller/ContaController.java</file>
             <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaConsulta.java</file>
             <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/dao/ContaDAO.java</file>
@@ -10,6 +11,24 @@
             <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/controller/UsuarioController.java</file>
             <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/beans/Usuario.java</file>
             <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaCadastro.java</file>
+=======
+            <file>file:/C:/Users/Flávio/Documents/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaCadastro.java</file>
+            <file>file:/C:/Users/Flávio/Documents/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaConsulta.java</file>
+            <file>file:/C:/Users/Flávio/Documents/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/DividaCadastro.java</file>
+            <file>file:/C:/Users/Flávio/Documents/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/DividaConsulta.java</file>
+            <file>file:/C:/Users/Flávio/Documents/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/DespesaCadastro.java</file>
+            <file>file:/C:/Users/Flávio/Documents/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/controller/UsuarioController.java</file>
+            <file>file:/C:/Users/Flávio/Documents/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/dao/UsuarioDAO.java</file>
+        </group>
+        <group name="LCP">
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/UsuarioConsulta.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/Principal.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/LoginCadastro.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaConsulta.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/LoginConsulta.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/TelaLogin.java</file>
+            <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/DadosLogin.java</file>
+>>>>>>> origin/master
         </group>
     </open-files>
 </project-private>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="rc.unesp.br.lcp.beans.Login" table="login" catalog="projeto" optimistic-lock="version">
+        <id name="idLogin" type="java.lang.Integer">
+            <column name="idLogin" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuario" class="rc.unesp.br.lcp.beans.Usuario" fetch="select">
+            <column name="idUsuario" />
+        </many-to-one>
+        <property name="username" type="string">
+            <column name="username" length="45" />
+        </property>
+        <property name="senha" type="string">
+            <column name="senha" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>
