@@ -48,6 +48,7 @@ public class BancoCadastro extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro - Banco");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

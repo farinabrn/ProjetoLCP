@@ -45,6 +45,11 @@ public class ContaCadastro extends javax.swing.JFrame {
                 contaController.alterarConta(idConta, ((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), txtDescricao.getText(), Double.valueOf(txtValor.getText()), checkPago.isSelected());
             }
 
+            cboUsuarioPagador.setSelectedItem(1);
+            txtDescricao.setText("");
+            txtValor.setText("");
+            checkPago.setSelected(false);
+            
             JOptionPane.showMessageDialog(this, "Salvo com sucesso!", "Salvar", JOptionPane.INFORMATION_MESSAGE);
             
         } catch (NumberFormatException n) {
