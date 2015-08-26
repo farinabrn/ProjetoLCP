@@ -265,7 +265,7 @@ public class DespesaConsulta extends javax.swing.JFrame {
         for (Despesa despesa : despesas) {
             Object[] linha = new Object[] {
                 despesa.getIdDespesa(),
-                despesa.getUsuarioPagador().getApelido(),
+                despesa.getUsuarioPagador().getNome(),
                 despesa.getDescricao(),
                 despesa.getPreco(),
                 despesa.isPago()
