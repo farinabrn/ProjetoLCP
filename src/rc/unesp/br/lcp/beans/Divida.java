@@ -10,22 +10,25 @@ public class Divida implements java.io.Serializable {
     public static final String DESCRICAO = "descricao";
     public static final String PRECO = "preco";
     public static final String ID_USUARIO = "usuario";
+    public static final String PAGO = "pago";
 
     private Integer idDivida;
     private Usuario usuarioByIdUsuarioDevedor;
     private Usuario usuarioByIdUsuarioRecebedor;
     private String descricao;
     private Double preco;
+    private boolean pago;
 
     public Divida() {
     }
 
-    public Divida(Integer idDivida, Usuario usuarioByIdUsuarioDevedor, Usuario usuarioByIdUsuarioRecebedor, String descricao, Double preco) {
+    public Divida(Integer idDivida, Usuario usuarioByIdUsuarioDevedor, Usuario usuarioByIdUsuarioRecebedor, String descricao, Double preco, boolean pago) {
         this.idDivida = idDivida;
         this.usuarioByIdUsuarioDevedor = usuarioByIdUsuarioDevedor;
         this.usuarioByIdUsuarioRecebedor = usuarioByIdUsuarioRecebedor;
         this.descricao = descricao;
         this.preco = preco;
+        this.pago = pago;
     }
 
     public Integer getIdDivida() {
@@ -66,6 +69,20 @@ public class Divida implements java.io.Serializable {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    /**
+     * @return the pago
+     */
+    public boolean isPago() {
+        return pago;
+    }
+
+    /**
+     * @param pago the pago to set
+     */
+    public void setPago(boolean pago) {
+        this.pago = pago;
     }
 
 }

@@ -7,12 +7,20 @@
             <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/Conta.hbm.xml</file>
         </group>
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/controller/ContaController.java</file>
             <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/beans/Conta.java</file>
             <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaConsulta.java</file>
             <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/beans/Conta.hbm.xml</file>
             <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/dao/ContaDAO.java</file>
             <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaCadastro.java</file>
+=======
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/DividaCadastro.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/controller/DividaController.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/DividaConsulta.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaConsulta.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaCadastro.java</file>
+>>>>>>> origin/master
         </group>
     </open-files>
 </project-private>

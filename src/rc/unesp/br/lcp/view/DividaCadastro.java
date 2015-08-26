@@ -35,7 +35,10 @@ public class DividaCadastro extends javax.swing.JFrame {
     
     private void salvar() {
         try {
-                dividaController.adicionarDivida(cboDevedor.getSelectedIndex(), cboRecebedor.getSelectedIndex(), txtDescricao.getText(), Double.valueOf(txtValor.getText()));
+            if (idDivida == null)
+                dividaController.adicionarDivida(((Usuario)cboDevedor.getSelectedItem()).getIdUsuario(), ((Usuario)cboRecebedor.getSelectedItem()).getIdUsuario(), txtDescricao.getText(), Double.valueOf(txtValor.getText()), checkPago.isSelected());
+            else
+                dividaController.alterarDivida(idDivida, ((Usuario)cboDevedor.getSelectedItem()).getIdUsuario(), ((Usuario)cboRecebedor.getSelectedItem()).getIdUsuario(), txtDescricao.getText(), Double.valueOf(txtValor.getText()), checkPago.isSelected());
             }
 
         catch (NumberFormatException n) {
@@ -49,7 +52,7 @@ public class DividaCadastro extends javax.swing.JFrame {
      }
 
     public void carregar(Integer idDivida) {
-        List<Divida> list = dividaController.buscarDivida(idDivida, null, null, null, null);
+        List<Divida> list = dividaController.buscarDivida(idDivida, null, null, null, null, false);
 
         if (list != null && list.size() != 1) {
             JOptionPane.showMessageDialog(this, "Erro ao carregar o usuário", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -62,6 +65,7 @@ public class DividaCadastro extends javax.swing.JFrame {
         cboRecebedor.setSelectedIndex(divida.getUsuarioByIdUsuarioRecebedor().getIdUsuario());
         txtDescricao.setText(divida.getDescricao());
         txtValor.setText(String.valueOf(divida.getPreco()));
+        checkPago.setSelected(divida.isPago());
         }
     @SuppressWarnings("unchecked")
     
@@ -77,6 +81,7 @@ public class DividaCadastro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         cboDevedor = new javax.swing.JComboBox();
         cboRecebedor = new javax.swing.JComboBox();
+        checkPago = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         btnSair = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
@@ -99,6 +104,8 @@ public class DividaCadastro extends javax.swing.JFrame {
 
         cboRecebedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        checkPago.setText("Pago");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -114,13 +121,18 @@ public class DividaCadastro extends javax.swing.JFrame {
                     .addComponent(cboRecebedor, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 136, Short.MAX_VALUE))
+                    .addComponent(txtDescricao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(88, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(checkPago)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +148,8 @@ public class DividaCadastro extends javax.swing.JFrame {
                     .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboDevedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboRecebedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboRecebedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkPago))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -183,10 +196,10 @@ public class DividaCadastro extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,6 +260,7 @@ public class DividaCadastro extends javax.swing.JFrame {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cboDevedor;
     private javax.swing.JComboBox cboRecebedor;
+    private javax.swing.JCheckBox checkPago;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

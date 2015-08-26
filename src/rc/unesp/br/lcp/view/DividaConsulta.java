@@ -40,41 +40,28 @@ public class DividaConsulta extends javax.swing.JFrame {
         List<Usuario> usuarioDevedor = usuarioController.buscarUsuario(null, cboDevedor.getSelectedItem().toString(), null, null);
         List<Usuario> usuarioRecebedor = usuarioController.buscarUsuario(null, cboRecebedor.getSelectedItem().toString(), null, null);
               
-        listaDivida = (ArrayList) new DividaController().buscarDivida(null, usuarioDevedor.get(0).getIdUsuario(), usuarioRecebedor.get(0).getIdUsuario(), null, null);
+        listaDivida = (ArrayList) new DividaController().buscarDivida(null, usuarioDevedor.get(0).getIdUsuario(), usuarioRecebedor.get(0).getIdUsuario(), null, null, checkPago.isSelected());
         DefaultTableModel modelo = (DefaultTableModel) tabelaDividas.getModel();
         
         modelo.setNumRows(0);
         for (Divida divida : listaDivida) {
             Object[] linha = new Object[]{
+            divida.getIdDivida(),
             divida.getDescricao(),
-            divida.getPreco()
+            divida.getPreco(),
+            divida.isPago()
         };
         modelo.addRow(linha);
     }
     
     }
     
-    private void incluir(){
-    
+    private void carregar(){
+        DividaCadastro dividaCadastro = new DividaCadastro();
+        dividaCadastro.carregar((Integer) tabelaDividas.getValueAt(tabelaDividas.getSelectedRow(), 0));
+        dividaCadastro.setVisible(true);
     }
     
-    // Bruno, precisa utilizar este método "carregar" nesta classe?
-    /*public void carregar(Integer idDivida) {
-        List<Divida> list = dividaController.buscarDivida(idDivida, null, null, null, null);
-
-        if (list != null && list.size() != 1) {
-            JOptionPane.showMessageDialog(this, "Erro ao carregar o usuário", "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-
-        Divida divida = list.get(0);
-
-        this.idDivida = idDivida;
-        cboDevedor.setSelectedIndex(divida.getUsuarioByIdUsuarioDevedor().getIdUsuario());
-        cboRecebedor.setSelectedIndex(divida.getUsuarioByIdUsuarioRecebedor().getIdUsuario());
-        //txtDescricao.setText(divida.getDescricao());
-        //txtValor.setText(String.valueOf(divida.getPreco()));
-    }*/
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -84,6 +71,7 @@ public class DividaConsulta extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         cboDevedor = new javax.swing.JComboBox();
         cboRecebedor = new javax.swing.JComboBox();
+        checkPago = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaDividas = new javax.swing.JTable();
@@ -110,6 +98,8 @@ public class DividaConsulta extends javax.swing.JFrame {
 
         cboRecebedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        checkPago.setText("Pago");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -122,8 +112,11 @@ public class DividaConsulta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(cboRecebedor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cboRecebedor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(checkPago, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +128,8 @@ public class DividaConsulta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboDevedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboRecebedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboRecebedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkPago))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -143,15 +137,35 @@ public class DividaConsulta extends javax.swing.JFrame {
 
         tabelaDividas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-
+                "ID", "Descrição", "Preço", "Pago"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaDividas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaDividasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaDividas);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -187,16 +201,21 @@ public class DividaConsulta extends javax.swing.JFrame {
             }
         });
 
-        btnIncluir.setText("Incluir");
+        btnIncluir.setText("Excluir");
+        btnIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIncluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnIncluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnConsultar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSair)
@@ -253,6 +272,20 @@ public class DividaConsulta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboDevedorActionPerformed
 
+    private void tabelaDividasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaDividasMouseClicked
+       if (evt.getClickCount() == 2) {
+            carregar();
+        }
+    }//GEN-LAST:event_tabelaDividasMouseClicked
+
+    private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
+        Integer id = (Integer)tabelaDividas.getModel().getValueAt(tabelaDividas.getSelectedRow(), 0);
+        DividaController dividaController = new DividaController();
+        dividaController.apagarDivida(id);
+        JOptionPane.showMessageDialog(null, "Excluído com sucesso!");
+        btnConsultarActionPerformed(evt);
+    }//GEN-LAST:event_btnIncluirActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -291,6 +324,7 @@ public class DividaConsulta extends javax.swing.JFrame {
     private javax.swing.JButton btnSair;
     private javax.swing.JComboBox cboDevedor;
     private javax.swing.JComboBox cboRecebedor;
+    private javax.swing.JCheckBox checkPago;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

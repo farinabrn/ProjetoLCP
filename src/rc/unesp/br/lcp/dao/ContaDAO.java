@@ -45,7 +45,11 @@ public class ContaDAO {
         if (conta.getUsuarioByIdUsuarioPagador() != null) {
             criteria.add(Restrictions.eq(Conta.ID_USUARIO, conta.getUsuarioByIdUsuarioPagador()));
         }
-
+         
+        if (conta.isPago()){
+            criteria.add(Restrictions.eq(Conta.PAGO, true));
+        }
+        
         List<Conta> list = criteria.list();
         return list;
     }

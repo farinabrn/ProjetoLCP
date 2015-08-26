@@ -20,29 +20,29 @@ public class DividaController {
     private final DividaDAO dividaDAO = new DividaDAO();
     private static UsuarioController usuarioController = new UsuarioController();
 
-    public void adicionarDivida(Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco) {
+    public void adicionarDivida(Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco, boolean pago) {
         
         Usuario devedor = usuarioController.buscarUsuario(idUsuarioDevedor, null, null, null).get(0);
         Usuario recebedor = usuarioController.buscarUsuario(idUsuarioRecebedor, null, null, null).get(0);
         
-        Divida divida = new Divida(null, devedor, recebedor, descricao, preco);
+        Divida divida = new Divida(null, devedor, recebedor, descricao, preco, pago);
         
         dividaDAO.adicionarDivida(divida);
     }
 
-    public List<Divida> buscarDivida(Integer idDivida, Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco) {
+    public List<Divida> buscarDivida(Integer idDivida, Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco, boolean pago) {
         Usuario devedor = new Usuario();
         devedor.setIdUsuario(idUsuarioDevedor);
         
         Usuario recebedor = new Usuario();
         recebedor.setIdUsuario(idUsuarioRecebedor);
         
-        Divida divida = new Divida(idDivida, devedor, recebedor, descricao, preco);
+        Divida divida = new Divida(idDivida, devedor, recebedor, descricao, preco, pago);
         
         return dividaDAO.buscarDivida(divida);
     }
 
-    public void alterarDivida(Integer idDivida, Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco) {
+    public void alterarDivida(Integer idDivida, Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco, boolean pago) {
         
         Divida divida = carregarDivida(idDivida);
         Usuario devedor = usuarioController.buscarUsuario(idUsuarioDevedor, null, null, null).get(0);
@@ -52,6 +52,7 @@ public class DividaController {
         divida.setUsuarioByIdUsuarioRecebedor(recebedor);
         divida.setDescricao(descricao);
         divida.setPreco(preco);
+        divida.setPago(pago);
         
         dividaDAO.alterarDivida(divida);
     }
