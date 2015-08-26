@@ -8,6 +8,7 @@
         </group>
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/view/Principal.java</file>
         </group>
         <group>
@@ -27,12 +28,28 @@
             <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/Despesa.hbm.xml</file>
         </group>
         <group>
+=======
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/dao/DespesaDAO.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/controller/DespesaController.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/DespesaConsulta.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/DespesaCadastro.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/Principal.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/Login.hbm.xml</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/Despesa.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/LoginCadastro.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/Despesa.hbm.xml</file>
+        </group>
+        <group>
+>>>>>>> origin/master
             <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/DespesaConsulta.java</file>
             <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/controller/DespesaController.java</file>
             <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/LoginConsulta.java</file>
             <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/DespesaCadastro.java</file>
             <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/Principal.java</file>
             <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/LoginCadastro.java</file>
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
         </group>
     </open-files>
