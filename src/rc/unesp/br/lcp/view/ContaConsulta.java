@@ -37,28 +37,23 @@ public class ContaConsulta extends javax.swing.JFrame {
     }
 
     private void consulta() {
-        ArrayList<Conta> listaConta = new ArrayList<Conta>();
-        Conta conta = new Conta();
+        List<Conta> listaConta = new ArrayList<Conta>();
 
-        conta.setUsuarioByIdUsuarioPagador(null);
-        conta.setDescricao(txtDescricao.getText());
-        conta.setValor(Double.valueOf(txtValor.getText()));
+        listaConta = contaController.buscarContas(null, ((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), txtDescricao.getText(), (txtValor.getText().isEmpty()?(double) 0:Double.valueOf(txtValor.getText())));
 
-//        listaConta = contaController.buscarContas(((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), PROPERTIES, null, Double.NaN);
+        DefaultTableModel modelo = (DefaultTableModel) tblConsulta.getModel();
 
-//        DefaultTableModel modelo = (DefaultTableModel) tabelaUsuario.getModel();
+        modelo.setNumRows(0);
 
-//        modelo.setNumRows(0);
-//        for (Usuario user : listaConta) {
-//            Object[] linha = new Object[]{
-//                user.getIdUsuario(),
-//                user.getNome(),
-//                user.getApelido(),
-//                user.getCpf(),
-//                user.getEmail()
-//            };
-//            modelo.addRow(linha);
-//        }
+        for (Conta contaBusca : listaConta) {
+            Object[] linha = new Object[]{
+                contaBusca.getIdConta(),
+                contaBusca.getUsuarioByIdUsuarioPagador().getApelido(),
+                contaBusca.getDescricao(),
+                contaBusca.getValor()
+            };
+            modelo.addRow(linha);
+        }
     }
 
     private void incluir() {
@@ -79,7 +74,7 @@ public class ContaConsulta extends javax.swing.JFrame {
     cboUsuarioPagador = new javax.swing.JComboBox();
     jPanel2 = new javax.swing.JPanel();
     jScrollPane1 = new javax.swing.JScrollPane();
-    jTable1 = new javax.swing.JTable();
+    tblConsulta = new javax.swing.JTable();
     jPanel3 = new javax.swing.JPanel();
     btnSair = new javax.swing.JButton();
     btnConsultar = new javax.swing.JButton();
@@ -133,7 +128,7 @@ public class ContaConsulta extends javax.swing.JFrame {
 
     jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-    jTable1.setModel(new javax.swing.table.DefaultTableModel(
+    tblConsulta.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
         {},
         {},
@@ -144,7 +139,7 @@ public class ContaConsulta extends javax.swing.JFrame {
 
       }
     ));
-    jScrollPane1.setViewportView(jTable1);
+    jScrollPane1.setViewportView(tblConsulta);
 
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
@@ -238,6 +233,7 @@ public class ContaConsulta extends javax.swing.JFrame {
     setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents
 
+
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
@@ -257,7 +253,7 @@ public class ContaConsulta extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -285,20 +281,20 @@ public class ContaConsulta extends javax.swing.JFrame {
         });
     }
 
-  // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton btnConsultar;
-  private javax.swing.JButton btnIncluir;
-  private javax.swing.JButton btnSair;
-  private javax.swing.JComboBox cboUsuarioPagador;
-  private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel jLabel2;
-  private javax.swing.JLabel jLabel3;
-  private javax.swing.JPanel jPanel1;
-  private javax.swing.JPanel jPanel2;
-  private javax.swing.JPanel jPanel3;
-  private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JTable jTable1;
-  private javax.swing.JTextField txtDescricao;
-  private javax.swing.JTextField txtValor;
-  // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnIncluir;
+    private javax.swing.JButton btnSair;
+    private javax.swing.JComboBox cboUsuarioPagador;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblConsulta;
+    private javax.swing.JTextField txtDescricao;
+    private javax.swing.JTextField txtValor;
+    // End of variables declaration//GEN-END:variables
 }
