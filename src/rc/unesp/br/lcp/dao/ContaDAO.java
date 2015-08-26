@@ -42,9 +42,9 @@ public class ContaDAO {
             criteria.add(Restrictions.like(Conta.DESCRICAO, conta.getDescricao(), MatchMode.ANYWHERE));
         }
         
-        if (conta.getUsuarioByIdUsuarioPagador() != null) {
-            criteria.add(Restrictions.eq(Conta.ID_USUARIO, conta.getUsuarioByIdUsuarioPagador()));
-        }
+//        if (conta.getUsuarioByIdUsuarioPagador() != null) {
+//            criteria.add(Restrictions.eq(Conta.ID_USUARIO, conta.getUsuarioByIdUsuarioPagador()));
+//        }
 
         List<Conta> list = criteria.list();
         return list;
