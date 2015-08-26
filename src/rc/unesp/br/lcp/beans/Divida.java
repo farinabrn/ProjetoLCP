@@ -17,12 +17,12 @@ public class Divida implements java.io.Serializable {
     private Usuario usuarioByIdUsuarioRecebedor;
     private String descricao;
     private Double preco;
-    private boolean pago;
+    private Boolean pago;
 
     public Divida() {
     }
 
-    public Divida(Integer idDivida, Usuario usuarioByIdUsuarioDevedor, Usuario usuarioByIdUsuarioRecebedor, String descricao, Double preco, boolean pago) {
+    public Divida(Integer idDivida, Usuario usuarioByIdUsuarioDevedor, Usuario usuarioByIdUsuarioRecebedor, String descricao, Double preco, Boolean pago) {
         this.idDivida = idDivida;
         this.usuarioByIdUsuarioDevedor = usuarioByIdUsuarioDevedor;
         this.usuarioByIdUsuarioRecebedor = usuarioByIdUsuarioRecebedor;
@@ -74,14 +74,14 @@ public class Divida implements java.io.Serializable {
     /**
      * @return the pago
      */
-    public boolean isPago() {
+    public Boolean getPago() {
         return pago;
     }
 
     /**
      * @param pago the pago to set
      */
-    public void setPago(boolean pago) {
+    public void setPago(Boolean pago) {
         this.pago = pago;
     }
 

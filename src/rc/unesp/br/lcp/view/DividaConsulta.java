@@ -27,29 +27,40 @@ public class DividaConsulta extends javax.swing.JFrame {
         
     public DividaConsulta() {
         initComponents();
+        
         List<Usuario> usuarios = usuarioController.buscarUsuario(null, null, null, null);       
+        
+        Usuario usuarioVazio = new Usuario();
+        usuarioVazio.setIdUsuario(null);
+        usuarioVazio.setNome(" ");
+        usuarios.add(usuarioVazio);
+
+
         ComboBoxModel modelDevedor = new DefaultComboBoxModel(usuarios.toArray());
-        ComboBoxModel modelRecebedor = new DefaultComboBoxModel(usuarios.toArray());
         cboDevedor.setModel(modelDevedor);
+        cboDevedor.setSelectedItem(usuarioVazio);
+        
+        ComboBoxModel modelRecebedor = new DefaultComboBoxModel(usuarios.toArray());
         cboRecebedor.setModel(modelRecebedor);
+        cboRecebedor.setSelectedItem(usuarioVazio);
     }
     
     private void consultar(){
         ArrayList<Divida> listaDivida = new ArrayList<Divida>();    
         
-        List<Usuario> usuarioDevedor = usuarioController.buscarUsuario(null, cboDevedor.getSelectedItem().toString(), null, null);
-        List<Usuario> usuarioRecebedor = usuarioController.buscarUsuario(null, cboRecebedor.getSelectedItem().toString(), null, null);
-              
-        listaDivida = (ArrayList) new DividaController().buscarDivida(null, usuarioDevedor.get(0).getIdUsuario(), usuarioRecebedor.get(0).getIdUsuario(), null, null, checkPago.isSelected());
+        listaDivida = (ArrayList) new DividaController().buscarDivida(null, ((Usuario) cboDevedor.getSelectedItem()).getIdUsuario(),
+                ((Usuario) cboRecebedor.getSelectedItem()).getIdUsuario(), null, null, null);
         DefaultTableModel modelo = (DefaultTableModel) tabelaDividas.getModel();
         
         modelo.setNumRows(0);
         for (Divida divida : listaDivida) {
             Object[] linha = new Object[]{
             divida.getIdDivida(),
+            divida.getUsuarioByIdUsuarioDevedor().getNome(),
+            divida.getUsuarioByIdUsuarioRecebedor().getNome(),
             divida.getDescricao(),
             divida.getPreco(),
-            divida.isPago()
+            divida.getPago()
         };
         modelo.addRow(linha);
     }
@@ -89,14 +100,11 @@ public class DividaConsulta extends javax.swing.JFrame {
 
         jLabel2.setText("Recebedor");
 
-        cboDevedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboDevedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboDevedorActionPerformed(evt);
             }
         });
-
-        cboRecebedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         checkPago.setText("Pago");
 
@@ -116,7 +124,7 @@ public class DividaConsulta extends javax.swing.JFrame {
                         .addComponent(cboRecebedor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(checkPago, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addContainerGap(470, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,14 +148,14 @@ public class DividaConsulta extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Descrição", "Preço", "Pago"
+                "ID", "Devedor", "Recebedor", "Descrição", "Preço", "Pago"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, true, true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -171,14 +179,14 @@ public class DividaConsulta extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -235,11 +243,11 @@ public class DividaConsulta extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,10 +255,10 @@ public class DividaConsulta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();

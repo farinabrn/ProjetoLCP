@@ -46,7 +46,7 @@ public class DividaDAO {
             criteria.add(Restrictions.eq(Divida.PRECO, divida.getPreco()));
         }
         
-        if (divida.isPago()){
+        if (divida.getPago() != null){
             criteria.add(Restrictions.eq(Divida.PAGO, true));
         }
 

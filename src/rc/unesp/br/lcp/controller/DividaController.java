@@ -18,61 +18,79 @@ import rc.unesp.br.lcp.dao.UsuarioDAO;
 public class DividaController {
 
     private final DividaDAO dividaDAO = new DividaDAO();
+    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
     private static UsuarioController usuarioController = new UsuarioController();
 
-    public void adicionarDivida(Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco, boolean pago) {
-        
-        Usuario devedor = usuarioController.buscarUsuario(idUsuarioDevedor, null, null, null).get(0);
-        Usuario recebedor = usuarioController.buscarUsuario(idUsuarioRecebedor, null, null, null).get(0);
-        
+    public void adicionarDivida(Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco, Boolean pago) throws Exception {
+
+        Usuario devedor = carregarUsuario(idUsuarioDevedor);
+        Usuario recebedor = carregarUsuario(idUsuarioRecebedor);
+
         Divida divida = new Divida(null, devedor, recebedor, descricao, preco, pago);
-        
+
         dividaDAO.adicionarDivida(divida);
     }
 
-    public List<Divida> buscarDivida(Integer idDivida, Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco, boolean pago) {
+    public List<Divida> buscarDivida(Integer idDivida, Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco, Boolean pago) {
         Usuario devedor = new Usuario();
         devedor.setIdUsuario(idUsuarioDevedor);
-        
+
         Usuario recebedor = new Usuario();
         recebedor.setIdUsuario(idUsuarioRecebedor);
-        
+
         Divida divida = new Divida(idDivida, devedor, recebedor, descricao, preco, pago);
-        
+
         return dividaDAO.buscarDivida(divida);
     }
 
-    public void alterarDivida(Integer idDivida, Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco, boolean pago) {
-        
+    public void alterarDivida(Integer idDivida, Integer idUsuarioDevedor, Integer idUsuarioRecebedor, String descricao, Double preco, Boolean pago) {
+
         Divida divida = carregarDivida(idDivida);
         Usuario devedor = usuarioController.buscarUsuario(idUsuarioDevedor, null, null, null).get(0);
         Usuario recebedor = usuarioController.buscarUsuario(idUsuarioRecebedor, null, null, null).get(0);
-        
+
         divida.setUsuarioByIdUsuarioDevedor(devedor);
         divida.setUsuarioByIdUsuarioRecebedor(recebedor);
         divida.setDescricao(descricao);
         divida.setPreco(preco);
         divida.setPago(pago);
-        
+
         dividaDAO.alterarDivida(divida);
     }
 
     public void apagarDivida(Integer idDivida) {
         Divida divida = carregarDivida(idDivida);
-        
+
         dividaDAO.apagarDivida(divida);
     }
 
     private Divida carregarDivida(Integer idDivida) {
         Divida divida = new Divida();
         divida.setIdDivida(idDivida);
-        
+
         List<Divida> list = dividaDAO.buscarDivida(divida);
-        
+
         if (list != null && list.size() == 1) {
             return list.get(0);
         } else {
             return null;
         }
     }
+
+    private Usuario carregarUsuario(Integer idUsuario) throws Exception {
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(idUsuario);
+
+        List<Usuario> listUsuario = usuarioDAO.buscarUsuario(usuario);
+
+        if (listUsuario == null || listUsuario.size() != 1) {
+            throw new Exception("Usuario inválido!");
+
+        } else {
+            usuario = listUsuario.get(0);
+        }
+
+        return usuario;
+    }
+
 }

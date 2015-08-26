@@ -65,7 +65,7 @@ public class DividaCadastro extends javax.swing.JFrame {
         cboRecebedor.setSelectedIndex(divida.getUsuarioByIdUsuarioRecebedor().getIdUsuario());
         txtDescricao.setText(divida.getDescricao());
         txtValor.setText(String.valueOf(divida.getPreco()));
-        checkPago.setSelected(divida.isPago());
+        checkPago.setSelected(divida.getPago());
         }
     @SuppressWarnings("unchecked")
     
@@ -99,10 +99,6 @@ public class DividaCadastro extends javax.swing.JFrame {
         jLabel3.setToolTipText("");
 
         jLabel4.setText("Valor");
-
-        cboDevedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cboRecebedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         checkPago.setText("Pago");
 
