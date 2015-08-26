@@ -42,8 +42,13 @@ public class ContaDAO {
             criteria.add(Restrictions.like(Conta.DESCRICAO, conta.getDescricao(), MatchMode.ANYWHERE));
         }
         
+<<<<<<< HEAD
         if (conta.getUsuarioByIdUsuarioPagador() != null) {
             criteria.add(Restrictions.eq(Conta.ID_USUARIO, conta.getUsuarioByIdUsuarioPagador()));
+=======
+        if (conta.isPago()){
+          criteria.add(Restrictions.eq(Conta.PAGO, true));
+>>>>>>> origin/master
         }
 
         List<Conta> list = criteria.list();

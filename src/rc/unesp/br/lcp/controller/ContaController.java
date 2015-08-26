@@ -20,14 +20,14 @@ public class ContaController {
     private final ContaDAO contaDAO = new ContaDAO();
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-    public void adicionarConta(Integer idUsuarioPagador, String descricao, Double valor) throws Exception{
+    public void adicionarConta(Integer idUsuarioPagador, String descricao, Double valor, boolean pago) throws Exception{
         Usuario pagador = carregarUsuario(idUsuarioPagador);
         
-        Conta conta = new Conta(null, pagador, descricao, valor);
+        Conta conta = new Conta(null, pagador, descricao, valor, pago);
         contaDAO.adicionarConta(conta);
     }
 
-    public List<Conta> buscarContas(Integer idConta, Integer idUsuarioPagador, String descricao, Double valor) {
+    public List<Conta> buscarContas(Integer idConta, Integer idUsuarioPagador, String descricao, Double valor, boolean pago) {
         Usuario pagador = null;
         
         if (idUsuarioPagador != null) {
@@ -35,18 +35,19 @@ public class ContaController {
             pagador.setIdUsuario(idUsuarioPagador);
         }
 
-        Conta conta = new Conta(idConta, pagador, descricao, valor);
+        Conta conta = new Conta(idConta, pagador, descricao, valor, pago);
         
         return contaDAO.buscarConta(conta);
     }
 
-    public void alterarConta(Integer idConta, Integer idUsuarioPagador, String descricao, Double valor) throws Exception{
+    public void alterarConta(Integer idConta, Integer idUsuarioPagador, String descricao, Double valor, boolean pago) throws Exception{
         Conta conta = carregarConta(idConta);
         Usuario pagador = carregarUsuario(idUsuarioPagador);
 
         conta.setUsuarioByIdUsuarioPagador(pagador);
         conta.setDescricao(descricao);
         conta.setValor(valor);
+        conta.setPago(pago);
         
         contaDAO.alterarConta(conta);
     }
