@@ -7,14 +7,9 @@
             <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/Conta.hbm.xml</file>
         </group>
         <group>
-            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/DespesaConsulta.java</file>
-            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/controller/DespesaController.java</file>
-            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaConsulta.java</file>
-            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/LoginConsulta.java</file>
-            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/DespesaCadastro.java</file>
-            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/Principal.java</file>
-            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaCadastro.java</file>
-            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/LoginCadastro.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/controller/ContaController.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/dao/ContaDAO.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/Conta.java</file>
         </group>
     </open-files>
 </project-private>
