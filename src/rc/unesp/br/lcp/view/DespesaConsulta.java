@@ -112,10 +112,7 @@ public class DespesaConsulta extends javax.swing.JFrame {
 
         tabelaDespesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Usuário Pagador", "Descrição", "Valor", "Pago"
