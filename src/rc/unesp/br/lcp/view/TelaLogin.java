@@ -164,7 +164,7 @@ public class TelaLogin extends javax.swing.JFrame {
       System.out.print(DadosLogin.login().getUsername());
       dispose();
     }else if((textUsuario.getText().equals(listaLogin.get(0).getUsername())) &&
-             (senha.equals(listaLogin.get(0).getUsername()))){
+             (senha.equals(new String(listaLogin.get(0).getSenha())))){
       login.setIdLogin(listaLogin.get(0).getUsuario().getIdUsuario());
       login.setUsername(textUsuario.getText());
       DadosLogin.createLogin(login);

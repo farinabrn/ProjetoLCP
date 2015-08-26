@@ -179,7 +179,7 @@ public class LoginCadastro extends javax.swing.JFrame {
           JOptionPane.showMessageDialog(null, "Senha invalida!");
         else{
           List<Usuario> usuarios = usuarioController.buscarUsuario(null, comboUsuario.getSelectedItem().toString(), null, null);
-          loginController.adicionarLogin(usuarios.get(0), textUsername.getText(), textSenha.getPassword().toString());
+          loginController.adicionarLogin(usuarios.get(0), textUsername.getText(), String.valueOf(textSenha.getPassword()));
           JOptionPane.showMessageDialog(null, "Login salvo com sucesso!");
           textUsername.setText("");
           textSenha.setText("");
@@ -195,7 +195,7 @@ public class LoginCadastro extends javax.swing.JFrame {
             if(!Arrays.equals(pf.getPassword(), textSenha.getPassword()))
               JOptionPane.showMessageDialog(null, "Senha invalida!"); 
           }else{
-            loginController.alterarLogin(getIdLogin(), textUsername.getText(), textSenha.getPassword().toString());
+            loginController.alterarLogin(getIdLogin(), textUsername.getText(), String.valueOf(textSenha.getPassword()));
         }
       }
     }
