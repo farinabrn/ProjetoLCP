@@ -39,7 +39,7 @@ public class ContaCadastro extends javax.swing.JFrame {
     private void salvar() {
         try {
             if (idConta == null) {
-                contaController.adicionarConta(cboUsuarioPagador.getSelectedIndex(), txtDescricao.getText(), Double.valueOf(txtValor.getText()));
+                contaController.adicionarConta(((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), txtDescricao.getText(), Double.valueOf(txtValor.getText()));
 
             } else {
                 contaController.alterarConta(idConta, ((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), txtDescricao.getText(), Double.valueOf(txtValor.getText()));
@@ -63,7 +63,13 @@ public class ContaCadastro extends javax.swing.JFrame {
         Conta conta = list.get(0);
 
         this.idConta = idConta;
-        cboUsuarioPagador.setSelectedIndex(conta.getUsuarioByIdUsuarioPagador().getIdUsuario());
+        
+        for (int i = 0; i < cboUsuarioPagador.getItemCount(); i++) {
+            if (conta.getUsuarioByIdUsuarioPagador().getIdUsuario() == ((Usuario) cboUsuarioPagador.getItemAt(i)).getIdUsuario()) {
+                cboUsuarioPagador.setSelectedIndex(i);
+            }
+        }
+        
         txtDescricao.setText(conta.getDescricao());
         txtValor.setText(String.valueOf(conta.getValor()));
     }
