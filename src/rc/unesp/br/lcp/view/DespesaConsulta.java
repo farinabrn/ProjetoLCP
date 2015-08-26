@@ -66,7 +66,7 @@ public class DespesaConsulta extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Consulta - Despesas");
+        setTitle("Seleção - Despesas");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
