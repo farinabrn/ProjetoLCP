@@ -11,5 +11,9 @@
             <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaCadastro.java</file>
             <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/controller/ContaController.java</file>
         </group>
+        <group>
+            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/beans/Conta.java</file>
+            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/beans/Banco.java</file>
+        </group>
     </open-files>
 </project-private>

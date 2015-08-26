@@ -38,8 +38,8 @@ public class DespesaDAO {
             criteria.add(Restrictions.eq(Despesa.ID_DESPESA, despesa.getIdDespesa()));
         }
 
-        if (despesa.getUsuarioByIdUsuario() != null && despesa.getUsuarioByIdUsuario().getIdUsuario() != null) {
-            criteria.add(Restrictions.eq(Despesa.ID_USUARIO, despesa.getUsuarioByIdUsuario()));
+        if (despesa.getUsuarioPagador() != null && despesa.getUsuarioPagador().getIdUsuario() != null) {
+            criteria.add(Restrictions.eq(Despesa.ID_USUARIO, despesa.getUsuarioPagador()));
         }
 
         if (despesa.getDescricao() != null && !despesa.getDescricao().equals("")) {

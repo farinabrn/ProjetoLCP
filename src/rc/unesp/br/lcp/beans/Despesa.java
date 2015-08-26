@@ -9,19 +9,19 @@ public class Despesa implements java.io.Serializable {
     public static final String ID_DESPESA = "idDespesa";
     public static final String DESCRICAO = "descricao";
     public static final String PRECO = "preco";
-    public static final String ID_USUARIO = "usuario";
+    public static final String ID_USUARIO = "usuarioPagador";
 
     private Integer idDespesa;
-    private Usuario usuarioByIdUsuario;
+    private Usuario usuarioPagador;
     private String descricao;
     private Double preco;
 
     public Despesa() {
     }
 
-    public Despesa(Integer idDespesa, Usuario usuarioByIdUsuario, String descricao, Double preco) {
+    public Despesa(Integer idDespesa, Usuario usuarioPagador, String descricao, Double preco) {
         this.idDespesa = idDespesa;
-        this.usuarioByIdUsuario = usuarioByIdUsuario;
+        this.usuarioPagador = usuarioPagador;
         this.descricao = descricao;
         this.preco = preco;
     }
@@ -34,12 +34,12 @@ public class Despesa implements java.io.Serializable {
         this.idDespesa = idDespesa;
     }
 
-    public Usuario getUsuarioByIdUsuario() {
-        return this.usuarioByIdUsuario;
+    public Usuario getUsuarioPagador() {
+        return this.usuarioPagador;
     }
 
-    public void setUsuarioByIdUsuario(Usuario usuarioByIdUsuario) {
-        this.usuarioByIdUsuario = usuarioByIdUsuario;
+    public void setUsuarioPagador(Usuario usuarioPagador) {
+        this.usuarioPagador = usuarioPagador;
     }
 
     public String getDescricao() {

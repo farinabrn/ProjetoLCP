@@ -18,14 +18,11 @@ import rc.unesp.br.lcp.dao.UsuarioDAO;
  */
 public class DespesaController {
     
-    private DespesaDAO despesaDAO;
+    private DespesaDAO despesaDAO = new DespesaDAO();
     private UsuarioDAO usuarioDAO;
 
-    public void adicionarDespesa(Integer idUsuarioComprador, String descricao, Double preco) {
-        Usuario comprador = carregarUsuario(idUsuarioComprador);
-        
+    public void adicionarDespesa(Usuario comprador, String descricao, Double preco) {        
         Despesa despesa = new Despesa(null, comprador, descricao, preco);
-        
         despesaDAO.adicionarDespesa(despesa);
     }
 
@@ -50,7 +47,7 @@ public class DespesaController {
         Despesa despesa = carregarDespesa(idDespesa);
         Usuario comprador = carregarUsuario(idUsuarioComprador);
         
-        despesa.setUsuarioByIdUsuario(comprador);
+        despesa.setUsuarioPagador(comprador);
         despesa.setDescricao(descricao);
         despesa.setPreco(preco);
         
