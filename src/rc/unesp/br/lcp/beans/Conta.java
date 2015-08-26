@@ -7,7 +7,7 @@ package rc.unesp.br.lcp.beans;
 public class Conta implements java.io.Serializable {
 
     public static final String ID_CONTA = "idConta";
-    public static final String ID_USUARIO = "Usuario.id";
+    public static final String ID_USUARIO = "usuarioByIdUsuarioPagador";
     public static final String DESCRICAO = "descricao";
 
     private Integer idConta;
