@@ -2,16 +2,21 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Flávio/Documents/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaConsulta.java</file>
-        </group>
         <group name="LCP">
             <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/Principal.java</file>
             <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaConsulta.java</file>
         </group>
         <group>
-            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/beans/Conta.java</file>
-            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/beans/Banco.java</file>
+            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/controller/DespesaController.java</file>
+            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/dao/ContaBancariaDAO.java</file>
+            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/view/UsuarioConsulta.java</file>
+            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/view/Principal.java</file>
+            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/beans/Despesa.java</file>
+            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/beans/Despesa.hbm.xml</file>
+            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/view/DespesaConsulta.java</file>
+        </group>
+        <group>
+            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/view/Principal.java</file>
         </group>
     </open-files>
 </project-private>
