@@ -74,7 +74,7 @@ public class ContaConsulta extends javax.swing.JFrame {
     cboUsuarioPagador = new javax.swing.JComboBox();
     jPanel2 = new javax.swing.JPanel();
     jScrollPane1 = new javax.swing.JScrollPane();
-    jTable1 = new javax.swing.JTable();
+    tblConsulta = new javax.swing.JTable();
     jPanel3 = new javax.swing.JPanel();
     btnSair = new javax.swing.JButton();
     btnConsultar = new javax.swing.JButton();
@@ -128,7 +128,7 @@ public class ContaConsulta extends javax.swing.JFrame {
 
     jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-    jTable1.setModel(new javax.swing.table.DefaultTableModel(
+    tblConsulta.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
         {},
         {},
@@ -139,7 +139,7 @@ public class ContaConsulta extends javax.swing.JFrame {
 
       }
     ));
-    jScrollPane1.setViewportView(jTable1);
+    jScrollPane1.setViewportView(tblConsulta);
 
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
@@ -281,7 +281,6 @@ public class ContaConsulta extends javax.swing.JFrame {
         });
     }
 
-<<<<<<< HEAD
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnIncluir;
@@ -298,22 +297,4 @@ public class ContaConsulta extends javax.swing.JFrame {
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
-=======
-  // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton btnConsultar;
-  private javax.swing.JButton btnIncluir;
-  private javax.swing.JButton btnSair;
-  private javax.swing.JComboBox cboUsuarioPagador;
-  private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel jLabel2;
-  private javax.swing.JLabel jLabel3;
-  private javax.swing.JPanel jPanel1;
-  private javax.swing.JPanel jPanel2;
-  private javax.swing.JPanel jPanel3;
-  private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JTable jTable1;
-  private javax.swing.JTextField txtDescricao;
-  private javax.swing.JTextField txtValor;
-  // End of variables declaration//GEN-END:variables
->>>>>>> origin/master
 }

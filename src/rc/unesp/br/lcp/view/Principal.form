@@ -51,11 +51,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
               <Properties>
-<<<<<<< HEAD
                 <Property name="text" type="java.lang.String" value="Conta"/>
-=======
-                <Property name="text" type="java.lang.String" value="Contas"/>
->>>>>>> origin/master
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem8ActionPerformed"/>
@@ -102,11 +98,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem11">
               <Properties>
-<<<<<<< HEAD
                 <Property name="text" type="java.lang.String" value="Conta"/>
-=======
-                <Property name="text" type="java.lang.String" value="Contas"/>
->>>>>>> origin/master
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem11ActionPerformed"/>

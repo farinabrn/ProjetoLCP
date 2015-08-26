@@ -213,7 +213,6 @@ public class Principal extends javax.swing.JFrame {
         new DividaConsulta().setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
-<<<<<<< HEAD
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         new ContaCadastro().setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
@@ -221,15 +220,6 @@ public class Principal extends javax.swing.JFrame {
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         new ContaConsulta().setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
-=======
-  private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        new ContaCadastro().setVisible(true);
-  }//GEN-LAST:event_jMenuItem8ActionPerformed
-
-  private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        new ContaConsulta().setVisible(true);
-  }//GEN-LAST:event_jMenuItem11ActionPerformed
->>>>>>> origin/master
 
     /**
      * @param args the command line arguments
@@ -268,7 +258,6 @@ public class Principal extends javax.swing.JFrame {
         });
     }
 
-<<<<<<< HEAD
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
@@ -286,23 +275,4 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
-=======
-  // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JDesktopPane jDesktopPane1;
-  private javax.swing.JMenu jMenu1;
-  private javax.swing.JMenu jMenu2;
-  private javax.swing.JMenuBar jMenuBar1;
-  private javax.swing.JMenuItem jMenuItem1;
-  private javax.swing.JMenuItem jMenuItem10;
-  private javax.swing.JMenuItem jMenuItem11;
-  private javax.swing.JMenuItem jMenuItem2;
-  private javax.swing.JMenuItem jMenuItem3;
-  private javax.swing.JMenuItem jMenuItem4;
-  private javax.swing.JMenuItem jMenuItem5;
-  private javax.swing.JMenuItem jMenuItem6;
-  private javax.swing.JMenuItem jMenuItem7;
-  private javax.swing.JMenuItem jMenuItem8;
-  private javax.swing.JMenuItem jMenuItem9;
-  // End of variables declaration//GEN-END:variables
->>>>>>> origin/master
 }
