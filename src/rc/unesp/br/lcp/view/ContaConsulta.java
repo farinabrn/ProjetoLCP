@@ -105,7 +105,7 @@ public class ContaConsulta extends javax.swing.JFrame {
         btnConsultar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Consulta - Conta");
+        setTitle("Seleção - Conta");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

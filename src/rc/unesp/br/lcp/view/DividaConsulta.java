@@ -81,7 +81,7 @@ public class DividaConsulta extends javax.swing.JFrame {
         btnIncluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Consulta - Dívidas");
+        setTitle("Seleção - Dívidas");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
