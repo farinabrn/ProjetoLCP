@@ -72,6 +72,7 @@ public class ContaCadastro extends javax.swing.JFrame {
         
         txtDescricao.setText(conta.getDescricao());
         txtValor.setText(String.valueOf(conta.getValor()));
+        checkPago.setSelected(conta.isPago());
     }
 
     @SuppressWarnings("unchecked")
