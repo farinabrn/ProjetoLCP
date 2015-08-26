@@ -359,6 +359,17 @@ public class UsuarioCadastro extends JFrame {
               return;
           }
           JOptionPane.showMessageDialog(null, "Sucesso na inserção");
+          
+          textNome.setText("");
+          textApelido.setText("");
+          textCPF.setText("");
+          textConta.setText("");
+          textDataInicio.setText("");
+          textDataTermino.setText("");
+          textTelefoneCel.setText("");
+          textTelefoneRes.setText("");
+          textEmail.setText("");
+          textAgencia.setText("");
       } else {
           Usuario usuario = usuarioController.carregarUsuario(this.idUsuario);
           try {
