@@ -39,10 +39,10 @@ public class ContaCadastro extends javax.swing.JFrame {
     private void salvar() {
         try {
             if (idConta == null) {
-                contaController.adicionarConta(((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), txtDescricao.getText(), Double.valueOf(txtValor.getText()));
+                contaController.adicionarConta(((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), txtDescricao.getText(), Double.valueOf(txtValor.getText()), checkPago.isSelected());
 
             } else {
-                contaController.alterarConta(idConta, ((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), txtDescricao.getText(), Double.valueOf(txtValor.getText()));
+                contaController.alterarConta(idConta, ((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), txtDescricao.getText(), Double.valueOf(txtValor.getText()), checkPago.isSelected());
             }
 
         } catch (NumberFormatException n) {
@@ -54,7 +54,7 @@ public class ContaCadastro extends javax.swing.JFrame {
     }
 
     public void carregar(Integer idConta) {
-        List<Conta> list = contaController.buscarContas(idConta, null, null, null);
+        List<Conta> list = contaController.buscarContas(idConta, null, null, null, false);
 
         if (list != null && list.size() != 1) {
             JOptionPane.showMessageDialog(this, "Erro ao carregar o usuário", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -85,6 +85,7 @@ public class ContaCadastro extends javax.swing.JFrame {
     jLabel2 = new javax.swing.JLabel();
     jLabel3 = new javax.swing.JLabel();
     cboUsuarioPagador = new javax.swing.JComboBox();
+    checkPago = new javax.swing.JCheckBox();
     jPanel2 = new javax.swing.JPanel();
     btnSair = new javax.swing.JButton();
     btnSalvar = new javax.swing.JButton();
@@ -99,6 +100,8 @@ public class ContaCadastro extends javax.swing.JFrame {
     jLabel2.setText("Preço");
 
     jLabel3.setText("Usuario Pagador");
+
+    checkPago.setText("Pago");
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
@@ -116,8 +119,11 @@ public class ContaCadastro extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(jLabel2)
-          .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(checkPago)))
+        .addContainerGap(16, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +137,8 @@ public class ContaCadastro extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
               .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+              .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(checkPago)))
           .addGroup(jPanel1Layout.createSequentialGroup()
             .addComponent(jLabel3)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -182,10 +189,10 @@ public class ContaCadastro extends javax.swing.JFrame {
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addContainerGap())
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,6 +253,7 @@ public class ContaCadastro extends javax.swing.JFrame {
   private javax.swing.JButton btnSair;
   private javax.swing.JButton btnSalvar;
   private javax.swing.JComboBox cboUsuarioPagador;
+  private javax.swing.JCheckBox checkPago;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;

@@ -38,6 +38,12 @@ public class UsuarioCadastro extends JFrame {
  
   public UsuarioCadastro(Usuario usuario) {
       initComponents();
+      
+      List<Banco> bancos = bancoController.buscarBanco(null, null);
+      
+      ComboBoxModel model = new DefaultComboBoxModel(bancos.toArray());
+      comboBoxBanco.setModel(model);
+
       if (usuario != null){
         setIdUsuario(usuario.getIdUsuario());
         textNome.setText(usuario.getNome());
@@ -49,12 +55,10 @@ public class UsuarioCadastro extends JFrame {
         textDataTermino.setText(usuario.getDataTermino().toString());
         textTelefoneRes.setText(usuario.getTelefoneResidencial());
         textTelefoneCel.setText(usuario.getTelefoneCelular());
+        comboBoxBanco.setSelectedItem(usuario.getContabancaria().getBanco().getDescricao());
+        textAgencia.setText(usuario.getContabancaria().getAgencia());
+        textConta.setText(usuario.getContabancaria().getConta());
       }
-     
-      List<Banco> bancos = bancoController.buscarBanco(null, null);
-      
-      ComboBoxModel model = new DefaultComboBoxModel(bancos.toArray());
-      comboBoxBanco.setModel(model);
   }
 
   /**
@@ -358,14 +362,34 @@ public class UsuarioCadastro extends JFrame {
     SimpleDateFormat formatter = new  SimpleDateFormat("dd/MM/yy");
     Banco banco = (Banco)comboBoxBanco.getSelectedItem();
     ContaBancaria contaBancaria = new ContaBancaria(null, banco, textAgencia.getText(), textConta.getText());
+    if (this.idUsuario == null){
       try {
         usuarioController.adicionarUsuario(null, contaBancaria, textNome.getText(), textApelido.getText(),
                 textCPF.getText(), (Date)formatter.parse(textDataInicio.getText()), (Date)formatter.parse(textDataTermino.getText()),
-                comboBoxSituacao.getSelectedIndex(), textTelefoneCel.getText(),
-                textTelefoneRes.getText(), textEmail.getText());
+                comboBoxSituacao.getSelectedIndex(), textTelefoneCel.getText(), textTelefoneRes.getText(), textEmail.getText());
+      } catch (ParseException ex) {
+          Logger.getLogger(UsuarioCadastro.class.getName()).log(Level.SEVERE, null, ex);
+      } catch(Exception e) {
+          e.printStackTrace();
+          JOptionPane.showMessageDialog(this, "Erro ao inserir");
+          return;
+      }
+      JOptionPane.showMessageDialog(null, "Sucesso na inserção");
+    }else{
+      Usuario usuario = usuarioController.carregarUsuario(this.idUsuario);
+      try {
+        usuarioController.alterarUsuario(this.idUsuario, contaBancaria, textNome.getText(), textApelido.getText(),
+                textCPF.getText(), (Date)formatter.parse(textDataInicio.getText()), (Date)formatter.parse(textDataTermino.getText()),
+                comboBoxSituacao.getSelectedIndex(), textTelefoneCel.getText(), textTelefoneRes.getText(), textEmail.getText());
       } catch (ParseException ex) {
         Logger.getLogger(UsuarioCadastro.class.getName()).log(Level.SEVERE, null, ex);
+      } catch(Exception e) {
+          e.printStackTrace();
+          JOptionPane.showMessageDialog(this, "Erro ao editar");
+          return;
       }
+      JOptionPane.showMessageDialog(null, "Sucesso na edição");
+    }
   }//GEN-LAST:event_buttonSalvarActionPerformed
 
   private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed

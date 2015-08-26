@@ -51,7 +51,7 @@ public class DespesaDAO {
         }
         
         if (despesa.isPago()){
-            criteria.add(Restrictions.eq(Despesa.PAGO, despesa.isPago()));
+            criteria.add(Restrictions.eq(Despesa.PAGO, true));
         }
 
         List<Despesa> list = criteria.list();

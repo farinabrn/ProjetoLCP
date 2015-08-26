@@ -9,20 +9,23 @@ public class Conta implements java.io.Serializable {
     public static final String ID_CONTA = "idConta";
     public static final String ID_USUARIO = "Usuario.id";
     public static final String DESCRICAO = "descricao";
+    public static final String PAGO = "pago";
 
     private Integer idConta;
     private Usuario usuarioByIdUsuarioPagador;
     private String descricao;
     private Double valor;
+    private boolean pago;
 
     public Conta() {
     }
 
-    public Conta(Integer idConta, Usuario usuarioByIdUsuarioPagador, String descricao, Double valor) {
+    public Conta(Integer idConta, Usuario usuarioByIdUsuarioPagador, String descricao, Double valor, boolean pago) {
         this.idConta = idConta;
         this.usuarioByIdUsuarioPagador = usuarioByIdUsuarioPagador;
         this.descricao = descricao;
         this.valor = valor;
+        this.pago = pago;
     }
 
     public Integer getIdConta() {
@@ -55,6 +58,14 @@ public class Conta implements java.io.Serializable {
 
     public void setUsuarioByIdUsuarioPagador(Usuario usuarioByIdUsuarioPagador) {
         this.usuarioByIdUsuarioPagador = usuarioByIdUsuarioPagador;
+    }
+
+    public boolean isPago() {
+      return pago;
+    }
+
+    public void setPago(boolean pago) {
+      this.pago = pago;
     }
 
 }
