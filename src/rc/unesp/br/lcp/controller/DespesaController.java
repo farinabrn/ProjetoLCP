@@ -21,35 +21,36 @@ public class DespesaController {
     private DespesaDAO despesaDAO = new DespesaDAO();
     private UsuarioDAO usuarioDAO;
 
-    public void adicionarDespesa(Usuario comprador, String descricao, Double preco) {        
-        Despesa despesa = new Despesa(null, comprador, descricao, preco);
+    public void adicionarDespesa(Usuario comprador, String descricao, Double preco, boolean pago) {        
+        Despesa despesa = new Despesa(null, comprador, descricao, preco, pago);
         despesaDAO.adicionarDespesa(despesa);
     }
 
-    public List<Despesa> buscarDespesas(Integer idDespesa, Integer idUsuarioComprador, String descricao, Double preco) {
+    public List<Despesa> buscarDespesas(Integer idDespesa, Integer idUsuarioComprador, String descricao, Double preco, boolean pago) {
         Usuario comprador = carregarUsuario(idUsuarioComprador);
         
-        Despesa despesa = new Despesa(idDespesa, comprador, descricao, preco);
+        Despesa despesa = new Despesa(idDespesa, comprador, descricao, preco, pago);
         
         return despesaDAO.buscarDespesa(despesa);
     }
 
-    public List<Despesa> buscarDespesa(Integer idDespesa, Integer idUsuarioComprador, String descricao, Double preco) {
+    public List<Despesa> buscarDespesa(Integer idDespesa, Integer idUsuarioComprador, String descricao, Double preco, boolean pago) {
         Usuario comprador = new Usuario();
         comprador.setIdUsuario(idUsuarioComprador);
         
-        Despesa despesa = new Despesa(idDespesa, comprador, descricao, preco);
+        Despesa despesa = new Despesa(idDespesa, comprador, descricao, preco, pago);
         
         return despesaDAO.buscarDespesa(despesa);
     }
 
-    public void alterarDespesa(Integer idDespesa, Integer idUsuarioComprador, String descricao, Double preco) {
+    public void alterarDespesa(Integer idDespesa, Integer idUsuarioComprador, String descricao, Double preco, boolean pago) {
         Despesa despesa = carregarDespesa(idDespesa);
         Usuario comprador = carregarUsuario(idUsuarioComprador);
         
         despesa.setUsuarioPagador(comprador);
         despesa.setDescricao(descricao);
         despesa.setPreco(preco);
+        despesa.setPago(pago);
         
         despesaDAO.alterarDespesa(despesa);
     }
@@ -60,7 +61,7 @@ public class DespesaController {
         despesaDAO.apagarDespesa(despesa);
     }
     
-    private Despesa carregarDespesa(Integer idDespesa) {
+    public Despesa carregarDespesa(Integer idDespesa) {
         Despesa despesa = new Despesa();
         despesa.setIdDespesa(idDespesa);
         

@@ -7,16 +7,33 @@
             <file>file:/home/guilherme/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaConsulta.java</file>
         </group>
         <group>
-            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/controller/DespesaController.java</file>
-            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/dao/ContaBancariaDAO.java</file>
-            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/view/UsuarioConsulta.java</file>
+<<<<<<< HEAD
             <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/view/Principal.java</file>
-            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/beans/Despesa.java</file>
-            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/beans/Despesa.hbm.xml</file>
-            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/view/DespesaConsulta.java</file>
         </group>
         <group>
-            <file>file:/home/webster/Projetos/unesp/lcp/ProjetoLCP/src/rc/unesp/br/lcp/view/Principal.java</file>
+            <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/controller/ContaController.java</file>
+            <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaConsulta.java</file>
+            <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/dao/ContaDAO.java</file>
+            <file>file:/C:/Users/FARINA/Documents/NetBeansProjects/ProjetoLCP/src/rc/unesp/br/lcp/view/ContaCadastro.java</file>
+=======
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/dao/DespesaDAO.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/controller/DespesaController.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/DespesaConsulta.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/DespesaCadastro.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/Principal.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/Login.hbm.xml</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/Despesa.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/LoginCadastro.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/beans/Despesa.hbm.xml</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/DespesaConsulta.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/controller/DespesaController.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/LoginConsulta.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/DespesaCadastro.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/Principal.java</file>
+            <file>file:/C:/Users/desenvolvimento09/GitHub/ProjetoLCP/src/rc/unesp/br/lcp/view/LoginCadastro.java</file>
+>>>>>>> origin/master
         </group>
     </open-files>
 </project-private>

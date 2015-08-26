@@ -10,20 +10,23 @@ public class Despesa implements java.io.Serializable {
     public static final String DESCRICAO = "descricao";
     public static final String PRECO = "preco";
     public static final String ID_USUARIO = "usuarioPagador";
+    public static final String PAGO = "pago";
 
     private Integer idDespesa;
     private Usuario usuarioPagador;
     private String descricao;
     private Double preco;
+    private boolean pago;
 
     public Despesa() {
     }
 
-    public Despesa(Integer idDespesa, Usuario usuarioPagador, String descricao, Double preco) {
+    public Despesa(Integer idDespesa, Usuario usuarioPagador, String descricao, Double preco, boolean pago) {
         this.idDespesa = idDespesa;
         this.usuarioPagador = usuarioPagador;
         this.descricao = descricao;
         this.preco = preco;
+        this.pago = pago;
     }
 
     public Integer getIdDespesa() {
@@ -56,6 +59,14 @@ public class Despesa implements java.io.Serializable {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public boolean isPago() {
+        return pago;
+    }
+
+    public void setPago(boolean pago) {
+        this.pago = pago;
     }
 
 }
