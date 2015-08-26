@@ -37,17 +37,21 @@ public class ContaDAO {
         if (conta.getIdConta() != null) {
             criteria.add(Restrictions.eq(Conta.ID_CONTA, conta.getIdConta()));
         }
-
-        if (conta.getDescricao() != null && !conta.getDescricao().equals("")) {
-            criteria.add(Restrictions.like(Conta.DESCRICAO, conta.getDescricao(), MatchMode.ANYWHERE));
-        }
         
         if (conta.getUsuarioByIdUsuarioPagador() != null) {
             criteria.add(Restrictions.eq(Conta.ID_USUARIO, conta.getUsuarioByIdUsuarioPagador()));
         }
+
+        if (conta.getDescricao() != null && !conta.getDescricao().equals("")) {
+            criteria.add(Restrictions.like(Conta.DESCRICAO, conta.getDescricao(), MatchMode.ANYWHERE));
+        }
+
+        if (conta.getValor() != null) {
+            criteria.add(Restrictions.eq(Conta.VALOR, conta.getValor()));
+        }
          
-        if (conta.isPago()){
-            criteria.add(Restrictions.eq(Conta.PAGO, true));
+        if (conta.getPago() != null) {
+            criteria.add(Restrictions.eq(Conta.PAGO, conta.getPago()));
         }
         
         List<Conta> list = criteria.list();

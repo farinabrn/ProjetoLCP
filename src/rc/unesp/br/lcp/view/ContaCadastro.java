@@ -45,6 +45,8 @@ public class ContaCadastro extends javax.swing.JFrame {
                 contaController.alterarConta(idConta, ((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), txtDescricao.getText(), Double.valueOf(txtValor.getText()), checkPago.isSelected());
             }
 
+            JOptionPane.showMessageDialog(this, "Salvo com sucesso!", "Salvar", JOptionPane.INFORMATION_MESSAGE);
+            
         } catch (NumberFormatException n) {
             JOptionPane.showMessageDialog(this, "Valor inválido", "Erro", JOptionPane.ERROR_MESSAGE);
             
@@ -72,7 +74,7 @@ public class ContaCadastro extends javax.swing.JFrame {
         
         txtDescricao.setText(conta.getDescricao());
         txtValor.setText(String.valueOf(conta.getValor()));
-        checkPago.setSelected(conta.isPago());
+        checkPago.setSelected(conta.getPago());
     }
 
     @SuppressWarnings("unchecked")

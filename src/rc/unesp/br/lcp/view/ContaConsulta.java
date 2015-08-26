@@ -25,6 +25,7 @@ public class ContaConsulta extends javax.swing.JFrame {
 
     ContaController contaController = new ContaController();
     UsuarioController usuarioController = new UsuarioController();
+
     /**
      * Creates new form ContaConsulta
      */
@@ -32,15 +33,20 @@ public class ContaConsulta extends javax.swing.JFrame {
         initComponents();
 
         List<Usuario> usuarios = usuarioController.buscarUsuario(null, null, null, null);
+        Usuario usuarioVazio = new Usuario();
+        usuarioVazio.setIdUsuario(null);
+        usuarioVazio.setNome(" ");
+        usuarios.add(usuarioVazio);
 
         ComboBoxModel model = new DefaultComboBoxModel(usuarios.toArray());
         cboUsuarioPagador.setModel(model);
+        cboUsuarioPagador.setSelectedItem(usuarioVazio);
     }
 
     private void consulta() {
         List<Conta> listaConta = new ArrayList<Conta>();
 
-        listaConta = contaController.buscarContas(null, ((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), txtDescricao.getText(), (txtValor.getText().isEmpty()?(double) 0:Double.valueOf(txtValor.getText())), checkPago.isSelected());
+        listaConta = contaController.buscarContas(null, ((Usuario) cboUsuarioPagador.getSelectedItem()).getIdUsuario(), txtDescricao.getText(), (txtValor.getText().isEmpty() ? null : Double.valueOf(txtValor.getText())), null);
 
         DefaultTableModel modelo = (DefaultTableModel) tblConsulta.getModel();
 
@@ -49,10 +55,10 @@ public class ContaConsulta extends javax.swing.JFrame {
         for (Conta contaBusca : listaConta) {
             Object[] linha = new Object[]{
                 contaBusca.getIdConta(),
-                contaBusca.getUsuarioByIdUsuarioPagador().getApelido(),
+                contaBusca.getUsuarioByIdUsuarioPagador().getNome(),
                 contaBusca.getDescricao(),
                 contaBusca.getValor(),
-                contaBusca.isPago()
+                contaBusca.getPago()
             };
             modelo.addRow(linha);
         }
@@ -63,7 +69,22 @@ public class ContaConsulta extends javax.swing.JFrame {
         contaCadastro.carregar((Integer) tblConsulta.getValueAt(tblConsulta.getSelectedRow(), 0));
         contaCadastro.setVisible(true);
     }
-    
+
+    private void excluir() {
+        if (tblConsulta.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Nenhuma conta selecionada!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        Integer id = (Integer) tblConsulta.getModel().getValueAt(tblConsulta.getSelectedRow(), 0);
+
+        contaController.apagarConta(id);
+
+        DefaultTableModel model = (DefaultTableModel) tblConsulta.getModel();
+        model.removeRow(tblConsulta.getSelectedRow());
+        
+        JOptionPane.showMessageDialog(null, "Excluído com sucesso!");
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -75,7 +96,6 @@ public class ContaConsulta extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cboUsuarioPagador = new javax.swing.JComboBox();
-        checkPago = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblConsulta = new javax.swing.JTable();
@@ -95,8 +115,6 @@ public class ContaConsulta extends javax.swing.JFrame {
 
         jLabel3.setText("Usuario Pagador");
 
-        checkPago.setText("Pago");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -113,11 +131,8 @@ public class ContaConsulta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(checkPago)))
-                .addContainerGap(150, Short.MAX_VALUE))
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,9 +144,7 @@ public class ContaConsulta extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(checkPago))
+                    .addComponent(txtValor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDescricao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboUsuarioPagador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -182,7 +195,7 @@ public class ContaConsulta extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -261,7 +274,6 @@ public class ContaConsulta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
@@ -277,11 +289,7 @@ public class ContaConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_tblConsultaMouseClicked
 
   private void btnConsultar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultar2ActionPerformed
-      Integer id = (Integer)tblConsulta.getModel().getValueAt(tblConsulta.getSelectedRow(), 0);
-      ContaController contaController = new ContaController();
-      contaController.apagarConta(id);
-      JOptionPane.showMessageDialog(null, "Excluído com sucesso!");
-      btnConsultarActionPerformed(evt);
+      excluir();
   }//GEN-LAST:event_btnConsultar2ActionPerformed
 
     /**
@@ -324,7 +332,6 @@ public class ContaConsulta extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultar2;
     private javax.swing.JButton btnSair;
     private javax.swing.JComboBox cboUsuarioPagador;
-    private javax.swing.JCheckBox checkPago;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -20,14 +20,14 @@ public class ContaController {
     private final ContaDAO contaDAO = new ContaDAO();
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-    public void adicionarConta(Integer idUsuarioPagador, String descricao, Double valor, boolean pago) throws Exception{
+    public void adicionarConta(Integer idUsuarioPagador, String descricao, Double valor, Boolean pago) throws Exception{
         Usuario pagador = carregarUsuario(idUsuarioPagador);
         
         Conta conta = new Conta(null, pagador, descricao, valor, pago);
         contaDAO.adicionarConta(conta);
     }
 
-    public List<Conta> buscarContas(Integer idConta, Integer idUsuarioPagador, String descricao, Double valor, boolean pago) {
+    public List<Conta> buscarContas(Integer idConta, Integer idUsuarioPagador, String descricao, Double valor, Boolean pago) {
         Usuario pagador = null;
         
         if (idUsuarioPagador != null) {
@@ -40,7 +40,7 @@ public class ContaController {
         return contaDAO.buscarConta(conta);
     }
 
-    public void alterarConta(Integer idConta, Integer idUsuarioPagador, String descricao, Double valor, boolean pago) throws Exception{
+    public void alterarConta(Integer idConta, Integer idUsuarioPagador, String descricao, Double valor, Boolean pago) throws Exception{
         Conta conta = carregarConta(idConta);
         Usuario pagador = carregarUsuario(idUsuarioPagador);
 
