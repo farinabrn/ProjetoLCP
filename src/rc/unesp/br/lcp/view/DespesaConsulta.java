@@ -30,9 +30,15 @@ public class DespesaConsulta extends javax.swing.JFrame {
         initComponents();
         
         List<Usuario> usuarios = usuarioController.buscarUsuario(null, null, null, null);
-       
+               
+        Usuario usuarioVazio = new Usuario();
+        usuarioVazio.setIdUsuario(null);
+        usuarioVazio.setNome(" ");
+        usuarios.add(usuarioVazio);
+
         ComboBoxModel model = new DefaultComboBoxModel(usuarios.toArray());
         jComboBox1.setModel(model);
+        jComboBox1.setSelectedItem(usuarioVazio);
     }
 
     /**
