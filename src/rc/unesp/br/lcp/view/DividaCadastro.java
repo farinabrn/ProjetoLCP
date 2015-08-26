@@ -45,6 +45,7 @@ public class DividaCadastro extends javax.swing.JFrame {
         catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
+        JOptionPane.showMessageDialog(null, "Dívida incluída com sucesso!");
      }
 
     public void carregar(Integer idDivida) {
@@ -64,14 +65,6 @@ public class DividaCadastro extends javax.swing.JFrame {
         }
     @SuppressWarnings("unchecked")
     
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        salvar();
-    }
-    
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        this.dispose();
-    }
-    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -88,7 +81,8 @@ public class DividaCadastro extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro - Dívida");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -149,8 +143,18 @@ public class DividaCadastro extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -195,7 +199,16 @@ public class DividaCadastro extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        salvar();
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

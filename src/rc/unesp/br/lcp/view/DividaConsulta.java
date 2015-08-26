@@ -5,10 +5,12 @@
  */
 package rc.unesp.br.lcp.view;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import rc.unesp.br.lcp.beans.Divida;
 import rc.unesp.br.lcp.controller.DividaController;
 import rc.unesp.br.lcp.controller.UsuarioController;
@@ -22,7 +24,6 @@ public class DividaConsulta extends javax.swing.JFrame {
 
     private DividaController dividaController = new DividaController();
     private UsuarioController usuarioController = new UsuarioController();
-    private Integer idDivida = null;
         
     public DividaConsulta() {
         initComponents();
@@ -30,10 +31,26 @@ public class DividaConsulta extends javax.swing.JFrame {
         ComboBoxModel modelDevedor = new DefaultComboBoxModel(usuarios.toArray());
         ComboBoxModel modelRecebedor = new DefaultComboBoxModel(usuarios.toArray());
         cboDevedor.setModel(modelDevedor);
-        cboRecebedor.setModel(modelDevedor);
+        cboRecebedor.setModel(modelRecebedor);
     }
     
     private void consultar(){
+        ArrayList<Divida> listaDivida = new ArrayList<Divida>();    
+        
+        List<Usuario> usuarioDevedor = usuarioController.buscarUsuario(null, cboDevedor.getSelectedItem().toString(), null, null);
+        List<Usuario> usuarioRecebedor = usuarioController.buscarUsuario(null, cboRecebedor.getSelectedItem().toString(), null, null);
+              
+        listaDivida = (ArrayList) new DividaController().buscarDivida(null, usuarioDevedor.get(0).getIdUsuario(), usuarioRecebedor.get(0).getIdUsuario(), null, null);
+        DefaultTableModel modelo = (DefaultTableModel) tabelaDividas.getModel();
+        
+        modelo.setNumRows(0);
+        for (Divida divida : listaDivida) {
+            Object[] linha = new Object[]{
+            divida.getDescricao(),
+            divida.getPreco()
+        };
+        modelo.addRow(linha);
+    }
     
     }
     
@@ -54,8 +71,8 @@ public class DividaConsulta extends javax.swing.JFrame {
         this.idDivida = idDivida;
         cboDevedor.setSelectedIndex(divida.getUsuarioByIdUsuarioDevedor().getIdUsuario());
         cboRecebedor.setSelectedIndex(divida.getUsuarioByIdUsuarioRecebedor().getIdUsuario());
-        txtDescricao.setText(divida.getDescricao());
-        txtValor.setText(String.valueOf(divida.getPreco()));
+        //txtDescricao.setText(divida.getDescricao());
+        //txtValor.setText(String.valueOf(divida.getPreco()));
     }*/
 
     @SuppressWarnings("unchecked")
@@ -69,13 +86,14 @@ public class DividaConsulta extends javax.swing.JFrame {
         cboRecebedor = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaDividas = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnSair = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
         btnIncluir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consulta - Dívidas");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -84,6 +102,11 @@ public class DividaConsulta extends javax.swing.JFrame {
         jLabel2.setText("Recebedor");
 
         cboDevedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboDevedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboDevedorActionPerformed(evt);
+            }
+        });
 
         cboRecebedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -118,7 +141,7 @@ public class DividaConsulta extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaDividas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -129,7 +152,7 @@ public class DividaConsulta extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaDividas);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -215,6 +238,7 @@ public class DividaConsulta extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
@@ -224,6 +248,10 @@ public class DividaConsulta extends javax.swing.JFrame {
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void cboDevedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDevedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDevedorActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -269,6 +297,6 @@ public class DividaConsulta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelaDividas;
     // End of variables declaration//GEN-END:variables
 }
