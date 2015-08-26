@@ -38,20 +38,16 @@ public class DividaDAO {
             criteria.add(Restrictions.eq(Divida.ID_DIVIDA, divida.getIdDivida()));
         }
 
-//        if (divida.getUsuarioByIdUsuarioDevedor() != null && divida.getUsuarioByIdUsuarioDevedor().getIdUsuario() != null) {
-//            criteria.add(Restrictions.eq(Divida.ID_USUARIO, divida.getUsuarioByIdUsuarioDevedor()));
-//        }
-//        
-//        if (divida.getUsuarioByIdUsuarioRecebedor() != null && divida.getUsuarioByIdUsuarioRecebedor().getIdUsuario() != null) {
-//            criteria.add(Restrictions.eq(Divida.ID_USUARIO, divida.getUsuarioByIdUsuarioRecebedor()));
-//        }
-
         if (divida.getDescricao() != null && !divida.getDescricao().equals("")) {
             criteria.add(Restrictions.like(Divida.DESCRICAO, divida.getDescricao(), MatchMode.ANYWHERE));
         }
 
         if (divida.getPreco() != null && divida.getPreco() != 0) {
             criteria.add(Restrictions.eq(Divida.PRECO, divida.getPreco()));
+        }
+        
+        if (divida.isPago()){
+            criteria.add(Restrictions.eq(Divida.PAGO, true));
         }
 
         List<Divida> list = criteria.list();

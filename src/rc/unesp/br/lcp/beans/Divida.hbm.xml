@@ -20,5 +20,8 @@
         <property name="preco" type="java.lang.Double">
             <column name="preco" precision="22" scale="0" />
         </property>
+        <property name="pago" type="boolean">
+            <column name="pago"/>
+        </property>
     </class>
 </hibernate-mapping>
