@@ -128,20 +128,13 @@ public class UsuarioCadastro extends JFrame {
     }
     catch (Exception e){
     }
-    jPanel1 = new javax.swing.JPanel();
-    jLabel1 = new javax.swing.JLabel();
-    jLabel2 = new javax.swing.JLabel();
-    jLabel3 = new javax.swing.JLabel();
-    textUser = new javax.swing.JTextField();
-    textSenhaOld = new javax.swing.JPasswordField();
-    textSenhaNew = new javax.swing.JPasswordField();
 
     jLabel9.setText("jLabel9");
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     setTitle("Cadastro - Usuário");
 
-    panelIdentificacao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Identificação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+    panelIdentificacao.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
     buttonSair.setText("Sair");
     buttonSair.setPreferredSize(new java.awt.Dimension(63, 23));
@@ -157,8 +150,6 @@ public class UsuarioCadastro extends JFrame {
         buttonSalvarActionPerformed(evt);
       }
     });
-
-    panelDados.setBorder(null);
 
     labelNome.setText("Nome:");
 
@@ -318,49 +309,6 @@ public class UsuarioCadastro extends JFrame {
 
     jTabbedPane1.addTab("Dados", panelDados);
 
-    jLabel1.setText("Login");
-
-    jLabel2.setText("Nova Senha");
-
-    jLabel3.setText("Senha Antiga");
-
-    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-    jPanel1.setLayout(jPanel1Layout);
-    jPanel1Layout.setHorizontalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel1Layout.createSequentialGroup()
-        .addGap(188, 188, 188)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(jLabel2)
-          .addComponent(jLabel3)
-          .addComponent(jLabel1))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-          .addComponent(textSenhaNew, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-          .addComponent(textSenhaOld)
-          .addComponent(textUser))
-        .addContainerGap(266, Short.MAX_VALUE))
-    );
-    jPanel1Layout.setVerticalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(jPanel1Layout.createSequentialGroup()
-        .addGap(99, 99, 99)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel1)
-          .addComponent(textUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(18, 18, 18)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel3)
-          .addComponent(textSenhaOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(18, 18, 18)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel2)
-          .addComponent(textSenhaNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap())
-    );
-
-    jTabbedPane1.addTab("Login", jPanel1);
-
     javax.swing.GroupLayout panelIdentificacaoLayout = new javax.swing.GroupLayout(panelIdentificacao);
     panelIdentificacao.setLayout(panelIdentificacaoLayout);
     panelIdentificacaoLayout.setHorizontalGroup(
@@ -420,24 +368,20 @@ public class UsuarioCadastro extends JFrame {
       }
   }//GEN-LAST:event_buttonSalvarActionPerformed
 
-  private void comboBoxSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSituacaoActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_comboBoxSituacaoActionPerformed
-
   private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
     dispose();
   }//GEN-LAST:event_buttonSairActionPerformed
+
+  private void comboBoxSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSituacaoActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_comboBoxSituacaoActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton buttonSair;
   private javax.swing.JButton buttonSalvar;
   private javax.swing.JComboBox comboBoxBanco;
   private javax.swing.JComboBox comboBoxSituacao;
-  private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel jLabel2;
-  private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel9;
-  private javax.swing.JPanel jPanel1;
   private javax.swing.JTabbedPane jTabbedPane1;
   private javax.swing.JLabel labelAgencia;
   private javax.swing.JLabel labelApelido;
@@ -462,11 +406,8 @@ public class UsuarioCadastro extends JFrame {
   private javax.swing.JTextField textDataTermino;
   private javax.swing.JTextField textEmail;
   private javax.swing.JTextField textNome;
-  private javax.swing.JPasswordField textSenhaNew;
-  private javax.swing.JPasswordField textSenhaOld;
   private javax.swing.JTextField textTelefoneCel;
   private javax.swing.JTextField textTelefoneRes;
-  private javax.swing.JTextField textUser;
   // End of variables declaration//GEN-END:variables
 
   public Integer getIdUsuario() {
