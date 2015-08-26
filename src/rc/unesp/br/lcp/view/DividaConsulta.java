@@ -137,10 +137,7 @@ public class DividaConsulta extends javax.swing.JFrame {
 
         tabelaDividas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "Descrição", "Preço", "Pago"

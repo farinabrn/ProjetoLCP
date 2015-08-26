@@ -254,9 +254,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textDataInicio">
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="    try{  &#xa;       javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter(&quot;##/##/##&quot;);  &#xa;       textDataInicio= new javax.swing.JFormattedTextField(data);  &#xa;    }  &#xa;       catch (Exception e){  &#xa;    }   "/>
-                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="labelDataTermino">
                   <Properties>
@@ -264,9 +261,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textDataTermino">
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="    try{  &#xa;       javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter(&quot;##/##/##&quot;);  &#xa;       textDataTermino= new javax.swing.JFormattedTextField(data);  &#xa;    }  &#xa;       catch (Exception e){  &#xa;    }   "/>
-                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="labelSituacao">
                   <Properties>
@@ -282,9 +276,6 @@
                       </StringArray>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBoxSituacaoActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="labelTelefoneRes">
                   <Properties>
@@ -292,9 +283,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textTelefoneRes">
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="    try{  &#xa;       javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter(&quot;(##) ####-####&quot;);  &#xa;       textTelefoneRes = new javax.swing.JFormattedTextField(data);  &#xa;    }  &#xa;       catch (Exception e){  &#xa;    }   "/>
-                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="labelTelefoneCel">
                   <Properties>
@@ -302,9 +290,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textTelefoneCel">
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="    try{  &#xa;       javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter(&quot;(##) #####-####&quot;);  &#xa;       textTelefoneCel = new javax.swing.JFormattedTextField(data);  &#xa;    }  &#xa;       catch (Exception e){  &#xa;    }   "/>
-                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="labelEmail">
                   <Properties>
