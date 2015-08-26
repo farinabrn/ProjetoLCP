@@ -49,6 +49,10 @@ public class DespesaDAO {
         if (despesa.getPreco() != null && despesa.getPreco() != 0) {
             criteria.add(Restrictions.eq(Despesa.PRECO, despesa.getPreco()));
         }
+        
+        if (despesa.isPago()){
+            criteria.add(Restrictions.eq(Despesa.PAGO, despesa.isPago()));
+        }
 
         List<Despesa> list = criteria.list();
 

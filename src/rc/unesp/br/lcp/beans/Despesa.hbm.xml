@@ -7,7 +7,7 @@
       <column name="idDespesa"/>
       <generator class="identity"/>
     </id>
-    <many-to-one class="rc.unesp.br.lcp.beans.Usuario" fetch="select" name="usuarioPagador">
+    <many-to-one name="usuarioPagador" class="rc.unesp.br.lcp.beans.Usuario" fetch="select">
       <column name="idUsuarioPagador"/>
     </many-to-one>
     <property name="descricao" type="string">
@@ -15,6 +15,9 @@
     </property>
     <property name="preco" type="java.lang.Double">
       <column name="preco" precision="22" scale="0"/>
+    </property>
+    <property name="pago" type="boolean">
+        <column name="pago"/>
     </property>
   </class>
 </hibernate-mapping>
